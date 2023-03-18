@@ -96,10 +96,10 @@ struct BookMainView: View {
                     .onReceive(GlobalSignalEmitter.jumpToIndexSig.publisher()) { nextIndex in
                         
                         print("try to scroll to \(nextIndex)")
-                        withAnimation(.linear(duration: 3.0)) {
-                            proxy.scrollTo(nextIndex, anchor: .top)
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.1, execute: {
+
+                        proxy.scrollTo(nextIndex, anchor: .top)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 9.1, execute: {
                             firstJumpFin = true
                         })
                         page = nextIndex

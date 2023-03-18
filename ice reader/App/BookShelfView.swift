@@ -15,13 +15,24 @@ struct BookShelfView: View {
     @AppStorage("LastReadBookName")
     var LastReadBookName = ""
     @State var isFirstLaunch = true
-
+    
+    func getImageName(index : Int) -> String {
+        let remain = index % 21
+        return "s\(remain)"
+    }
+    
     @ViewBuilder
-    private func bookCell(name : String) -> some View {
+    private func bookCell(name : String, index : Int) -> some View {
         HStack {
+            
+            Image(getImageName(index: index))
+                .resizable()
+                .frame(width: 48, height: 48)
+            
             Text(name)
-                .font(.system(size: 18, weight: .heavy))
+                .font(.system(size: 14, weight: .heavy))
                 .minimumScaleFactor(0.4)
+                .foregroundColor(vm.isLastActive(name: name) ? Color.blue : Color.black)
 
         }
     }
@@ -51,8 +62,8 @@ struct BookShelfView: View {
                                         .toolbar(.hidden, for: .tabBar)
                                         
                                 } label: {
-                                    bookCell(name: name)
-                                        .padding(16)
+                                    bookCell(name: name, index: index)
+                                        .padding(4)
                                         .frame(width: proxy.size.width / 3 - 16, height: 80)
                                         .background {
                                             Color.black.opacity(0.1)
@@ -76,6 +87,16 @@ struct BookShelfView: View {
                         isFirstLaunch = false
                         gotoLastReadBook()
                     }
+                }
+                .overlay(alignment: .top) {
+                    HStack {
+                        Image("s5")
+                            .resizable()
+                            .frame(width: 180, height: 180)
+                        Text("今天想读哪本书啊？")
+                            .font(.system(size: 25, weight: .medium))
+                    }
+
                 }
             }
  

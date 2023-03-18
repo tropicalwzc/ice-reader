@@ -93,7 +93,7 @@ struct BookMainView: View {
                     .onReceive(GlobalSignalEmitter.jumpToIndexSig.publisher()) { nextIndex in
                         
                         print("try to scroll to \(nextIndex)")
-                        withAnimation {
+                        withAnimation(.linear(duration: 3.0)) {
                             proxy.scrollTo(nextIndex, anchor: .top)
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute: {

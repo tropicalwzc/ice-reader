@@ -15,11 +15,6 @@
 		B4A9F73C29C52F3A00F267C6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73B29C52F3A00F267C6 /* Persistence.swift */; };
 		B4A9F73F29C52F3A00F267C6 /* ice_reader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73D29C52F3A00F267C6 /* ice_reader.xcdatamodeld */; };
 		B4A9F74729C5313400F267C6 /* 黎明之剑.txt.html in Resources */ = {isa = PBXBuildFile; fileRef = B4A9F74629C5313400F267C6 /* 黎明之剑.txt.html */; };
-		B4E7088229C535FC00F70C14 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088029C535FC00F70C14 /* BaseVC.swift */; };
-		B4E7088329C535FC00F70C14 /* BaseViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088129C535FC00F70C14 /* BaseViewVC.swift */; };
-		B4E7088529C5372000F70C14 /* WrapperViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088429C5372000F70C14 /* WrapperViewVC.swift */; };
-		B4E7088729C5372800F70C14 /* WTHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088629C5372800F70C14 /* WTHostingController.swift */; };
-		B4E7088929C537BE00F70C14 /* ModalBottomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088829C537BE00F70C14 /* ModalBottomTransition.swift */; };
 		B4E7089829C541FA00F70C14 /* BookMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089729C541FA00F70C14 /* BookMainView.swift */; };
 		B4E7089A29C5420B00F70C14 /* BookShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089929C5420B00F70C14 /* BookShelfView.swift */; };
 		B4E7089C29C5422500F70C14 /* BookVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089B29C5422500F70C14 /* BookVM.swift */; };
@@ -49,11 +44,6 @@
 		B4A9F73B29C52F3A00F267C6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B4A9F73E29C52F3A00F267C6 /* ice_reader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ice_reader.xcdatamodel; sourceTree = "<group>"; };
 		B4A9F74629C5313400F267C6 /* 黎明之剑.txt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "黎明之剑.txt.html"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/黎明之剑.txt.html"; sourceTree = "<group>"; };
-		B4E7088029C535FC00F70C14 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
-		B4E7088129C535FC00F70C14 /* BaseViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewVC.swift; sourceTree = "<group>"; };
-		B4E7088429C5372000F70C14 /* WrapperViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapperViewVC.swift; sourceTree = "<group>"; };
-		B4E7088629C5372800F70C14 /* WTHostingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WTHostingController.swift; sourceTree = "<group>"; };
-		B4E7088829C537BE00F70C14 /* ModalBottomTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalBottomTransition.swift; sourceTree = "<group>"; };
 		B4E7089729C541FA00F70C14 /* BookMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMainView.swift; sourceTree = "<group>"; };
 		B4E7089929C5420B00F70C14 /* BookShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfView.swift; sourceTree = "<group>"; };
 		B4E7089B29C5422500F70C14 /* BookVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVM.swift; sourceTree = "<group>"; };
@@ -116,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				B4E7089629C541E300F70C14 /* App */,
-				B4E7087F29C535E900F70C14 /* Base */,
 				B4A9F74529C5306300F267C6 /* Resource */,
 				B4A9F73229C52F3900F267C6 /* ice_readerApp.swift */,
 				B4A9F73429C52F3900F267C6 /* ContentView.swift */,
@@ -155,18 +144,6 @@
 				B4E708B729C56BB800F70C14 /* 我打造了旧日支配者神话.txt */,
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		B4E7087F29C535E900F70C14 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				B4E7088829C537BE00F70C14 /* ModalBottomTransition.swift */,
-				B4E7088629C5372800F70C14 /* WTHostingController.swift */,
-				B4E7088429C5372000F70C14 /* WrapperViewVC.swift */,
-				B4E7088029C535FC00F70C14 /* BaseVC.swift */,
-				B4E7088129C535FC00F70C14 /* BaseViewVC.swift */,
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		B4E7089629C541E300F70C14 /* App */ = {
@@ -317,16 +294,11 @@
 			files = (
 				B4A9F73C29C52F3A00F267C6 /* Persistence.swift in Sources */,
 				B4E7089C29C5422500F70C14 /* BookVM.swift in Sources */,
-				B4E7088529C5372000F70C14 /* WrapperViewVC.swift in Sources */,
 				B4A9F73529C52F3900F267C6 /* ContentView.swift in Sources */,
-				B4E7088329C535FC00F70C14 /* BaseViewVC.swift in Sources */,
 				B4E7089A29C5420B00F70C14 /* BookShelfView.swift in Sources */,
 				B4A9F73F29C52F3A00F267C6 /* ice_reader.xcdatamodeld in Sources */,
 				B4A9F73329C52F3900F267C6 /* ice_readerApp.swift in Sources */,
-				B4E7088229C535FC00F70C14 /* BaseVC.swift in Sources */,
-				B4E7088929C537BE00F70C14 /* ModalBottomTransition.swift in Sources */,
 				B4E7089829C541FA00F70C14 /* BookMainView.swift in Sources */,
-				B4E7088729C5372800F70C14 /* WTHostingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

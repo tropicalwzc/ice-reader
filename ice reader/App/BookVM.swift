@@ -71,8 +71,12 @@ class BookVM: ObservableObject {
     @Published var splitedContentsCount: Double = 1.0
     @Published var sequence: String.SubSequence = String.SubSequence(stringLiteral: "")
     
+    let jumpToIndexSig = PassthroughSignalEmitter<Int>()
+    let quickJumpToIndexSig = PassthroughSignalEmitter<Int>()
+    let cleanLastReadBook = PassthroughSignalEmitter<Bool>()
     @AppStorage("LastReadBookName")
     var LastReadBookName = ""
+    var blockSaveAction = false
     
     func isLastActive(name : String) -> Bool {
        return LastReadBookName == name
@@ -88,6 +92,10 @@ class BookVM: ObservableObject {
     }
     
     func saveLastPage(name: String, page: Int) {
+        if blockSaveAction {
+            print("Catch background save action")
+            return
+        }
         UserDefaults.standard.set(String(page), forKey: name)
         let rr = readLastPage(name: name)
         let progress = Double(page) / splitedContentsCount
@@ -185,7 +193,6 @@ struct ContentLoader {
 
 
 enum GlobalSignalEmitter {
-    static let jumpToIndexSig = PassthroughSignalEmitter<Int>()
     static let cleanLastReadBook = PassthroughSignalEmitter<Bool>()
 }
 

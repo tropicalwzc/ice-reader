@@ -20,20 +20,21 @@ struct BookMainView: View {
     @State private var firstJumpFin = false
     @State var hiddenNav : Bool = true
 
+    @State var isFirstAppear = true
     func submit() {
         print("You entered \(index)")
         if let nextIndex = Int(index) {
             if nextIndex < vm.splitedContents.count && nextIndex >= 0 {
-                firstJumpFin = false
-                GlobalSignalEmitter.jumpToIndexSig.send(params: nextIndex)
+                vm.jumpToIndexSig.send(params: nextIndex)
                 page = nextIndex
+                self.vm.saveLastPage(name: bookName, page: page)
             }
         }
     }
     
     func readLastPage() {
         page = vm.readLastPage(name: bookName)
-        GlobalSignalEmitter.jumpToIndexSig.send(params: page)
+        vm.jumpToIndexSig.send(params: page)
         vm.LastReadBookName = bookName
     }
     
@@ -91,21 +92,16 @@ struct BookMainView: View {
 
                         }
                     }
-                    .onReceive(GlobalSignalEmitter.jumpToIndexSig.publisher()) { nextIndex in
-                        
-                        print("try to scroll to \(nextIndex)")
-                        proxy.scrollTo(nextIndex, anchor: .bottom)
+                    .onReceive(vm.jumpToIndexSig.publisher()) { nextIndex in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            print("try to scroll to \(nextIndex)")
                             withAnimation {
                                 proxy.scrollTo(nextIndex, anchor: .top)
                             }
                         })
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-                            firstJumpFin = true
-                            page = nextIndex
-                            vm.saveLastPage(name: bookName, page: page)
-                        })
-
+                    }
+                    .onReceive(vm.quickJumpToIndexSig.publisher()) { nextIndex in
+                        proxy.scrollTo(nextIndex, anchor: .top)
                     }
                 }
                 .padding(.top, 0.5)
@@ -115,6 +111,7 @@ struct BookMainView: View {
         .onAppear {
             vm.fetchAllDatas(bookName: bookName, page: page, extention: bookExtention) { res in
                 full = res
+                print("reload all datas")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                     readLastPage()
                 })
@@ -136,6 +133,16 @@ struct BookMainView: View {
             }
         }
         .navigationBarHidden(hiddenNav)
+                        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+                            vm.blockSaveAction = true
+                            print("recc exit \(page)")
+                        }
+                        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                            vm.blockSaveAction = false
+                            print("recc enter \(page)")
+                            vm.quickJumpToIndexSig.send(params: page)
+                            vm.jumpToIndexSig.send(params: page)
+                        }
 
     }
 }

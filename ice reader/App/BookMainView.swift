@@ -34,7 +34,11 @@ struct BookMainView: View {
                     vm.jumpToIndexSig.send(params: nextIndex)
                     self.vm.saveLastPage(name: bookName, page: page)
                 } else {
-                    smallHeadpage = 0
+                    var small = nextIndex - 300
+                    if small < 0 {
+                        small = 0
+                    }
+                    smallHeadpage = small
                     if nextIndex >= smallHeadpage {
                         page = nextIndex
                         self.stripSmallPage()
@@ -134,6 +138,9 @@ struct BookMainView: View {
                     }
                     .onReceive(vm.quickJumpToIndexSig.publisher()) { nextIndex in
                         proxy.scrollTo(nextIndex, anchor: .top)
+                    }
+                    .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                        vm.jumpToIndexSig.send(params: page)
                     }
                 }
                 .padding(.top, 0.5)

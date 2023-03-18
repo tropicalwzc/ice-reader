@@ -11,7 +11,7 @@ import Combine
 class BookVM: ObservableObject {
     @Published var datas : [String]?
     @Published var bookNames:[(name:String, extention:String)] = [
-        (name:"黎明之剑.txt", extention:"html"),
+
         (name:"天启预报", extention:"txt"),
         (name:"重生之似水流年", extention:"txt"),
         (name:"希灵帝国", extention:"txt"),
@@ -21,33 +21,18 @@ class BookVM: ObservableObject {
         (name:"夜的命名术", extention:"txt"),
         (name:"大奉打更人", extention:"txt"),
         (name:"不科学御兽", extention:"txt"),
+        (name:"黎明之剑", extention:"html"),
         (name:"万道龙皇", extention:"txt"),
+        (name:"诡秘之主", extention:"txt"),
         (name:"万族之劫", extention:"txt"),
         (name:"我打造了旧日支配者神话", extention:"txt"),
-        (name:"镇妖博物馆.txt", extention:"html"),
+        (name:"镇妖博物馆", extention:"html"),
     ]
     
     @Published var fullContents: [String] = []
     @Published var splitedContents: Array<Substring> = []
     @Published var sequence: String.SubSequence = String.SubSequence(stringLiteral: "")
-    
-    func pageContentOf(page: Int, completion : @escaping(String) -> Void) {
-        DispatchQueue.global(qos: .default).async {
-            let pageSize = 10000
-            let beginPoint = pageSize * page
-            var startIndex = self.sequence.index(self.sequence.startIndex, offsetBy: beginPoint)
-            var item = self.sequence
-            item.removeSubrange(item.startIndex..<startIndex)
-            let res = item.prefix(pageSize)
-            let fin = String(res)
-            DispatchQueue.main.async {
-                self.fullContents.append(fin)
-            }
-            completion(fin)
-        }
 
-    }
-    
     func saveLastPage(name: String, page: Int) {
         UserDefaults.standard.set(String(page), forKey: name)
         let rr = readLastPage(name: name)
@@ -77,7 +62,7 @@ class BookVM: ObservableObject {
     
     func loadRawContent(bookName: String, extention: String = "html") {
         let contentLoader = ContentLoader()
-        var rawContent = contentLoader.loadBundledContent(fromFileNamed: bookName, extention: extention)
+        let rawContent = contentLoader.loadBundledContent(fromFileNamed: bookName, extention: extention)
         sequence = String.SubSequence(stringLiteral: rawContent)
     }
     

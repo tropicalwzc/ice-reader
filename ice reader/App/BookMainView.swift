@@ -96,12 +96,13 @@ struct BookMainView: View {
                         withAnimation(.linear(duration: 3.0)) {
                             proxy.scrollTo(nextIndex, anchor: .top)
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0, execute: {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.1, execute: {
                             firstJumpFin = true
                         })
                         page = nextIndex
                         vm.saveLastPage(name: bookName, page: page)
                     }
+ 
   
                 }
             }
@@ -115,6 +116,7 @@ struct BookMainView: View {
                 })
             }
         }
+        
         .navigationTitle("\(pureBookName()) \(page)")
         .alert("跳转到哪一页?", isPresented: $showingAlert) {
             TextField("跳转到哪一页?", text: $index).keyboardType(UIKeyboardType.decimalPad)

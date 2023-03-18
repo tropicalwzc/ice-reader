@@ -23,6 +23,7 @@ struct BookMainView: View {
         print("You entered \(index)")
         if let nextIndex = Int(index) {
             if nextIndex < vm.splitedContents.count && nextIndex >= 0 {
+                firstJumpFin = false
                 GlobalSignalEmitter.jumpToIndexSig.send(params: nextIndex)
                 page = nextIndex
             }
@@ -96,14 +97,18 @@ struct BookMainView: View {
                     .onReceive(GlobalSignalEmitter.jumpToIndexSig.publisher()) { nextIndex in
                         
                         print("try to scroll to \(nextIndex)")
-
-                        proxy.scrollTo(nextIndex, anchor: .top)
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 9.1, execute: {
-                            firstJumpFin = true
+                        proxy.scrollTo(nextIndex, anchor: .bottom)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            withAnimation {
+                                proxy.scrollTo(nextIndex, anchor: .top)
+                            }
                         })
-                        page = nextIndex
-                        vm.saveLastPage(name: bookName, page: page)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                            firstJumpFin = true
+                            page = nextIndex
+                            vm.saveLastPage(name: bookName, page: page)
+                        })
+
                     }
  
   

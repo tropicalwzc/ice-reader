@@ -13,27 +13,51 @@ struct BookMainView: View {
     @ObservedObject var vm : BookVM
     @State var full : String = ""
     
+    @State var smallHeadpage : Int = 0
     @State var page : Int = 0
     @State var maximumPage : Int = 0
     @State private var showingAlert = false
     @State var index : String = ""
     @State private var firstJumpFin = false
     @State var hiddenNav : Bool = true
-
     @State var isFirstAppear = true
+    
+    let pageSize : Int = 300
+    
     func submit() {
-        print("You entered \(index)")
+        //print("You entered \(index)")
         if let nextIndex = Int(index) {
-            if nextIndex < vm.splitedContents.count && nextIndex >= 0 {
-                vm.jumpToIndexSig.send(params: nextIndex)
-                page = nextIndex
-                self.vm.saveLastPage(name: bookName, page: page)
+            if nextIndex < vm.splitedContents.count  {
+                if nextIndex >= smallHeadpage {
+                    page = nextIndex
+                    self.stripSmallPage()
+                    vm.jumpToIndexSig.send(params: nextIndex)
+                    self.vm.saveLastPage(name: bookName, page: page)
+                } else {
+                    smallHeadpage = 0
+                    if nextIndex >= smallHeadpage {
+                        page = nextIndex
+                        self.stripSmallPage()
+                        vm.jumpToIndexSig.send(params: nextIndex)
+                        self.vm.saveLastPage(name: bookName, page: page)
+                    }
+                }
+
             }
         }
     }
     
+    func stripSmallPage() {
+        var small = page - pageSize
+        if small < 0 {
+            small = 0
+        }
+        smallHeadpage = small
+    }
+    
     func readLastPage() {
         page = vm.readLastPage(name: bookName)
+        self.stripSmallPage()
         vm.jumpToIndexSig.send(params: page)
         vm.LastReadBookName = bookName
     }
@@ -49,7 +73,7 @@ struct BookMainView: View {
             ScrollViewReader { proxy in
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 5) {
-                        ForEach(0 ..< vm.splitedContents.count, id: \.self) { index in
+                        ForEach(smallHeadpage ..< (page + pageSize < vm.splitedContents.count ? page + pageSize : vm.splitedContents.count), id: \.self) { index in
                             ZStack(alignment: .topLeading) {
                                 
                                 Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -63,6 +87,12 @@ struct BookMainView: View {
                                         .padding(.trailing, 8)
                                         .padding(.top, 12)
                                         .italic()
+                                }.onAppear {
+                                    if index == page + pageSize - 1 {
+                                        //print("Scroll to tail , auto page")
+                                        page = index
+                                        vm.saveLastPage(name: bookName, page: page)
+                                    }
                                 }
 
 
@@ -73,12 +103,14 @@ struct BookMainView: View {
                                     .tracking(1)
                                     .multilineTextAlignment(.leading)
                                     .onTapGesture {
-                                        hiddenNav = false
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                                            hiddenNav = true
+                                        if hiddenNav == true {
+                                            hiddenNav = false
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                                hiddenNav = true
+                                            }
+                                            page = index
+                                            vm.saveLastPage(name: bookName, page: page)
                                         }
-                                        page = index
-                                        vm.saveLastPage(name: bookName, page: page)
                                     }
                                     .foregroundColor(Color.init(red: 0.2, green: 0.22, blue: 0.25))
                             }
@@ -93,8 +125,8 @@ struct BookMainView: View {
                         }
                     }
                     .onReceive(vm.jumpToIndexSig.publisher()) { nextIndex in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                            print("try to scroll to \(nextIndex)")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+                            //print("try to scroll to \(nextIndex)")
                             withAnimation {
                                 proxy.scrollTo(nextIndex, anchor: .top)
                             }
@@ -111,7 +143,7 @@ struct BookMainView: View {
         .onAppear {
             vm.fetchAllDatas(bookName: bookName, page: page, extention: bookExtention) { res in
                 full = res
-                print("reload all datas")
+                //print("reload all datas")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                     readLastPage()
                 })
@@ -135,12 +167,11 @@ struct BookMainView: View {
         .navigationBarHidden(hiddenNav)
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
                             vm.blockSaveAction = true
-                            print("recc exit \(page)")
+                            //print("recc exit \(page)")
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                             vm.blockSaveAction = false
-                            print("recc enter \(page)")
-                            vm.quickJumpToIndexSig.send(params: page)
+                            //print("recc enter \(page)")
                             vm.jumpToIndexSig.send(params: page)
                         }
 

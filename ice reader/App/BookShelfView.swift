@@ -92,9 +92,6 @@ struct BookShelfView: View {
                                         }
 
                                 }
-                                .onAppear {
-                                    print("www \(proxy.size.width)")
-                                }
                                 .navigationDestination(for: String.self) { i in
                                     let extention = vm.getExtentionOfName(name: i)
                                     BookMainView(bookName: i, bookExtention: extention, vm: vm)

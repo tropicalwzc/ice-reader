@@ -93,14 +93,16 @@ class BookVM: ObservableObject {
     
     func saveLastPage(name: String, page: Int) {
         if blockSaveAction {
-            print("Catch background save action")
+            //print("Catch background save action")
             return
         }
-        UserDefaults.standard.set(String(page), forKey: name)
-        let rr = readLastPage(name: name)
-        let progress = Double(page) / splitedContentsCount
-        UserDefaults.standard.set(progress, forKey: getProgressKey(name: name))
-        print("after save rr is \(rr)")
+        
+        DispatchQueue.global(qos: .default).async {
+            UserDefaults.standard.set(String(page), forKey: name)
+            let progress = Double(page) / self.splitedContentsCount
+            UserDefaults.standard.set(progress, forKey: self.getProgressKey(name: name))
+        }
+        
     }
     
     func getProgressKey(name : String) -> String {
@@ -118,9 +120,9 @@ class BookVM: ObservableObject {
     func readLastPage(name: String) -> Int {
         let res = UserDefaults.standard.value(forKey: name)
         if let val = res as? String {
-            print("val is \(String(describing: res))")
+            //print("val is \(String(describing: res))")
             if let fin = Int(val) {
-                print("fin is \(String(describing: res))")
+                //print("fin is \(String(describing: res))")
                 return fin
             }
         }
@@ -144,17 +146,25 @@ class BookVM: ObservableObject {
     }
     
     func fetchAllDatas(bookName: String, page: Int, extention: String, completion : @escaping(String) -> Void) {
-        loadRawContent(bookName: bookName, extention: extention)
-        self.calSplit() { _ in
-            completion("T")
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.loadRawContent(bookName: bookName, extention: extention)
+            self.calSplit() { _ in
+                completion("T")
+            }
         }
     }
     
     func updateProgresses() {
-        for i in 0 ..< bookNames.count {
-            let progress = readLastProgressOf(name: bookNames[i].name)
-            bookNames[i].progress = progress
+        DispatchQueue.global(qos: .default).async {
+            for i in 0 ..< self.bookNames.count {
+                let progress = self.readLastProgressOf(name: self.bookNames[i].name)
+                DispatchQueue.main.async {
+                    self.bookNames[i].progress = progress
+                }
+            }
         }
+
     }
 }
 
@@ -169,7 +179,7 @@ struct ContentLoader {
             forResource: name,
             withExtension: extention
         ) else {
-            print("ERROR UnknownURL")
+            //print("ERROR UnknownURL")
             GlobalSignalEmitter.cleanLastReadBook.send(params: true)
             return "UnknownURL"
         }
@@ -184,7 +194,7 @@ struct ContentLoader {
             return data ?? ""
         } catch {
             GlobalSignalEmitter.cleanLastReadBook.send(params: true)
-            print("ERROR ReadFailed")
+            //print("ERROR ReadFailed")
             return ""
         }
     }

@@ -74,15 +74,16 @@ struct BookMainView: View {
 
 
                                 Text(vm.splitedContents[index])
-                                    .font(.system(size: 25, weight: .medium))
-                                    .padding(.horizontal, 2)
+                                    .font(.system(size: 25, weight: .regular))
+                                    .padding(.horizontal, 6)
                                     .lineSpacing(5)
+                                    .tracking(1)
                                     .multilineTextAlignment(.leading)
                                     .onTapGesture {
                                         page = index
                                         vm.saveLastPage(name: bookName, page: page)
                                     }
-                                    .foregroundColor(Color.init(red: 0.45, green: 0.48, blue: 0.5))
+                                    .foregroundColor(Color.init(red: 0.2, green: 0.22, blue: 0.25))
                             }
                             .background {
                                 RoundedRectangle(cornerRadius: 16)

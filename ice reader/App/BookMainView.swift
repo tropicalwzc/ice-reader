@@ -47,7 +47,7 @@ struct BookMainView: View {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 1) {
                         ForEach(0 ..< vm.splitedContents.count, id: \.self) { index in
-                            ZStack(alignment: .top) {
+                            ZStack(alignment: .topLeading) {
                                 
                                 Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
                                 

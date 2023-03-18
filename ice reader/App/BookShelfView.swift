@@ -17,23 +17,30 @@ struct BookShelfView: View {
     @State var isFirstLaunch = true
     
     func getImageName(index : Int) -> String {
-        let remain = index % 21
+        let remain = index % 35
         return "s\(remain)"
     }
     
     @ViewBuilder
     private func bookCell(name : String, index : Int) -> some View {
-        HStack {
+        
+        VStack(spacing: 6) {
             
-            Image(getImageName(index: index))
-                .resizable()
-                .frame(width: 48, height: 48)
-            
-            Text(name)
-                .font(.system(size: 14, weight: .heavy))
-                .minimumScaleFactor(0.4)
-                .foregroundColor(vm.isLastActive(name: name) ? Color.blue : Color.black)
+            HStack(spacing: 4) {
+                Image(getImageName(index: index))
+                    .resizable()
+                    .frame(width: 48, height: 48)
 
+                Text(name)
+                    .font(.system(size: 14, weight: .heavy))
+                    .minimumScaleFactor(0.4)
+                    .foregroundColor(vm.isLastActive(name: name) ? Color.blue : Color.black)
+            }
+            
+            PerCentBarView(percent: vm.bookNames[index].progress, backColor: Color.gray.opacity(0.05), foreColor: Color.init("GoldenC").opacity(0.2))
+                .padding(.bottom, -4)
+    
+            
         }
     }
     
@@ -73,7 +80,7 @@ struct BookShelfView: View {
                                 } label: {
                                     bookCell(name: name, index: index)
                                         .padding(4)
-                                        .frame(width: proxy.size.width / 3 - 10, height: 80)
+                                        .frame(width: proxy.size.width / 3 - 10, height: 65)
                                         .background {
                                             Color.black.opacity(0.1)
                                                 .cornerRadius(8)
@@ -96,7 +103,13 @@ struct BookShelfView: View {
                     if isFirstLaunch {
                         isFirstLaunch = false
                         gotoLastReadBook()
+                    } else {
+                        vm.updateProgresses()
                     }
+                }
+                .onReceive(GlobalSignalEmitter.cleanLastReadBook.publisher()) { _ in
+                    navPath.removeLast()
+                    vm.LastReadBookName = ""
                 }
 
             }

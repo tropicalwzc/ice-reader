@@ -19,9 +19,7 @@ struct BookMainView: View {
     @State var index : String = ""
     @State private var firstJumpFin = false
     @State var hiddenNav : Bool = true
-    
 
-    
     func submit() {
         print("You entered \(index)")
         if let nextIndex = Int(index) {
@@ -49,7 +47,7 @@ struct BookMainView: View {
         VStack {
             ScrollViewReader { proxy in
                 ScrollView(showsIndicators: false) {
-                    LazyVStack(spacing: 1) {
+                    LazyVStack(spacing: 5) {
                         ForEach(0 ..< vm.splitedContents.count, id: \.self) { index in
                             ZStack(alignment: .topLeading) {
                                 

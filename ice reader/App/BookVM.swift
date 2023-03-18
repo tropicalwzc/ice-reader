@@ -14,11 +14,13 @@ struct BookInfo {
         self.name = name
         self.extention = extention
         self.active = active
+        self.progress = 0.0
     }
     
     var name : String
     var extention: String
     var active : Bool
+    var progress : Double
 }
 
 class BookVM: ObservableObject {
@@ -39,10 +41,34 @@ class BookVM: ObservableObject {
         BookInfo(name:"万族之劫", extention:"txt"),
         BookInfo(name:"我打造了旧日支配者神话", extention:"txt"),
         BookInfo(name:"镇妖博物馆", extention:"html"),
+        BookInfo(name:"我的属性修行人生", extention:"txt"),
+        BookInfo(name:"一世之尊", extention:"txt"),
+        BookInfo(name:"吞噬星空", extention:"txt"),
+        BookInfo(name:"惊悚乐园", extention:"txt"),
+        BookInfo(name:"我师兄实在是太稳健了", extention:"txt"),
+        BookInfo(name:"我有一座冒险屋", extention:"txt"),
+        BookInfo(name:"斗破苍穹", extention:"txt"),
+        BookInfo(name:"大王饶命", extention:"txt"),
+        BookInfo(name:"超神机械师", extention:"html"),
+        BookInfo(name:"圣墟", extention:"txt"),
+        BookInfo(name:"牧神记", extention:"txt"),
+        BookInfo(name:"轮回乐园", extention:"txt"),
+        BookInfo(name:"完美世界", extention:"txt"),
+        BookInfo(name:"全球高武", extention:"txt"),
+        BookInfo(name:"伏天氏", extention:"txt"),
+        BookInfo(name:"从红月开始", extention:"txt"),
+        BookInfo(name:"亏成首富从游戏开始", extention:"txt"),
+        BookInfo(name:"第一序列", extention:"txt"),
+        BookInfo(name:"深夜书屋", extention:"txt"),
+        BookInfo(name:"一念永恒", extention:"txt"),
+        BookInfo(name:"奥术神座", extention:"txt"),
+        BookInfo(name:"全职高手", extention:"txt"),
+        BookInfo(name:"异常生物见闻录", extention:"txt"),
     ]
     
     @Published var fullContents: [String] = []
     @Published var splitedContents: Array<Substring> = []
+    @Published var splitedContentsCount: Double = 1.0
     @Published var sequence: String.SubSequence = String.SubSequence(stringLiteral: "")
     
     @AppStorage("LastReadBookName")
@@ -64,7 +90,21 @@ class BookVM: ObservableObject {
     func saveLastPage(name: String, page: Int) {
         UserDefaults.standard.set(String(page), forKey: name)
         let rr = readLastPage(name: name)
+        let progress = Double(page) / splitedContentsCount
+        UserDefaults.standard.set(progress, forKey: getProgressKey(name: name))
         print("after save rr is \(rr)")
+    }
+    
+    func getProgressKey(name : String) -> String {
+        return "\(name)ReadingProgress"
+    }
+    
+    func readLastProgressOf(name: String) -> Double {
+        let res = UserDefaults.standard.value(forKey: getProgressKey(name: name))
+        if let val = res as? Double {
+            return val
+        }
+        return 0.0
     }
     
     func readLastPage(name: String) -> Int {
@@ -83,6 +123,7 @@ class BookVM: ObservableObject {
 
         DispatchQueue.main.async {
             self.splitedContents = self.sequence.split(separator: "。")
+            self.splitedContentsCount = Double(self.splitedContents.count)
             completion("T")
         }
 
@@ -100,6 +141,13 @@ class BookVM: ObservableObject {
             completion("T")
         }
     }
+    
+    func updateProgresses() {
+        for i in 0 ..< bookNames.count {
+            let progress = readLastProgressOf(name: bookNames[i].name)
+            bookNames[i].progress = progress
+        }
+    }
 }
 
 struct ContentLoader {
@@ -114,13 +162,20 @@ struct ContentLoader {
             withExtension: extention
         ) else {
             print("ERROR UnknownURL")
+            GlobalSignalEmitter.cleanLastReadBook.send(params: true)
             return "UnknownURL"
         }
         
         do {
-            let data = try String(contentsOf: url, encoding: String.Encoding.utf8)
-            return data
+            var data = try? String(contentsOf: url, encoding: String.Encoding.utf8)
+            if data == nil {
+                let encode = CFStringConvertEncodingToNSStringEncoding(UInt32(CFStringEncodings.GB_18030_2000.rawValue))
+                let encoding = String.Encoding.init(rawValue: encode)
+                data = try String(contentsOf: url, encoding: encoding)
+            }
+            return data ?? ""
         } catch {
+            GlobalSignalEmitter.cleanLastReadBook.send(params: true)
             print("ERROR ReadFailed")
             return ""
         }
@@ -131,6 +186,7 @@ struct ContentLoader {
 
 enum GlobalSignalEmitter {
     static let jumpToIndexSig = PassthroughSignalEmitter<Int>()
+    static let cleanLastReadBook = PassthroughSignalEmitter<Bool>()
 }
 
 /// 信号发送器

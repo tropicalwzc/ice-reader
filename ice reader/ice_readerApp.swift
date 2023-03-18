@@ -13,7 +13,7 @@ struct ice_readerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BookShelfView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

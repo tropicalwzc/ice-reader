@@ -7,15 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A36B087A3AE434BC3234B23C /* Pods_ice_reader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */; };
 		B4A9F73329C52F3900F267C6 /* ice_readerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73229C52F3900F267C6 /* ice_readerApp.swift */; };
 		B4A9F73529C52F3900F267C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73429C52F3900F267C6 /* ContentView.swift */; };
 		B4A9F73729C52F3A00F267C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A9F73629C52F3A00F267C6 /* Assets.xcassets */; };
 		B4A9F73A29C52F3A00F267C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A9F73929C52F3A00F267C6 /* Preview Assets.xcassets */; };
 		B4A9F73C29C52F3A00F267C6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73B29C52F3A00F267C6 /* Persistence.swift */; };
 		B4A9F73F29C52F3A00F267C6 /* ice_reader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73D29C52F3A00F267C6 /* ice_reader.xcdatamodeld */; };
+		B4A9F74729C5313400F267C6 /* 黎明之剑.txt.html in Resources */ = {isa = PBXBuildFile; fileRef = B4A9F74629C5313400F267C6 /* 黎明之剑.txt.html */; };
+		B4E7088229C535FC00F70C14 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088029C535FC00F70C14 /* BaseVC.swift */; };
+		B4E7088329C535FC00F70C14 /* BaseViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088129C535FC00F70C14 /* BaseViewVC.swift */; };
+		B4E7088529C5372000F70C14 /* WrapperViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088429C5372000F70C14 /* WrapperViewVC.swift */; };
+		B4E7088729C5372800F70C14 /* WTHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088629C5372800F70C14 /* WTHostingController.swift */; };
+		B4E7088929C537BE00F70C14 /* ModalBottomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7088829C537BE00F70C14 /* ModalBottomTransition.swift */; };
+		B4E7089829C541FA00F70C14 /* BookMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089729C541FA00F70C14 /* BookMainView.swift */; };
+		B4E7089A29C5420B00F70C14 /* BookShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089929C5420B00F70C14 /* BookShelfView.swift */; };
+		B4E7089C29C5422500F70C14 /* BookVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089B29C5422500F70C14 /* BookVM.swift */; };
+		B4E708A029C568FA00F70C14 /* 希灵帝国.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E7089F29C568FA00F70C14 /* 希灵帝国.txt */; };
+		B4E708A229C5696E00F70C14 /* 天启预报.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708A129C5696E00F70C14 /* 天启预报.txt */; };
+		B4E708A629C569B000F70C14 /* 重生之似水流年.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708A529C569B000F70C14 /* 重生之似水流年.txt */; };
+		B4E708A829C569D300F70C14 /* 深空彼岸.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708A729C569D300F70C14 /* 深空彼岸.txt */; };
+		B4E708AA29C56B1B00F70C14 /* 才不是魔女.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708A929C56B1B00F70C14 /* 才不是魔女.txt */; };
+		B4E708AC29C56B2300F70C14 /* 我真没想重生啊.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708AB29C56B2300F70C14 /* 我真没想重生啊.txt */; };
+		B4E708AE29C56B3E00F70C14 /* 夜的命名术.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708AD29C56B3E00F70C14 /* 夜的命名术.txt */; };
+		B4E708B029C56B4500F70C14 /* 大奉打更人.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708AF29C56B4500F70C14 /* 大奉打更人.txt */; };
+		B4E708B229C56B6000F70C14 /* 不科学御兽.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B129C56B6000F70C14 /* 不科学御兽.txt */; };
+		B4E708B429C56B8700F70C14 /* 万道龙皇.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B329C56B8700F70C14 /* 万道龙皇.txt */; };
+		B4E708B629C56B9D00F70C14 /* 万族之劫.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B529C56B9D00F70C14 /* 万族之劫.txt */; };
+		B4E708B829C56BB800F70C14 /* 我打造了旧日支配者神话.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B729C56BB800F70C14 /* 我打造了旧日支配者神话.txt */; };
+		B4E708BA29C56BF600F70C14 /* 镇妖博物馆.txt.html in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B929C56BF600F70C14 /* 镇妖博物馆.txt.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23C148EA6247D7EC1BA4A348 /* Pods-ice reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice reader.debug.xcconfig"; path = "Target Support Files/Pods-ice reader/Pods-ice reader.debug.xcconfig"; sourceTree = "<group>"; };
+		416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ice_reader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A9F72F29C52F3900F267C6 /* ice reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ice reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A9F73229C52F3900F267C6 /* ice_readerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ice_readerApp.swift; sourceTree = "<group>"; };
 		B4A9F73429C52F3900F267C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +48,29 @@
 		B4A9F73929C52F3A00F267C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B4A9F73B29C52F3A00F267C6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B4A9F73E29C52F3A00F267C6 /* ice_reader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ice_reader.xcdatamodel; sourceTree = "<group>"; };
+		B4A9F74629C5313400F267C6 /* 黎明之剑.txt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "黎明之剑.txt.html"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/黎明之剑.txt.html"; sourceTree = "<group>"; };
+		B4E7088029C535FC00F70C14 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		B4E7088129C535FC00F70C14 /* BaseViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewVC.swift; sourceTree = "<group>"; };
+		B4E7088429C5372000F70C14 /* WrapperViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapperViewVC.swift; sourceTree = "<group>"; };
+		B4E7088629C5372800F70C14 /* WTHostingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WTHostingController.swift; sourceTree = "<group>"; };
+		B4E7088829C537BE00F70C14 /* ModalBottomTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalBottomTransition.swift; sourceTree = "<group>"; };
+		B4E7089729C541FA00F70C14 /* BookMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMainView.swift; sourceTree = "<group>"; };
+		B4E7089929C5420B00F70C14 /* BookShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfView.swift; sourceTree = "<group>"; };
+		B4E7089B29C5422500F70C14 /* BookVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVM.swift; sourceTree = "<group>"; };
+		B4E7089F29C568FA00F70C14 /* 希灵帝国.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "希灵帝国.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/希灵帝国.txt"; sourceTree = "<group>"; };
+		B4E708A129C5696E00F70C14 /* 天启预报.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "天启预报.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/天启预报.txt"; sourceTree = "<group>"; };
+		B4E708A529C569B000F70C14 /* 重生之似水流年.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "重生之似水流年.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/重生之似水流年.txt"; sourceTree = "<group>"; };
+		B4E708A729C569D300F70C14 /* 深空彼岸.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "深空彼岸.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/深空彼岸.txt"; sourceTree = "<group>"; };
+		B4E708A929C56B1B00F70C14 /* 才不是魔女.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "才不是魔女.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/才不是魔女.txt"; sourceTree = "<group>"; };
+		B4E708AB29C56B2300F70C14 /* 我真没想重生啊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我真没想重生啊.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/我真没想重生啊.txt"; sourceTree = "<group>"; };
+		B4E708AD29C56B3E00F70C14 /* 夜的命名术.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "夜的命名术.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/夜的命名术.txt"; sourceTree = "<group>"; };
+		B4E708AF29C56B4500F70C14 /* 大奉打更人.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "大奉打更人.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/大奉打更人.txt"; sourceTree = "<group>"; };
+		B4E708B129C56B6000F70C14 /* 不科学御兽.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "不科学御兽.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/不科学御兽.txt"; sourceTree = "<group>"; };
+		B4E708B329C56B8700F70C14 /* 万道龙皇.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "万道龙皇.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/万道龙皇.txt"; sourceTree = "<group>"; };
+		B4E708B529C56B9D00F70C14 /* 万族之劫.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "万族之劫.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/万族之劫.txt"; sourceTree = "<group>"; };
+		B4E708B729C56BB800F70C14 /* 我打造了旧日支配者神话.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我打造了旧日支配者神话.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/我打造了旧日支配者神话.txt"; sourceTree = "<group>"; };
+		B4E708B929C56BF600F70C14 /* 镇妖博物馆.txt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "镇妖博物馆.txt.html"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/镇妖博物馆.txt.html"; sourceTree = "<group>"; };
+		C700C2815CEBA483424004B4 /* Pods-ice reader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice reader.release.xcconfig"; path = "Target Support Files/Pods-ice reader/Pods-ice reader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,17 +78,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A36B087A3AE434BC3234B23C /* Pods_ice_reader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9860F8F0C77D2A0103CF4A0B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				23C148EA6247D7EC1BA4A348 /* Pods-ice reader.debug.xcconfig */,
+				C700C2815CEBA483424004B4 /* Pods-ice reader.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B4A9F72629C52F3900F267C6 = {
 			isa = PBXGroup;
 			children = (
 				B4A9F73129C52F3900F267C6 /* ice reader */,
 				B4A9F73029C52F3900F267C6 /* Products */,
+				9860F8F0C77D2A0103CF4A0B /* Pods */,
+				F2FF818589554EA41A165BC5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +115,9 @@
 		B4A9F73129C52F3900F267C6 /* ice reader */ = {
 			isa = PBXGroup;
 			children = (
+				B4E7089629C541E300F70C14 /* App */,
+				B4E7087F29C535E900F70C14 /* Base */,
+				B4A9F74529C5306300F267C6 /* Resource */,
 				B4A9F73229C52F3900F267C6 /* ice_readerApp.swift */,
 				B4A9F73429C52F3900F267C6 /* ContentView.swift */,
 				B4A9F73629C52F3A00F267C6 /* Assets.xcassets */,
@@ -73,6 +136,57 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B4A9F74529C5306300F267C6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9F74629C5313400F267C6 /* 黎明之剑.txt.html */,
+				B4E708B929C56BF600F70C14 /* 镇妖博物馆.txt.html */,
+				B4E708AD29C56B3E00F70C14 /* 夜的命名术.txt */,
+				B4E708B129C56B6000F70C14 /* 不科学御兽.txt */,
+				B4E708AF29C56B4500F70C14 /* 大奉打更人.txt */,
+				B4E708AB29C56B2300F70C14 /* 我真没想重生啊.txt */,
+				B4E708A929C56B1B00F70C14 /* 才不是魔女.txt */,
+				B4E7089F29C568FA00F70C14 /* 希灵帝国.txt */,
+				B4E708A529C569B000F70C14 /* 重生之似水流年.txt */,
+				B4E708A729C569D300F70C14 /* 深空彼岸.txt */,
+				B4E708A129C5696E00F70C14 /* 天启预报.txt */,
+				B4E708B529C56B9D00F70C14 /* 万族之劫.txt */,
+				B4E708B329C56B8700F70C14 /* 万道龙皇.txt */,
+				B4E708B729C56BB800F70C14 /* 我打造了旧日支配者神话.txt */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B4E7087F29C535E900F70C14 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B4E7088829C537BE00F70C14 /* ModalBottomTransition.swift */,
+				B4E7088629C5372800F70C14 /* WTHostingController.swift */,
+				B4E7088429C5372000F70C14 /* WrapperViewVC.swift */,
+				B4E7088029C535FC00F70C14 /* BaseVC.swift */,
+				B4E7088129C535FC00F70C14 /* BaseViewVC.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B4E7089629C541E300F70C14 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B4E7089729C541FA00F70C14 /* BookMainView.swift */,
+				B4E7089929C5420B00F70C14 /* BookShelfView.swift */,
+				B4E7089B29C5422500F70C14 /* BookVM.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F2FF818589554EA41A165BC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +194,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4A9F74229C52F3A00F267C6 /* Build configuration list for PBXNativeTarget "ice reader" */;
 			buildPhases = (
+				840F3D2EEA8BA08C48867A81 /* [CP] Check Pods Manifest.lock */,
 				B4A9F72B29C52F3900F267C6 /* Sources */,
 				B4A9F72C29C52F3900F267C6 /* Frameworks */,
 				B4A9F72D29C52F3900F267C6 /* Resources */,
+				D349D566A07A3B8716210F6A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,11 +248,67 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A9F73A29C52F3A00F267C6 /* Preview Assets.xcassets in Resources */,
+				B4E708B429C56B8700F70C14 /* 万道龙皇.txt in Resources */,
+				B4E708AC29C56B2300F70C14 /* 我真没想重生啊.txt in Resources */,
+				B4E708A629C569B000F70C14 /* 重生之似水流年.txt in Resources */,
+				B4E708A029C568FA00F70C14 /* 希灵帝国.txt in Resources */,
+				B4E708BA29C56BF600F70C14 /* 镇妖博物馆.txt.html in Resources */,
+				B4A9F74729C5313400F267C6 /* 黎明之剑.txt.html in Resources */,
+				B4E708B229C56B6000F70C14 /* 不科学御兽.txt in Resources */,
 				B4A9F73729C52F3A00F267C6 /* Assets.xcassets in Resources */,
+				B4E708B629C56B9D00F70C14 /* 万族之劫.txt in Resources */,
+				B4E708B029C56B4500F70C14 /* 大奉打更人.txt in Resources */,
+				B4E708B829C56BB800F70C14 /* 我打造了旧日支配者神话.txt in Resources */,
+				B4E708AE29C56B3E00F70C14 /* 夜的命名术.txt in Resources */,
+				B4E708A829C569D300F70C14 /* 深空彼岸.txt in Resources */,
+				B4E708A229C5696E00F70C14 /* 天启预报.txt in Resources */,
+				B4E708AA29C56B1B00F70C14 /* 才不是魔女.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		840F3D2EEA8BA08C48867A81 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ice reader-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D349D566A07A3B8716210F6A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ice reader/Pods-ice reader-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ice reader/Pods-ice reader-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ice reader/Pods-ice reader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4A9F72B29C52F3900F267C6 /* Sources */ = {
@@ -144,9 +316,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A9F73C29C52F3A00F267C6 /* Persistence.swift in Sources */,
+				B4E7089C29C5422500F70C14 /* BookVM.swift in Sources */,
+				B4E7088529C5372000F70C14 /* WrapperViewVC.swift in Sources */,
 				B4A9F73529C52F3900F267C6 /* ContentView.swift in Sources */,
+				B4E7088329C535FC00F70C14 /* BaseViewVC.swift in Sources */,
+				B4E7089A29C5420B00F70C14 /* BookShelfView.swift in Sources */,
 				B4A9F73F29C52F3A00F267C6 /* ice_reader.xcdatamodeld in Sources */,
 				B4A9F73329C52F3900F267C6 /* ice_readerApp.swift in Sources */,
+				B4E7088229C535FC00F70C14 /* BaseVC.swift in Sources */,
+				B4E7088929C537BE00F70C14 /* ModalBottomTransition.swift in Sources */,
+				B4E7089829C541FA00F70C14 /* BookMainView.swift in Sources */,
+				B4E7088729C5372800F70C14 /* WTHostingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +449,7 @@
 		};
 		B4A9F74329C52F3A00F267C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23C148EA6247D7EC1BA4A348 /* Pods-ice reader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -298,6 +479,7 @@
 		};
 		B4A9F74429C52F3A00F267C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C700C2815CEBA483424004B4 /* Pods-ice reader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -7,32 +7,60 @@
 
 import Foundation
 import Combine
+import SwiftUI
+
+struct BookInfo {
+    internal init(name: String, extention: String, active: Bool = false) {
+        self.name = name
+        self.extention = extention
+        self.active = active
+    }
+    
+    var name : String
+    var extention: String
+    var active : Bool
+}
 
 class BookVM: ObservableObject {
     @Published var datas : [String]?
-    @Published var bookNames:[(name:String, extention:String)] = [
-
-        (name:"天启预报", extention:"txt"),
-        (name:"重生之似水流年", extention:"txt"),
-        (name:"希灵帝国", extention:"txt"),
-        (name:"深空彼岸", extention:"txt"),
-        (name:"才不是魔女", extention:"txt"),
-        (name:"我真没想重生啊", extention:"txt"),
-        (name:"夜的命名术", extention:"txt"),
-        (name:"大奉打更人", extention:"txt"),
-        (name:"不科学御兽", extention:"txt"),
-        (name:"黎明之剑", extention:"html"),
-        (name:"万道龙皇", extention:"txt"),
-        (name:"诡秘之主", extention:"txt"),
-        (name:"万族之劫", extention:"txt"),
-        (name:"我打造了旧日支配者神话", extention:"txt"),
-        (name:"镇妖博物馆", extention:"html"),
+    @Published var bookNames:[BookInfo] = [
+        BookInfo(name:"天启预报", extention:"txt"),
+        BookInfo(name:"重生之似水流年", extention:"txt"),
+        BookInfo(name:"希灵帝国", extention:"txt"),
+        BookInfo(name:"深空彼岸", extention:"txt"),
+        BookInfo(name:"才不是魔女", extention:"txt"),
+        BookInfo(name:"我真没想重生啊", extention:"txt"),
+        BookInfo(name:"夜的命名术", extention:"txt"),
+        BookInfo(name:"大奉打更人", extention:"txt"),
+        BookInfo(name:"不科学御兽", extention:"txt"),
+        BookInfo(name:"黎明之剑", extention:"html"),
+        BookInfo(name:"万道龙皇", extention:"txt"),
+        BookInfo(name:"诡秘之主", extention:"txt"),
+        BookInfo(name:"万族之劫", extention:"txt"),
+        BookInfo(name:"我打造了旧日支配者神话", extention:"txt"),
+        BookInfo(name:"镇妖博物馆", extention:"html"),
     ]
     
     @Published var fullContents: [String] = []
     @Published var splitedContents: Array<Substring> = []
     @Published var sequence: String.SubSequence = String.SubSequence(stringLiteral: "")
-
+    
+    @AppStorage("LastReadBookName")
+    var LastReadBookName = ""
+    
+    func isLastActive(name : String) -> Bool {
+       return LastReadBookName == name
+    }
+    
+    func getExtentionOfName(name : String) -> String {
+        for info in bookNames {
+            if info.name == name {
+                return info.extention
+            }
+        }
+        return "txt"
+    }
+    
     func saveLastPage(name: String, page: Int) {
         UserDefaults.standard.set(String(page), forKey: name)
         let rr = readLastPage(name: name)

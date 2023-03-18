@@ -10,8 +10,11 @@ import SwiftUI
 struct BookShelfView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-
+    @State private var navPath = NavigationPath()
     @StateObject var vm : BookVM = BookVM()
+    @AppStorage("LastReadBookName")
+    var LastReadBookName = ""
+    @State var isFirstLaunch = true
 
     @ViewBuilder
     private func bookCell(name : String) -> some View {
@@ -22,9 +25,15 @@ struct BookShelfView: View {
 
         }
     }
-
+    
+    func gotoLastReadBook() {
+        if !LastReadBookName.isEmpty {
+            navPath.append(LastReadBookName)
+        }
+    }
+    
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $navPath) {
             GeometryReader  { proxy in
                 VStack {
                     
@@ -33,10 +42,14 @@ struct BookShelfView: View {
                     ScrollView {
                         let gridItems: [GridItem] = .init(repeating: GridItem(spacing: 16), count: 3)
                         LazyVGrid(columns: gridItems, alignment: .center, spacing: 16) {
-                            ForEach(vm.bookNames, id: \.name) { name, extention in
-                                NavigationLink {
+                            ForEach(0 ..< vm.bookNames.count, id: \.self) { index in
+                                let name = vm.bookNames[index].name
+                                let extention = vm.bookNames[index].extention
+
+                                NavigationLink() {
                                     BookMainView(bookName: name, bookExtention: extention, vm: vm)
                                         .toolbar(.hidden, for: .tabBar)
+                                        
                                 } label: {
                                     bookCell(name: name)
                                         .padding(16)
@@ -47,10 +60,21 @@ struct BookShelfView: View {
                                         }
 
                                 }
+                                .navigationDestination(for: String.self) { i in
+                                    let extention = vm.getExtentionOfName(name: i)
+                                    BookMainView(bookName: i, bookExtention: extention, vm: vm)
+                                        .toolbar(.hidden, for: .tabBar)
+                                }
                             }
                         }
                         .padding(.top, 200)
                         .padding(.vertical, 16)
+                    }
+                }
+                .onAppear {
+                    if isFirstLaunch {
+                        isFirstLaunch = false
+                        gotoLastReadBook()
                     }
                 }
             }

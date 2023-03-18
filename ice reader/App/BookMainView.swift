@@ -18,6 +18,9 @@ struct BookMainView: View {
     @State private var showingAlert = false
     @State var index : String = ""
     @State private var firstJumpFin = false
+    @State var hiddenNav : Bool = true
+    
+
     
     func submit() {
         print("You entered \(index)")
@@ -33,6 +36,7 @@ struct BookMainView: View {
     func readLastPage() {
         page = vm.readLastPage(name: bookName)
         GlobalSignalEmitter.jumpToIndexSig.send(params: page)
+        vm.LastReadBookName = bookName
     }
     
     func pureBookName() -> String {
@@ -60,16 +64,6 @@ struct BookMainView: View {
                                         .padding(.trailing, 8)
                                         .padding(.top, 12)
                                         .italic()
-                                        .onDisappear {
-                                            if firstJumpFin {
-                                                print("may disappear \(index)")
-                                                if index > page + 30 || index < page - 80{
-                                                    page = index
-                                                    vm.saveLastPage(name: bookName, page: page)
-                                                }
-                                            }
-                                            
-                                        }
                                 }
 
 
@@ -80,6 +74,10 @@ struct BookMainView: View {
                                     .tracking(1)
                                     .multilineTextAlignment(.leading)
                                     .onTapGesture {
+                                        hiddenNav = false
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                                            hiddenNav = true
+                                        }
                                         page = index
                                         vm.saveLastPage(name: bookName, page: page)
                                     }
@@ -111,9 +109,8 @@ struct BookMainView: View {
                         })
 
                     }
- 
-  
                 }
+                .padding(.top, 0.5)
             }
 
         }
@@ -140,6 +137,7 @@ struct BookMainView: View {
                 Text("跳转")
             }
         }
+        .navigationBarHidden(hiddenNav)
 
     }
 }

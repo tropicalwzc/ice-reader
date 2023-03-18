@@ -48,11 +48,20 @@ struct BookShelfView: View {
             GeometryReader  { proxy in
                 VStack {
                     
+                    HStack {
+                        Image("s5")
+                            .resizable()
+                            .frame(width: 180, height: 180)
+                        Text("今天想读哪本书啊？")
+                            .font(.system(size: 25, weight: .medium))
+                    }
+
+                    
                     Spacer()
                     
                     ScrollView {
-                        let gridItems: [GridItem] = .init(repeating: GridItem(spacing: 16), count: 3)
-                        LazyVGrid(columns: gridItems, alignment: .center, spacing: 16) {
+                        let gridItems: [GridItem] = .init(repeating: GridItem(spacing: 10), count: 3)
+                        LazyVGrid(columns: gridItems, alignment: .center, spacing: 10) {
                             ForEach(0 ..< vm.bookNames.count, id: \.self) { index in
                                 let name = vm.bookNames[index].name
                                 let extention = vm.bookNames[index].extention
@@ -64,7 +73,7 @@ struct BookShelfView: View {
                                 } label: {
                                     bookCell(name: name, index: index)
                                         .padding(4)
-                                        .frame(width: proxy.size.width / 3 - 16, height: 80)
+                                        .frame(width: proxy.size.width / 3 - 10, height: 80)
                                         .background {
                                             Color.black.opacity(0.1)
                                                 .cornerRadius(8)
@@ -78,8 +87,9 @@ struct BookShelfView: View {
                                 }
                             }
                         }
-                        .padding(.top, 200)
+                        .padding(.top, 20)
                         .padding(.vertical, 16)
+                        .padding(.horizontal, 6)
                     }
                 }
                 .onAppear {
@@ -88,16 +98,7 @@ struct BookShelfView: View {
                         gotoLastReadBook()
                     }
                 }
-                .overlay(alignment: .top) {
-                    HStack {
-                        Image("s5")
-                            .resizable()
-                            .frame(width: 180, height: 180)
-                        Text("今天想读哪本书啊？")
-                            .font(.system(size: 25, weight: .medium))
-                    }
 
-                }
             }
  
         }

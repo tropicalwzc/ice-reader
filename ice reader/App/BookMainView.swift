@@ -46,39 +46,42 @@ struct BookMainView: View {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 1) {
                         ForEach(0 ..< vm.splitedContents.count, id: \.self) { index in
-                            ZStack(alignment: .topLeading) {
+                            ZStack(alignment: .top) {
                                 
                                 Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
                                 
-                                Text("\(index)")
-                                    .font(.system(size: 12, weight: .thin))
-                                    .foregroundColor(.black.opacity(0.6))
-                                    .id(index)
-                                    .padding(.leading, 8)
-                                    .padding(.top, 12)
-                                    .italic()
-                                    .onDisappear {
-                                        if firstJumpFin {
-                                            print("may disappear \(index)")
-                                            if index > page + 30 {
-                                                page = index
-                                                vm.saveLastPage(name: bookName, page: page)
+                                HStack {
+                                    Spacer()
+                                    Text("\(index)")
+                                        .font(.system(size: 12, weight: .thin))
+                                        .foregroundColor(.black.opacity(0.6))
+                                        .id(index)
+                                        .padding(.trailing, 8)
+                                        .padding(.top, 12)
+                                        .italic()
+                                        .onDisappear {
+                                            if firstJumpFin {
+                                                print("may disappear \(index)")
+                                                if index > page + 30 || index < page - 80{
+                                                    page = index
+                                                    vm.saveLastPage(name: bookName, page: page)
+                                                }
                                             }
+                                            
                                         }
+                                }
 
-                                    }
 
                                 Text(vm.splitedContents[index])
-                                    .font(.system(size: 24, weight: .medium))
-                                    .padding(.leading, 4)
-                                    .padding(.trailing, 2)
+                                    .font(.system(size: 25, weight: .medium))
+                                    .padding(.horizontal, 2)
                                     .lineSpacing(5)
                                     .multilineTextAlignment(.leading)
                                     .onTapGesture {
                                         page = index
                                         vm.saveLastPage(name: bookName, page: page)
                                     }
-                                    .foregroundColor(Color.init(red: 0.38, green: 0.39, blue: 0.4))
+                                    .foregroundColor(Color.init(red: 0.45, green: 0.48, blue: 0.5))
                             }
                             .background {
                                 RoundedRectangle(cornerRadius: 16)

@@ -27,6 +27,9 @@ struct BookShelfView: View {
         NavigationView {
             GeometryReader  { proxy in
                 VStack {
+                    
+                    Spacer()
+                    
                     ScrollView {
                         let gridItems: [GridItem] = .init(repeating: GridItem(spacing: 16), count: 3)
                         LazyVGrid(columns: gridItems, alignment: .center, spacing: 16) {
@@ -46,6 +49,7 @@ struct BookShelfView: View {
                                 }
                             }
                         }
+                        .padding(.top, 200)
                         .padding(.vertical, 16)
                     }
                 }

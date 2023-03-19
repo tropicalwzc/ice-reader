@@ -9,6 +9,5 @@ install! 'cocoapods',
          :generate_multiple_pod_projects => true
 
 target 'ice reader' do
-pod 'SnapKit', '~> 5.6.0' # AutoLayout
 pod 'CombineCocoa', '~> 0.4.0'
 end

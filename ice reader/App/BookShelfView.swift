@@ -15,9 +15,9 @@ struct BookShelfView: View {
     @AppStorage("LastReadBookName")
     var LastReadBookName = ""
     @State var isFirstLaunch = true
-    
+
     func getImageName(index : Int) -> String {
-        let remain = index % 35
+        let remain = index % 60
         return "s\(remain)"
     }
     
@@ -31,7 +31,7 @@ struct BookShelfView: View {
                     .font(.system(size: 16, weight: .medium))
                     .minimumScaleFactor(0.4)
                     .foregroundColor(vm.isLastActive(name: name) ? Color.blue : Color.black)
-                    .padding(.leading, 60)
+                    .padding(.leading, 64)
                     .frame(height: 56)
                     .padding(.top, 4)
             }
@@ -43,7 +43,7 @@ struct BookShelfView: View {
         .overlay(alignment: .leading) {
             Image(getImageName(index: index))
                 .resizable()
-                .frame(width: 48, height: 48)
+                .frame(width: 60, height: 60)
         }
         
     }

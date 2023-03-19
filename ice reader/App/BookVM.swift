@@ -64,12 +64,33 @@ class BookVM: ObservableObject {
         BookInfo(name:"奥术神座", extention:"txt"),
         BookInfo(name:"全职高手", extention:"txt"),
         BookInfo(name:"异常生物见闻录", extention:"txt"),
+        BookInfo(name:"这个剑修有点稳", extention:"txt"),
+        BookInfo(name:"武侠开局奖励满级神功", extention:"txt"),
+        BookInfo(name:"九鼎记", extention:"txt"),
+        BookInfo(name:"教主的退休日常", extention:"txt"),
+        BookInfo(name:"问道红尘", extention:"txt"),
+        BookInfo(name:"精灵掌门人", extention:"txt"),
+        BookInfo(name:"星门时光之主", extention:"txt"),
+        BookInfo(name:"凡人修仙传", extention:"txt"),
+        BookInfo(name:"遮天", extention:"txt"),
+        BookInfo(name:"烂柯棋缘", extention:"txt"),
+        BookInfo(name:"我的徒弟都是大反派", extention:"txt"),
+        BookInfo(name:"魔临", extention:"txt"),
+        BookInfo(name:"佣兵战争", extention:"txt"),
+        BookInfo(name:"诸界末日在线", extention:"txt"),
+        BookInfo(name:"我的治愈系游戏", extention:"txt"),
+        BookInfo(name:"修真聊天群", extention:"txt"),
+        BookInfo(name:"大乘期才有逆袭系统", extention:"txt"),
+        BookInfo(name:"亲爱的该吃药了", extention:"txt"),
+        BookInfo(name:"末日从噩梦开始", extention:"txt"),
+        BookInfo(name:"全职艺术家", extention:"txt"),
+        BookInfo(name:"长夜余火", extention:"txt"),
+        BookInfo(name:"重生后被倒追很正常吧", extention:"txt"),
     ]
-    
-    @Published var fullContents: [String] = []
+
     @Published var splitedContents: Array<Substring> = []
     @Published var splitedContentsCount: Double = 1.0
-    @Published var sequence: String.SubSequence = String.SubSequence(stringLiteral: "")
+    private var sequence: String.SubSequence = String.SubSequence(stringLiteral: "")
     
     let jumpToIndexSig = PassthroughSignalEmitter<Int>()
     let quickJumpToIndexSig = PassthroughSignalEmitter<Int>()
@@ -131,23 +152,26 @@ class BookVM: ObservableObject {
     
     func calSplit(completion : @escaping(String) -> Void) {
 
-        DispatchQueue.main.async {
-            self.splitedContents = self.sequence.split(separator: "。")
-            self.splitedContentsCount = Double(self.splitedContents.count)
-            completion("T")
+        DispatchQueue.global(qos: .default).async {
+            let splited = self.sequence.split(separator: "。")
+            DispatchQueue.main.async {
+                self.splitedContents = splited
+                self.splitedContentsCount = Double(self.splitedContents.count)
+                self.sequence = String.SubSequence(stringLiteral: "")
+                completion("T")
+            }
         }
-
     }
     
     func loadRawContent(bookName: String, extention: String = "html") {
         let contentLoader = ContentLoader()
         let rawContent = contentLoader.loadBundledContent(fromFileNamed: bookName, extention: extention)
-        sequence = String.SubSequence(stringLiteral: rawContent)
+        self.sequence = String.SubSequence(stringLiteral: rawContent)
     }
     
     func fetchAllDatas(bookName: String, page: Int, extention: String, completion : @escaping(String) -> Void) {
         
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global(qos: .default).async {
             self.loadRawContent(bookName: bookName, extention: extention)
             self.calSplit() { _ in
                 completion("T")

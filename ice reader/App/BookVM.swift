@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import RegexBuilder
 
 struct BookInfo {
     internal init(name: String, extention: String, active: Bool = false) {
@@ -153,7 +154,39 @@ class BookVM: ObservableObject {
     func calSplit(completion : @escaping(String) -> Void) {
 
         DispatchQueue.global(qos: .default).async {
-            let splited = self.sequence.split(separator: "。")
+            var splited: [Substring.SubSequence] = []
+            var valided = false
+            
+            if self.sequence.suffix(1000).contains("    ") {
+                splited = self.sequence.split(separator: "    ")
+                if splited.count > 4000 {
+                    valided = true
+                }
+                
+            }
+
+            if !valided {
+                print("other match begin")
+                if self.sequence.suffix(1000).contains("　　") {
+                    splited = self.sequence.split(separator: "　　")
+                    if splited.count > 4000 {
+                        valided = true
+                    }
+                }
+            }
+                 
+            
+            if !valided {
+                print("best match begin")
+                let newLineRegex = Regex {
+                    Capture(CharacterClass.verticalWhitespace)
+                }
+                splited = self.sequence.split(separator: newLineRegex)
+                if splited.count > 10000 {
+                    valided = true
+                }
+            }
+
             DispatchQueue.main.async {
                 self.splitedContents = splited
                 self.splitedContentsCount = Double(self.splitedContents.count)

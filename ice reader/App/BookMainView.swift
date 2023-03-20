@@ -22,7 +22,7 @@ struct BookMainView: View {
     @State var isFirstAppear = true
     @State var loadFinished = true
     
-    let pageSize : Int = 15
+    let pageSize : Int = 12
     
     func submit() {
         //print("You entered \(index)")
@@ -34,7 +34,7 @@ struct BookMainView: View {
                     vm.jumpToIndexSig.send(params: nextIndex)
                     self.vm.saveLastPage(name: bookName, page: page)
                 } else {
-                    var small = nextIndex - 300
+                    var small = nextIndex - pageSize
                     if small < 0 {
                         small = 0
                     }
@@ -88,12 +88,11 @@ struct BookMainView: View {
                                     HStack {
                                         Spacer()
                                         Text("\(index)")
-                                            .font(.system(size: 12, weight: .thin))
-                                            .foregroundColor(.black.opacity(0.6))
+                                            .font(.system(size: 5, weight: .bold))
+                                            .foregroundColor(Color.gray.opacity(0.01))
                                             .id(index)
-                                            .padding(.trailing, 8)
-                                            .padding(.top, 12)
-                                            .italic()
+                                            .padding(.trailing, 3)
+                                            .padding(.top, 1)
                                     }.onAppear {
                                         if index == page + pageSize - 1 {
                                             //print("Scroll to tail , auto page")
@@ -120,15 +119,8 @@ struct BookMainView: View {
                                             }
                                         }
                                         .foregroundColor(Color.init(red: 0.2, green: 0.22, blue: 0.25))
+                                        .padding(.top, 8)
                                 }
-                                .background {
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .foregroundColor(Color.gray.opacity(0.02))
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .foregroundColor(Color.white)
-                                        .padding(2)
-                                }
-                                
                             }
                         }
                         .onReceive(vm.jumpToIndexSig.publisher()) { nextIndex in
@@ -188,15 +180,9 @@ struct BookMainView: View {
         .navigationBarHidden(hiddenNav)
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
                             vm.blockSaveAction = true
-                            //print("recc exit \(page)")
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                             vm.blockSaveAction = false
-                            //print("recc enter \(page)")
-                            if UIDevice.current.userInterfaceIdiom == .pad {
-                                vm.jumpToIndexSig.send(params: page)
-                            }
-                            
                         }
 
     }

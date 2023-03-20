@@ -22,7 +22,7 @@ struct BookMainView: View {
     @State var isFirstAppear = true
     @State var loadFinished = true
     
-    let pageSize : Int = 300
+    let pageSize : Int = 30
     
     func submit() {
         //print("You entered \(index)")
@@ -163,7 +163,7 @@ struct BookMainView: View {
                     self.loadFinished = true
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     readLastPage()
                 })
             }

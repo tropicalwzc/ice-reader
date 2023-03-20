@@ -22,7 +22,7 @@ struct BookMainView: View {
     @State var isFirstAppear = true
     @State var loadFinished = true
     
-    let pageSize : Int = 30
+    let pageSize : Int = 15
     
     func submit() {
         //print("You entered \(index)")
@@ -143,7 +143,9 @@ struct BookMainView: View {
                             proxy.scrollTo(nextIndex, anchor: .top)
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                            vm.jumpToIndexSig.send(params: page)
+                            if UIDevice.current.userInterfaceIdiom == .pad {
+                                vm.jumpToIndexSig.send(params: page)
+                            }
                         }
                     } else {
                         LoadingView()
@@ -191,7 +193,10 @@ struct BookMainView: View {
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                             vm.blockSaveAction = false
                             //print("recc enter \(page)")
-                            vm.jumpToIndexSig.send(params: page)
+                            if UIDevice.current.userInterfaceIdiom == .pad {
+                                vm.jumpToIndexSig.send(params: page)
+                            }
+                            
                         }
 
     }

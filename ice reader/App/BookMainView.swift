@@ -22,7 +22,7 @@ struct BookMainView: View {
     @State var isFirstAppear = true
     @State var loadFinished = true
     
-    let pageSize : Int = 12
+    let pageSize : Int = UIDevice.current.userInterfaceIdiom == .pad ? 20 : 10
     
     func submit() {
         //print("You entered \(index)")
@@ -115,6 +115,7 @@ struct BookMainView: View {
                                                     hiddenNav = true
                                                 }
                                                 page = index
+                                                stripSmallPage()
                                                 vm.saveLastPage(name: bookName, page: page)
                                             }
                                         }
@@ -135,9 +136,7 @@ struct BookMainView: View {
                             proxy.scrollTo(nextIndex, anchor: .top)
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                            if UIDevice.current.userInterfaceIdiom == .pad {
-                                vm.jumpToIndexSig.send(params: page)
-                            }
+
                         }
                     } else {
                         LoadingView()
@@ -183,6 +182,10 @@ struct BookMainView: View {
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                             vm.blockSaveAction = false
+                            if UIDevice.current.userInterfaceIdiom == .pad {
+                                vm.jumpToIndexSig.send(params: page)
+                            }
+  
                         }
 
     }

@@ -115,11 +115,10 @@ struct BookMainView: View {
                                                     hiddenNav = true
                                                 }
                                                 page = index
-                                                stripSmallPage()
                                                 vm.saveLastPage(name: bookName, page: page)
                                             }
                                         }
-                                        .foregroundColor(Color.init(red: 0.2, green: 0.22, blue: 0.25))
+                                        .foregroundColor(Color.init("BookColor"))
                                         .padding(.top, 8)
                                 }
                             }

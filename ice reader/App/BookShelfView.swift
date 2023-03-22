@@ -30,7 +30,7 @@ struct BookShelfView: View {
                 Text(name)
                     .font(.system(size: 16, weight: .medium))
                     .minimumScaleFactor(0.4)
-                    .foregroundColor(vm.isLastActive(name: name) ? Color.blue : Color.black)
+                    .foregroundColor(vm.isLastActive(name: name) ? Color.blue : Color("BookColor"))
                     .padding(.leading, 64)
                     .frame(height: 56)
                     .padding(.top, 4)
@@ -88,7 +88,7 @@ struct BookShelfView: View {
                                         .frame(height: 65)
                                         .frame(maxWidth: .infinity)
                                         .background {
-                                            Color.black.opacity(0.1)
+                                            Color("BookColor").opacity(0.1)
                                                 .cornerRadius(8)
                                         }
 

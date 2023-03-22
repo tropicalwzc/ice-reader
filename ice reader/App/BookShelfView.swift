@@ -85,24 +85,27 @@ struct BookShelfView: View {
                                 } label: {
                                     bookCell(name: name, index: index)
                                         .padding(4)
-                                        .frame(width: proxy.size.width / CGFloat(gridCount) - 10, height: 65)
+                                        .frame(height: 65)
+                                        .frame(maxWidth: .infinity)
                                         .background {
                                             Color.black.opacity(0.1)
                                                 .cornerRadius(8)
                                         }
 
                                 }
-                                .navigationDestination(for: String.self) { i in
-                                    let extention = vm.getExtentionOfName(name: i)
-                                    BookMainView(bookName: i, bookExtention: extention, vm: vm)
-                                        .toolbar(.hidden, for: .tabBar)
-                                }
+
                             }
                         }
                         .padding(.top, 20)
                         .padding(.vertical, 16)
                         .padding(.horizontal, 6)
+
                     }
+                }
+                .navigationDestination(for: String.self) { i in
+                    let extention = vm.getExtentionOfName(name: i)
+                    BookMainView(bookName: i, bookExtention: extention, vm: vm)
+                        .toolbar(.hidden, for: .tabBar)
                 }
                 .onAppear {
                     if isFirstLaunch {

@@ -170,6 +170,7 @@ struct BookMainView: View {
         }
         .toolbar {
             Button {
+                index = "\(page)"
                 showingAlert = true
             } label: {
                 Text("跳转")

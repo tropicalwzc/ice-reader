@@ -176,6 +176,7 @@ struct BookMainView: View {
                 Text("跳转")
             }
         }
+        .statusBarHidden(hiddenNav)
         .navigationBarHidden(hiddenNav)
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
                             vm.blockSaveAction = true

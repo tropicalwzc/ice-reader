@@ -26,6 +26,8 @@ struct BookInfo {
 
 class BookVM: ObservableObject {
     @Published var datas : [String]?
+    // 新书必须在最后添加
+    // iCloud进度最多支持前1024本书
     @Published var bookNames:[BookInfo] = [
         BookInfo(name:"天启预报", extention:"txt"),
         BookInfo(name:"重生之似水流年", extention:"txt"),
@@ -88,7 +90,7 @@ class BookVM: ObservableObject {
         BookInfo(name:"长夜余火", extention:"txt"),
         BookInfo(name:"重生后被倒追很正常吧", extention:"txt"),
     ]
-
+    
     @Published var splitedContents: Array<Substring> = []
     @Published var splitedContentsCount: Double = 1.0
     private var sequence: String.SubSequence = String.SubSequence(stringLiteral: "")
@@ -99,9 +101,31 @@ class BookVM: ObservableObject {
     @AppStorage("LastReadBookName")
     var LastReadBookName = ""
     var blockSaveAction = false
+    var cloudBookDict: [String : String]? = nil
+    
+    let cloudManager = NSUbiquitousKeyValueStore.default
     
     func isLastActive(name : String) -> Bool {
-       return LastReadBookName == name
+        return LastReadBookName == name
+    }
+    
+    func initCloudBookDict() {
+        var resDict : [String : String] = [:]
+        let total = bookNames.count > 1023 ? 1023 : bookNames.count
+        for i in 0..<total {
+            resDict[bookNames[i].name] = "syncIR"+String(i)
+        }
+        cloudBookDict = resDict
+    }
+    
+    func getCloudKey(name: String) -> String? {
+        if cloudBookDict == nil {
+            initCloudBookDict()
+        }
+        if let dict = cloudBookDict {
+            return dict[name]
+        }
+        return nil
     }
     
     func getExtentionOfName(name : String) -> String {
@@ -123,8 +147,18 @@ class BookVM: ObservableObject {
             UserDefaults.standard.set(String(page), forKey: name)
             let progress = Double(page) / self.splitedContentsCount
             UserDefaults.standard.set(progress, forKey: self.getProgressKey(name: name))
+            if let cloudKey = self.getCloudKey(name: name) {
+                UserDefaults.standard.set(String(page), forKey: cloudKey)
+            }
         }
         
+    }
+    
+    func readCloudString(name: String) -> String? {
+        if let cloudKey = self.getCloudKey(name: name) {
+           return UserDefaults.standard.string(forKey: cloudKey)
+        }
+        return nil
     }
     
     func getProgressKey(name : String) -> String {
@@ -140,15 +174,28 @@ class BookVM: ObservableObject {
     }
     
     func readLastPage(name: String) -> Int {
+        
+//        print("ReadLast \(readCloudString(name: name))")
+        
         let res = UserDefaults.standard.value(forKey: name)
+        var localVal: Int = 0
         if let val = res as? String {
-            //print("val is \(String(describing: res))")
             if let fin = Int(val) {
-                //print("fin is \(String(describing: res))")
-                return fin
+//                print("local \(name) is \(fin)")
+                localVal = fin
             }
         }
-        return 0
+        
+        if let cloudStr = readCloudString(name: name) {
+            if let cloudVal = Int(cloudStr) {
+//                print("cloud \(name) is \(cloudVal)")
+                if cloudVal > localVal {
+                    localVal = cloudVal
+                }
+            }
+        }
+
+        return localVal
     }
     
     func calSplit(completion : @escaping(String) -> Void) {
@@ -166,7 +213,7 @@ class BookVM: ObservableObject {
             }
 
             if !valided {
-                print("other match begin")
+ //               print("other match begin")
                 if self.sequence.suffix(1000).contains("　　") {
                     splited = self.sequence.split(separator: "　　")
                     if splited.count > 4000 {
@@ -177,7 +224,7 @@ class BookVM: ObservableObject {
                  
             
             if !valided {
-                print("best match begin")
+      //          print("best match begin")
                 let newLineRegex = Regex {
                     Capture(CharacterClass.verticalWhitespace)
                 }
@@ -203,7 +250,7 @@ class BookVM: ObservableObject {
     }
     
     func fetchAllDatas(bookName: String, page: Int, extention: String, completion : @escaping(String) -> Void) {
-        
+        CloudManager.shared.initCloudListener()
         DispatchQueue.global(qos: .default).async {
             self.loadRawContent(bookName: bookName, extention: extention)
             self.calSplit() { _ in

@@ -33,6 +33,8 @@
 		B403166929C699AC00E02FD0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B403166829C699AC00E02FD0 /* LoadingView.swift */; };
 		B4437AD92AA629BC00A7808C /* 才不是魔女.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4437AD82AA629BC00A7808C /* 才不是魔女.txt */; };
 		B4437ADB2AA62C4D00A7808C /* 天启预报.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4437ADA2AA62C4D00A7808C /* 天启预报.txt */; };
+		B48911042AB3398E0074343E /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48911032AB3398E0074343E /* CloudManager.swift */; };
+		B48911062AB33F3B0074343E /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B48911052AB33F3B0074343E /* MKiCloudSync.m */; };
 		B4977D3B29C58AAB00E77370 /* 诡秘之主.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D3A29C58AAB00E77370 /* 诡秘之主.txt */; };
 		B4977D4329C5B35700E77370 /* 我的属性修行人生.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4229C5B35700E77370 /* 我的属性修行人生.txt */; };
 		B4977D4A29C5B5C600E77370 /* 一世之尊.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4429C5B5C500E77370 /* 一世之尊.txt */; };
@@ -109,6 +111,12 @@
 		B403166829C699AC00E02FD0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		B4437AD82AA629BC00A7808C /* 才不是魔女.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "才不是魔女.txt"; path = "../../../../Downloads/才不是魔女.txt"; sourceTree = "<group>"; };
 		B4437ADA2AA62C4D00A7808C /* 天启预报.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "天启预报.txt"; path = "../../../../Downloads/天启预报.txt"; sourceTree = "<group>"; };
+		B48910FD2AB31EE10074343E /* ice reader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ice reader.entitlements"; sourceTree = "<group>"; };
+		B48910FE2AB31F7C0074343E /* ice-reader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ice-reader-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B48910FF2AB333730074343E /* ice reader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ice reader-Bridging-Header.h"; sourceTree = "<group>"; };
+		B48911032AB3398E0074343E /* CloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
+		B48911052AB33F3B0074343E /* MKiCloudSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKiCloudSync.m; sourceTree = "<group>"; };
+		B48911072AB33F3C0074343E /* MKiCloudSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKiCloudSync.h; sourceTree = "<group>"; };
 		B4977D3A29C58AAB00E77370 /* 诡秘之主.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "诡秘之主.txt"; path = "../../../../Downloads/诡秘之主.txt"; sourceTree = "<group>"; };
 		B4977D4229C5B35700E77370 /* 我的属性修行人生.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我的属性修行人生.txt"; path = "../../../../Downloads/我的属性修行人生.txt"; sourceTree = "<group>"; };
 		B4977D4429C5B5C500E77370 /* 一世之尊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "一世之尊.txt"; path = "../../../../Downloads/一世之尊.txt"; sourceTree = "<group>"; };
@@ -180,6 +188,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B48911082AB33F830074343E /* OC */ = {
+			isa = PBXGroup;
+			children = (
+				B48911052AB33F3B0074343E /* MKiCloudSync.m */,
+				B48911072AB33F3C0074343E /* MKiCloudSync.h */,
+			);
+			path = OC;
+			sourceTree = "<group>";
+		};
 		B4977D7229C5C7D600E77370 /* basic */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +227,9 @@
 		B4A9F73129C52F3900F267C6 /* ice reader */ = {
 			isa = PBXGroup;
 			children = (
+				B48910FE2AB31F7C0074343E /* ice-reader-Info.plist */,
+				B48910FD2AB31EE10074343E /* ice reader.entitlements */,
+				B48910FF2AB333730074343E /* ice reader-Bridging-Header.h */,
 				B4E7089629C541E300F70C14 /* App */,
 				B4A9F74529C5306300F267C6 /* Resource */,
 				B4A9F73229C52F3900F267C6 /* ice_readerApp.swift */,
@@ -300,10 +320,12 @@
 		B4E7089629C541E300F70C14 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				B48911082AB33F830074343E /* OC */,
 				B4977D7229C5C7D600E77370 /* basic */,
 				B4E7089729C541FA00F70C14 /* BookMainView.swift */,
 				B4E7089929C5420B00F70C14 /* BookShelfView.swift */,
 				B4E7089B29C5422500F70C14 /* BookVM.swift */,
+				B48911032AB3398E0074343E /* CloudManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -350,6 +372,7 @@
 				TargetAttributes = {
 					B4A9F72E29C52F3900F267C6 = {
 						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -490,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B48911042AB3398E0074343E /* CloudManager.swift in Sources */,
 				B4A9F73C29C52F3A00F267C6 /* Persistence.swift in Sources */,
 				B4977D7429C5C7F200E77370 /* PercentBar.swift in Sources */,
 				B4E7089C29C5422500F70C14 /* BookVM.swift in Sources */,
@@ -498,6 +522,7 @@
 				B4A9F73F29C52F3A00F267C6 /* ice_reader.xcdatamodeld in Sources */,
 				B4A9F73329C52F3900F267C6 /* ice_readerApp.swift in Sources */,
 				B4E7089829C541FA00F70C14 /* BookMainView.swift in Sources */,
+				B48911062AB33F3B0074343E /* MKiCloudSync.m in Sources */,
 				B403166929C699AC00E02FD0 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,12 +650,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "ice reader/ice reader.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ice reader/Preview Content\"";
 				DEVELOPMENT_TEAM = 39R699SCD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ice-reader-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -645,6 +674,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Tropical-fish.ice-reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ice reader/ice reader-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -656,12 +687,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "ice reader/ice reader.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ice reader/Preview Content\"";
 				DEVELOPMENT_TEAM = 39R699SCD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ice-reader-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -676,6 +711,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Tropical-fish.ice-reader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ice reader/ice reader-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -149,6 +149,7 @@ struct BookMainView: View {
         }
         .onAppear {
             self.loadFinished = false
+
             vm.fetchAllDatas(bookName: bookName, page: page, extention: bookExtention) { res in
                 //print("reload all datas")
                 DispatchQueue.main.async {
@@ -180,6 +181,7 @@ struct BookMainView: View {
         .navigationBarHidden(hiddenNav)
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
                             vm.blockSaveAction = true
+
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                             vm.blockSaveAction = false

@@ -11,7 +11,7 @@ struct BookMainView: View {
     let bookName : String
     let bookExtention : String
     @ObservedObject var vm : BookVM
-
+    
     @State var smallHeadpage : Int = 0
     @State var page : Int = 0
     @State var maximumPage : Int = 0
@@ -46,7 +46,7 @@ struct BookMainView: View {
                         self.vm.saveLastPage(name: bookName, page: page)
                     }
                 }
-
+                
             }
         }
     }
@@ -71,14 +71,14 @@ struct BookMainView: View {
         let ff = suq.first ?? ""
         return String(ff)
     }
-
+    
     var body: some View {
         VStack {
             ScrollViewReader { proxy in
                 ScrollView(showsIndicators: false) {
                     let total = (page + pageSize < vm.splitedContents.count ? page + pageSize : vm.splitedContents.count)
                     if self.loadFinished && smallHeadpage < total {
-
+                        
                         LazyVStack(spacing: 5) {
                             ForEach(smallHeadpage ..< total, id: \.self) { index in
                                 ZStack(alignment: .topLeading) {
@@ -135,27 +135,27 @@ struct BookMainView: View {
                             proxy.scrollTo(nextIndex, anchor: .top)
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-
+                            
                         }
                     } else {
                         LoadingView()
                     }
                     
-
+                    
                 }
                 .padding(.top, 0.5)
             }
-
+            
         }
         .onAppear {
             self.loadFinished = false
-
+            
             vm.fetchAllDatas(bookName: bookName, page: page, extention: bookExtention) { res in
                 //print("reload all datas")
                 DispatchQueue.main.async {
                     self.loadFinished = true
                 }
-
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     readLastPage()
                 })
@@ -179,18 +179,32 @@ struct BookMainView: View {
         }
         .statusBarHidden(hiddenNav)
         .navigationBarHidden(hiddenNav)
-                        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
-                            vm.blockSaveAction = true
-
-                        }
-                        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                            vm.blockSaveAction = false
-                            if UIDevice.current.userInterfaceIdiom == .pad {
-                                vm.jumpToIndexSig.send(params: page)
-                            }
-  
-                        }
-
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+            vm.blockSaveAction = true
+            
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            vm.blockSaveAction = false
+            if !checkCloudUpdateIfNeed() {
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    vm.jumpToIndexSig.send(params: page)
+                }
+            }
+        }
+        
+    }
+    
+    func checkCloudUpdateIfNeed() -> Bool {
+        let cloudPage = vm.readCloudPage(name: bookName)
+        print("cloud \(cloudPage) local \(page)")
+        if cloudPage > page {
+            print("start cloud jump")
+            page = cloudPage
+            index = "\(page)"
+            submit()
+            return true
+        }
+        return false
     }
 }
 

@@ -143,7 +143,7 @@ class BookVM: ObservableObject {
             return
         }
         
-        DispatchQueue.global(qos: .default).async {
+        DispatchQueue.global(qos: .userInteractive).async {
             UserDefaults.standard.set(String(page), forKey: name)
             let progress = Double(page) / self.splitedContentsCount
             UserDefaults.standard.set(progress, forKey: self.getProgressKey(name: name))
@@ -196,6 +196,15 @@ class BookVM: ObservableObject {
         }
 
         return localVal
+    }
+    
+    func readCloudPage(name : String) -> Int {
+        if let cloudStr = readCloudString(name: name) {
+            if let cloudVal = Int(cloudStr) {
+                return cloudVal
+            }
+        }
+        return 0
     }
     
     func calSplit(completion : @escaping(String) -> Void) {

@@ -159,6 +159,13 @@ struct BookMainView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     readLastPage()
                 })
+                
+                if isFirstAppear {
+                    isFirstAppear = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.1, execute: {
+                        recursiveCheck(remain: 5)
+                    })
+                }
             }
         }
         

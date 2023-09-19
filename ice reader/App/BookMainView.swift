@@ -189,9 +189,22 @@ struct BookMainView: View {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     vm.jumpToIndexSig.send(params: page)
                 }
+                recursiveCheck(remain: 10)
             }
         }
         
+    }
+    
+    func recursiveCheck(remain: Int) {
+        if remain < 0 {
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
+            let res = checkCloudUpdateIfNeed()
+            if !res {
+                recursiveCheck(remain: remain - 1)
+            }
+        })
     }
     
     func checkCloudUpdateIfNeed() -> Bool {

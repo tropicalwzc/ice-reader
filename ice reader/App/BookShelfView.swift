@@ -15,7 +15,8 @@ struct BookShelfView: View {
     @AppStorage("LastReadBookName")
     var LastReadBookName = ""
     @State var isFirstLaunch = true
-
+    @State var isLoading = false
+    
     func getImageName(index : Int) -> String {
         let remain = index % 60
         return "s\(remain)"
@@ -35,10 +36,10 @@ struct BookShelfView: View {
                     .frame(height: 56)
                     .padding(.top, 4)
             }
-
+            
             PerCentBarView(percent: vm.bookNames[index].progress, backColor: Color.gray.opacity(0.05), foreColor: Color.init("GoldenC").opacity(0.2))
                 .padding(.bottom, -4)
-    
+            
         }
         .overlay(alignment: .leading) {
             Image(getImageName(index: index))
@@ -50,7 +51,12 @@ struct BookShelfView: View {
     
     func gotoLastReadBook() {
         if !LastReadBookName.isEmpty {
-            navPath.append(LastReadBookName)
+            print("Go to last read book \(LastReadBookName)")
+            isLoading = true
+            vm.fetchAllDatas(bookName: LastReadBookName, extention: vm.getExtentionOfName(name: LastReadBookName)) { _ in
+                isLoading = false
+                navPath.append(LastReadBookName)
+            }
         }
     }
     
@@ -66,41 +72,46 @@ struct BookShelfView: View {
                         Text("今天想读哪本书啊？")
                             .font(.system(size: 25, weight: .medium))
                     }
-
+                    
                     
                     Spacer()
                     
-                    ScrollView {
-                        let gridCount = proxy.size.width > 780 ? 5 : 3
-                        let gridItems: [GridItem] = .init(repeating: GridItem(spacing: 10), count: gridCount)
-                        LazyVGrid(columns: gridItems, alignment: .center, spacing: 10) {
-                            ForEach(0 ..< vm.bookNames.count, id: \.self) { index in
-                                let name = vm.bookNames[index].name
-                                let extention = vm.bookNames[index].extention
-
-                                NavigationLink() {
-                                    BookMainView(bookName: name, bookExtention: extention, vm: vm)
-                                        .toolbar(.hidden, for: .tabBar)
+                    if isLoading {
+                        LoadingView()
+                    } else {
+                        ScrollView {
+                            let gridCount = proxy.size.width > 780 ? 5 : 3
+                            let gridItems: [GridItem] = .init(repeating: GridItem(spacing: 10), count: gridCount)
+                            LazyVGrid(columns: gridItems, alignment: .center, spacing: 10) {
+                                ForEach(0 ..< vm.bookNames.count, id: \.self) { index in
+                                    let name = vm.bookNames[index].name
+                                    let extention = vm.bookNames[index].extention
+                                    
+                                    NavigationLink() {
+                                        BookMainView(bookName: name, bookExtention: extention, vm: vm)
+                                            .toolbar(.hidden, for: .tabBar)
                                         
-                                } label: {
-                                    bookCell(name: name, index: index)
-                                        .padding(4)
-                                        .frame(height: 65)
-                                        .frame(maxWidth: .infinity)
-                                        .background {
-                                            Color("BookColor").opacity(0.1)
-                                                .cornerRadius(8)
-                                        }
-
+                                    } label: {
+                                        bookCell(name: name, index: index)
+                                            .padding(4)
+                                            .frame(height: 65)
+                                            .frame(maxWidth: .infinity)
+                                            .background {
+                                                Color("BookColor").opacity(0.1)
+                                                    .cornerRadius(8)
+                                            }
+                                        
+                                    }
+                                    
                                 }
-
                             }
+                            .padding(.top, 20)
+                            .padding(.vertical, 16)
+                            .padding(.horizontal, 6)
+                            
                         }
-                        .padding(.top, 20)
-                        .padding(.vertical, 16)
-                        .padding(.horizontal, 6)
-
                     }
+                    
                 }
                 .navigationDestination(for: String.self) { i in
                     let extention = vm.getExtentionOfName(name: i)
@@ -119,11 +130,11 @@ struct BookShelfView: View {
                     navPath.removeLast()
                     vm.LastReadBookName = ""
                 }
-
+                
             }
- 
+            
         }
-
+        
     }
 }
 

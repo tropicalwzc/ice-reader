@@ -25,7 +25,7 @@ struct BookMainView: View {
     let pageSize : Int = UIDevice.current.userInterfaceIdiom == .pad ? 20 : 10
     
     func submit() {
-        //print("You entered \(index)")
+        print("total split count now is \(vm.splitedContents.count)")
         if let nextIndex = Int(index) {
             if nextIndex < vm.splitedContents.count  {
                 if nextIndex >= smallHeadpage {
@@ -150,7 +150,7 @@ struct BookMainView: View {
         .onAppear {
             self.loadFinished = false
             
-            vm.fetchAllDatas(bookName: bookName, page: page, extention: bookExtention) { res in
+            vm.fetchAllDatas(bookName: bookName, extention: bookExtention) { res in
                 //print("reload all datas")
                 DispatchQueue.main.async {
                     self.loadFinished = true

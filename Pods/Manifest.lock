@@ -1,0 +1,16 @@
+PODS:
+  - CombineCocoa (0.4.1)
+
+DEPENDENCIES:
+  - CombineCocoa (~> 0.4.0)
+
+SPEC REPOS:
+  trunk:
+    - CombineCocoa
+
+SPEC CHECKSUMS:
+  CombineCocoa: e5210dbfb480ff251078929459ac17e750e7af1d
+
+PODFILE CHECKSUM: 7ee06c9b1c18c9393b7715407ad601252f36d33c
+
+COCOAPODS: 1.12.0

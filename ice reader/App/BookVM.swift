@@ -101,6 +101,8 @@ class BookVM: ObservableObject {
     @AppStorage("LastReadBookName")
     var LastReadBookName = ""
     var blockSaveAction = false
+    
+    var completeBookName = ""
     var cloudBookDict: [String : String]? = nil
     
     let cloudManager = NSUbiquitousKeyValueStore.default
@@ -156,7 +158,7 @@ class BookVM: ObservableObject {
     
     func readCloudString(name: String) -> String? {
         if let cloudKey = self.getCloudKey(name: name) {
-           return UserDefaults.standard.string(forKey: cloudKey)
+            return UserDefaults.standard.string(forKey: cloudKey)
         }
         return nil
     }
@@ -175,26 +177,26 @@ class BookVM: ObservableObject {
     
     func readLastPage(name: String) -> Int {
         
-//        print("ReadLast \(readCloudString(name: name))")
+        //        print("ReadLast \(readCloudString(name: name))")
         
         let res = UserDefaults.standard.value(forKey: name)
         var localVal: Int = 0
         if let val = res as? String {
             if let fin = Int(val) {
-//                print("local \(name) is \(fin)")
+                //                print("local \(name) is \(fin)")
                 localVal = fin
             }
         }
         
         if let cloudStr = readCloudString(name: name) {
             if let cloudVal = Int(cloudStr) {
-//                print("cloud \(name) is \(cloudVal)")
+                //                print("cloud \(name) is \(cloudVal)")
                 if cloudVal > localVal {
                     localVal = cloudVal
                 }
             }
         }
-
+        
         return localVal
     }
     
@@ -208,7 +210,7 @@ class BookVM: ObservableObject {
     }
     
     func calSplit(completion : @escaping(String) -> Void) {
-
+        
         DispatchQueue.global(qos: .default).async {
             var splited: [Substring.SubSequence] = []
             var valided = false
@@ -220,9 +222,9 @@ class BookVM: ObservableObject {
                 }
                 
             }
-
+            
             if !valided {
- //               print("other match begin")
+                //               print("other match begin")
                 if self.sequence.suffix(1000).contains("　　") {
                     splited = self.sequence.split(separator: "　　")
                     if splited.count > 4000 {
@@ -230,10 +232,10 @@ class BookVM: ObservableObject {
                     }
                 }
             }
-                 
+            
             
             if !valided {
-      //          print("best match begin")
+                //          print("best match begin")
                 let newLineRegex = Regex {
                     Capture(CharacterClass.verticalWhitespace)
                 }
@@ -242,7 +244,7 @@ class BookVM: ObservableObject {
                     valided = true
                 }
             }
-
+            
             DispatchQueue.main.async {
                 self.splitedContents = splited
                 self.splitedContentsCount = Double(self.splitedContents.count)
@@ -258,12 +260,18 @@ class BookVM: ObservableObject {
         self.sequence = String.SubSequence(stringLiteral: rawContent)
     }
     
-    func fetchAllDatas(bookName: String, page: Int, extention: String, completion : @escaping(String) -> Void) {
+    func fetchAllDatas(bookName: String, extention: String, completion : @escaping(String) -> Void) {
         CloudManager.shared.initCloudListener()
-        DispatchQueue.global(qos: .default).async {
-            self.loadRawContent(bookName: bookName, extention: extention)
-            self.calSplit() { _ in
+        DispatchQueue.global(qos: .userInteractive).async {
+            if self.completeBookName == bookName {
+                print("already load \(bookName)")
                 completion("T")
+            } else {
+                self.loadRawContent(bookName: bookName, extention: extention)
+                self.calSplit() { _ in
+                    self.completeBookName = bookName
+                    completion("T")
+                }
             }
         }
     }
@@ -277,7 +285,7 @@ class BookVM: ObservableObject {
                 }
             }
         }
-
+        
     }
 }
 
@@ -311,7 +319,7 @@ struct ContentLoader {
             return ""
         }
     }
-
+    
 }
 
 

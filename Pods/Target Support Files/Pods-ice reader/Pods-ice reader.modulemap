@@ -1,0 +1,6 @@
+framework module Pods_ice_reader {
+  umbrella header "Pods-ice reader-umbrella.h"
+
+  export *
+  module * { export * }
+}

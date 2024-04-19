@@ -45,6 +45,7 @@ struct BookShelfView: View {
             Image(getImageName(index: index))
                 .resizable()
                 .frame(width: 60, height: 60)
+                .clipShape(RoundedRectangle(cornerRadius: 8.0))
         }
         
     }
@@ -64,13 +65,14 @@ struct BookShelfView: View {
         NavigationStack(path: $navPath) {
             GeometryReader  { proxy in
                 VStack {
-                    
+                    let titleImgStr = String(format: "s%d", Int.random(in: 1...19))
                     HStack {
-                        Image("s5")
+                        Image(titleImgStr)
                             .resizable()
-                            .frame(width: 180, height: 180)
+                            .frame(width: 70, height: 70)
+                            .clipShape(RoundedRectangle(cornerRadius: 12.0))
                         Text("今天想读哪本书啊？")
-                            .font(.system(size: 25, weight: .medium))
+                            .font(.system(size: 25, weight: .bold))
                     }
                     
                     

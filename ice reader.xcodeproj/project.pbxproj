@@ -8,58 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		A36B087A3AE434BC3234B23C /* Pods_ice_reader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */; };
-		B403164E29C6921E00E02FD0 /* 佣兵战争.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403163829C6921D00E02FD0 /* 佣兵战争.txt */; };
-		B403164F29C6921E00E02FD0 /* 末日从噩梦开始.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403163929C6921D00E02FD0 /* 末日从噩梦开始.txt */; };
-		B403165029C6921E00E02FD0 /* 长夜余火.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403163A29C6921D00E02FD0 /* 长夜余火.txt */; };
-		B403165129C6921E00E02FD0 /* 问道红尘.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403163B29C6921D00E02FD0 /* 问道红尘.txt */; };
-		B403165229C6921E00E02FD0 /* 九鼎记.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403163C29C6921D00E02FD0 /* 九鼎记.txt */; };
-		B403165329C6921E00E02FD0 /* 亲爱的该吃药了.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403163D29C6921D00E02FD0 /* 亲爱的该吃药了.txt */; };
-		B403165429C6921E00E02FD0 /* 烂柯棋缘.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403163E29C6921E00E02FD0 /* 烂柯棋缘.txt */; };
-		B403165529C6921E00E02FD0 /* 精灵掌门人.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403163F29C6921E00E02FD0 /* 精灵掌门人.txt */; };
-		B403165629C6921E00E02FD0 /* 诸界末日在线.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164029C6921E00E02FD0 /* 诸界末日在线.txt */; };
-		B403165729C6921E00E02FD0 /* 我的徒弟都是大反派.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164129C6921E00E02FD0 /* 我的徒弟都是大反派.txt */; };
-		B403165829C6921E00E02FD0 /* 重生后被倒追很正常吧.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164229C6921E00E02FD0 /* 重生后被倒追很正常吧.txt */; };
-		B403165929C6921E00E02FD0 /* 凡人修仙传.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164329C6921E00E02FD0 /* 凡人修仙传.txt */; };
-		B403165A29C6921E00E02FD0 /* 魔临.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164429C6921E00E02FD0 /* 魔临.txt */; };
-		B403165B29C6921E00E02FD0 /* 修真聊天群.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164529C6921E00E02FD0 /* 修真聊天群.txt */; };
-		B403165C29C6921E00E02FD0 /* 我的治愈系游戏.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164629C6921E00E02FD0 /* 我的治愈系游戏.txt */; };
-		B403165D29C6921E00E02FD0 /* 教主的退休日常.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164729C6921E00E02FD0 /* 教主的退休日常.txt */; };
-		B403165E29C6921E00E02FD0 /* 全职艺术家.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164829C6921E00E02FD0 /* 全职艺术家.txt */; };
-		B403165F29C6921E00E02FD0 /* 大乘期才有逆袭系统.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164929C6921E00E02FD0 /* 大乘期才有逆袭系统.txt */; };
-		B403166029C6921E00E02FD0 /* 遮天.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164A29C6921E00E02FD0 /* 遮天.txt */; };
-		B403166129C6921E00E02FD0 /* 星门时光之主.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164B29C6921E00E02FD0 /* 星门时光之主.txt */; };
-		B403166229C6921E00E02FD0 /* 武侠开局奖励满级神功.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164C29C6921E00E02FD0 /* 武侠开局奖励满级神功.txt */; };
-		B403166329C6921E00E02FD0 /* 这个剑修有点稳.txt in Resources */ = {isa = PBXBuildFile; fileRef = B403164D29C6921E00E02FD0 /* 这个剑修有点稳.txt */; };
+		A52BCCD22BD2A43F00FD4853 /* 精灵掌门人.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB32BD2A43E00FD4853 /* 精灵掌门人.txt */; };
+		A52BCCD32BD2A43F00FD4853 /* 牧神记.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB42BD2A43E00FD4853 /* 牧神记.txt */; };
+		A52BCCD42BD2A43F00FD4853 /* 全职艺术家.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB52BD2A43E00FD4853 /* 全职艺术家.txt */; };
+		A52BCCD52BD2A43F00FD4853 /* 一世之尊.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB62BD2A43E00FD4853 /* 一世之尊.txt */; };
+		A52BCCD62BD2A43F00FD4853 /* 问道红尘.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB72BD2A43E00FD4853 /* 问道红尘.txt */; };
+		A52BCCD72BD2A43F00FD4853 /* 长夜余火.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB82BD2A43E00FD4853 /* 长夜余火.txt */; };
+		A52BCCD82BD2A43F00FD4853 /* 烂柯棋缘.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB92BD2A43E00FD4853 /* 烂柯棋缘.txt */; };
+		A52BCCD92BD2A43F00FD4853 /* 吞噬星空.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBA2BD2A43E00FD4853 /* 吞噬星空.txt */; };
+		A52BCCDA2BD2A43F00FD4853 /* 亲爱的该吃药了.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBB2BD2A43E00FD4853 /* 亲爱的该吃药了.txt */; };
+		A52BCCDB2BD2A43F00FD4853 /* 遮天.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBC2BD2A43E00FD4853 /* 遮天.txt */; };
+		A52BCCDC2BD2A43F00FD4853 /* 不科学御兽.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBD2BD2A43E00FD4853 /* 不科学御兽.txt */; };
+		A52BCCDD2BD2A43F00FD4853 /* 一念永恒.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBE2BD2A43E00FD4853 /* 一念永恒.txt */; };
+		A52BCCDE2BD2A43F00FD4853 /* 圣墟.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBF2BD2A43F00FD4853 /* 圣墟.txt */; };
+		A52BCCDF2BD2A43F00FD4853 /* 我有一座冒险屋.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC02BD2A43F00FD4853 /* 我有一座冒险屋.txt */; };
+		A52BCCE02BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC12BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt */; };
+		A52BCCE12BD2A43F00FD4853 /* 惊悚乐园.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC22BD2A43F00FD4853 /* 惊悚乐园.txt */; };
+		A52BCCE22BD2A43F00FD4853 /* 希灵帝国.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC32BD2A43F00FD4853 /* 希灵帝国.txt */; };
+		A52BCCE32BD2A43F00FD4853 /* 我师兄实在太稳健了.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC42BD2A43F00FD4853 /* 我师兄实在太稳健了.txt */; };
+		A52BCCE42BD2A43F00FD4853 /* 镇妖博物馆.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC52BD2A43F00FD4853 /* 镇妖博物馆.txt */; };
+		A52BCCE52BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC62BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt */; };
+		A52BCCE62BD2A43F00FD4853 /* 凡人修仙传.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC72BD2A43F00FD4853 /* 凡人修仙传.txt */; };
+		A52BCCE72BD2A43F00FD4853 /* 修真聊天群.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC82BD2A43F00FD4853 /* 修真聊天群.txt */; };
+		A52BCCE82BD2A43F00FD4853 /* 全球高武.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC92BD2A43F00FD4853 /* 全球高武.txt */; };
+		A52BCCE92BD2A43F00FD4853 /* 大奉打更人.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCA2BD2A43F00FD4853 /* 大奉打更人.txt */; };
+		A52BCCEA2BD2A43F00FD4853 /* 异常生物见闻录.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCB2BD2A43F00FD4853 /* 异常生物见闻录.txt */; };
+		A52BCCEB2BD2A43F00FD4853 /* 星门时光之主.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCC2BD2A43F00FD4853 /* 星门时光之主.txt */; };
+		A52BCCEC2BD2A43F00FD4853 /* 夜的命名术.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCD2BD2A43F00FD4853 /* 夜的命名术.txt */; };
+		A52BCCED2BD2A43F00FD4853 /* 奥术神座.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCE2BD2A43F00FD4853 /* 奥术神座.txt */; };
+		A52BCCEE2BD2A43F00FD4853 /* 我真没想重生啊.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCF2BD2A43F00FD4853 /* 我真没想重生啊.txt */; };
+		A52BCCEF2BD2A43F00FD4853 /* 魔临.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCD02BD2A43F00FD4853 /* 魔临.txt */; };
+		A52BCCF02BD2A43F00FD4853 /* 我的属性修行人生.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCD12BD2A43F00FD4853 /* 我的属性修行人生.txt */; };
 		B403166929C699AC00E02FD0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B403166829C699AC00E02FD0 /* LoadingView.swift */; };
-		B4437AD92AA629BC00A7808C /* 才不是魔女.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4437AD82AA629BC00A7808C /* 才不是魔女.txt */; };
-		B4437ADB2AA62C4D00A7808C /* 天启预报.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4437ADA2AA62C4D00A7808C /* 天启预报.txt */; };
-		B483E8C62AC65400005F0993 /* 深空彼岸.txt in Resources */ = {isa = PBXBuildFile; fileRef = B483E8C52AC65400005F0993 /* 深空彼岸.txt */; };
 		B48911042AB3398E0074343E /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48911032AB3398E0074343E /* CloudManager.swift */; };
 		B48911062AB33F3B0074343E /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B48911052AB33F3B0074343E /* MKiCloudSync.m */; };
-		B4977D3B29C58AAB00E77370 /* 诡秘之主.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D3A29C58AAB00E77370 /* 诡秘之主.txt */; };
-		B4977D4329C5B35700E77370 /* 我的属性修行人生.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4229C5B35700E77370 /* 我的属性修行人生.txt */; };
-		B4977D4A29C5B5C600E77370 /* 一世之尊.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4429C5B5C500E77370 /* 一世之尊.txt */; };
-		B4977D4B29C5B5C600E77370 /* 惊悚乐园.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4529C5B5C600E77370 /* 惊悚乐园.txt */; };
-		B4977D4C29C5B5C600E77370 /* 我师兄实在是太稳健了.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4629C5B5C600E77370 /* 我师兄实在是太稳健了.txt */; };
-		B4977D4D29C5B5C600E77370 /* 吞噬星空.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4729C5B5C600E77370 /* 吞噬星空.txt */; };
-		B4977D4E29C5B5C600E77370 /* 我有一座冒险屋.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4829C5B5C600E77370 /* 我有一座冒险屋.txt */; };
-		B4977D4F29C5B5C600E77370 /* 斗破苍穹.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D4929C5B5C600E77370 /* 斗破苍穹.txt */; };
-		B4977D5129C5BB7F00E77370 /* 大王饶命.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D5029C5BB7F00E77370 /* 大王饶命.txt */; };
-		B4977D5329C5BD3000E77370 /* 超神机械师.html in Resources */ = {isa = PBXBuildFile; fileRef = B4977D5229C5BD3000E77370 /* 超神机械师.html */; };
-		B4977D5529C5BDAA00E77370 /* 圣墟.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D5429C5BDAA00E77370 /* 圣墟.txt */; };
-		B4977D5729C5BDF200E77370 /* 牧神记.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D5629C5BDF200E77370 /* 牧神记.txt */; };
-		B4977D5929C5BE4500E77370 /* 轮回乐园.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D5829C5BE4500E77370 /* 轮回乐园.txt */; };
-		B4977D5B29C5BE7B00E77370 /* 完美世界.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D5A29C5BE7B00E77370 /* 完美世界.txt */; };
-		B4977D5F29C5C03300E77370 /* 全球高武.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D5E29C5C03300E77370 /* 全球高武.txt */; };
-		B4977D6929C5C48E00E77370 /* 奥术神座.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6029C5C48E00E77370 /* 奥术神座.txt */; };
-		B4977D6A29C5C48E00E77370 /* 第一序列.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6129C5C48E00E77370 /* 第一序列.txt */; };
-		B4977D6B29C5C48E00E77370 /* 深夜书屋.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6229C5C48E00E77370 /* 深夜书屋.txt */; };
-		B4977D6C29C5C48E00E77370 /* 一念永恒.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6329C5C48E00E77370 /* 一念永恒.txt */; };
-		B4977D6D29C5C48E00E77370 /* 异常生物见闻录.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6429C5C48E00E77370 /* 异常生物见闻录.txt */; };
-		B4977D6E29C5C48E00E77370 /* 从红月开始.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6529C5C48E00E77370 /* 从红月开始.txt */; };
-		B4977D6F29C5C48E00E77370 /* 亏成首富从游戏开始.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6629C5C48E00E77370 /* 亏成首富从游戏开始.txt */; };
-		B4977D7029C5C48E00E77370 /* 全职高手.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6729C5C48E00E77370 /* 全职高手.txt */; };
-		B4977D7129C5C48E00E77370 /* 伏天氏.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4977D6829C5C48E00E77370 /* 伏天氏.txt */; };
 		B4977D7429C5C7F200E77370 /* PercentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4977D7329C5C7F200E77370 /* PercentBar.swift */; };
 		B4A9F73329C52F3900F267C6 /* ice_readerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73229C52F3900F267C6 /* ice_readerApp.swift */; };
 		B4A9F73529C52F3900F267C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73429C52F3900F267C6 /* ContentView.swift */; };
@@ -67,81 +49,52 @@
 		B4A9F73A29C52F3A00F267C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A9F73929C52F3A00F267C6 /* Preview Assets.xcassets */; };
 		B4A9F73C29C52F3A00F267C6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73B29C52F3A00F267C6 /* Persistence.swift */; };
 		B4A9F73F29C52F3A00F267C6 /* ice_reader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4A9F73D29C52F3A00F267C6 /* ice_reader.xcdatamodeld */; };
-		B4A9F74729C5313400F267C6 /* 黎明之剑.html in Resources */ = {isa = PBXBuildFile; fileRef = B4A9F74629C5313400F267C6 /* 黎明之剑.html */; };
 		B4E7089829C541FA00F70C14 /* BookMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089729C541FA00F70C14 /* BookMainView.swift */; };
 		B4E7089A29C5420B00F70C14 /* BookShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089929C5420B00F70C14 /* BookShelfView.swift */; };
 		B4E7089C29C5422500F70C14 /* BookVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089B29C5422500F70C14 /* BookVM.swift */; };
-		B4E708A029C568FA00F70C14 /* 希灵帝国.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E7089F29C568FA00F70C14 /* 希灵帝国.txt */; };
-		B4E708A629C569B000F70C14 /* 重生之似水流年.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708A529C569B000F70C14 /* 重生之似水流年.txt */; };
-		B4E708AC29C56B2300F70C14 /* 我真没想重生啊.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708AB29C56B2300F70C14 /* 我真没想重生啊.txt */; };
-		B4E708AE29C56B3E00F70C14 /* 夜的命名术.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708AD29C56B3E00F70C14 /* 夜的命名术.txt */; };
-		B4E708B029C56B4500F70C14 /* 大奉打更人.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708AF29C56B4500F70C14 /* 大奉打更人.txt */; };
-		B4E708B229C56B6000F70C14 /* 不科学御兽.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B129C56B6000F70C14 /* 不科学御兽.txt */; };
-		B4E708B429C56B8700F70C14 /* 万道龙皇.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B329C56B8700F70C14 /* 万道龙皇.txt */; };
-		B4E708B629C56B9D00F70C14 /* 万族之劫.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B529C56B9D00F70C14 /* 万族之劫.txt */; };
-		B4E708B829C56BB800F70C14 /* 我打造了旧日支配者神话.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B729C56BB800F70C14 /* 我打造了旧日支配者神话.txt */; };
-		B4E708BA29C56BF600F70C14 /* 镇妖博物馆.html in Resources */ = {isa = PBXBuildFile; fileRef = B4E708B929C56BF600F70C14 /* 镇妖博物馆.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		23C148EA6247D7EC1BA4A348 /* Pods-ice reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice reader.debug.xcconfig"; path = "Target Support Files/Pods-ice reader/Pods-ice reader.debug.xcconfig"; sourceTree = "<group>"; };
 		416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ice_reader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B403163829C6921D00E02FD0 /* 佣兵战争.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "佣兵战争.txt"; path = "../../../../Downloads/佣兵战争.txt"; sourceTree = "<group>"; };
-		B403163929C6921D00E02FD0 /* 末日从噩梦开始.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "末日从噩梦开始.txt"; path = "../../../../Downloads/末日从噩梦开始.txt"; sourceTree = "<group>"; };
-		B403163A29C6921D00E02FD0 /* 长夜余火.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "长夜余火.txt"; path = "../../../../Downloads/长夜余火.txt"; sourceTree = "<group>"; };
-		B403163B29C6921D00E02FD0 /* 问道红尘.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "问道红尘.txt"; path = "../../../../Downloads/问道红尘.txt"; sourceTree = "<group>"; };
-		B403163C29C6921D00E02FD0 /* 九鼎记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "九鼎记.txt"; path = "../../../../Downloads/九鼎记.txt"; sourceTree = "<group>"; };
-		B403163D29C6921D00E02FD0 /* 亲爱的该吃药了.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "亲爱的该吃药了.txt"; path = "../../../../Downloads/亲爱的该吃药了.txt"; sourceTree = "<group>"; };
-		B403163E29C6921E00E02FD0 /* 烂柯棋缘.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "烂柯棋缘.txt"; path = "../../../../Downloads/烂柯棋缘.txt"; sourceTree = "<group>"; };
-		B403163F29C6921E00E02FD0 /* 精灵掌门人.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "精灵掌门人.txt"; path = "../../../../Downloads/精灵掌门人.txt"; sourceTree = "<group>"; };
-		B403164029C6921E00E02FD0 /* 诸界末日在线.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "诸界末日在线.txt"; path = "../../../../Downloads/诸界末日在线.txt"; sourceTree = "<group>"; };
-		B403164129C6921E00E02FD0 /* 我的徒弟都是大反派.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我的徒弟都是大反派.txt"; path = "../../../../Downloads/我的徒弟都是大反派.txt"; sourceTree = "<group>"; };
-		B403164229C6921E00E02FD0 /* 重生后被倒追很正常吧.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "重生后被倒追很正常吧.txt"; path = "../../../../Downloads/重生后被倒追很正常吧.txt"; sourceTree = "<group>"; };
-		B403164329C6921E00E02FD0 /* 凡人修仙传.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "凡人修仙传.txt"; path = "../../../../Downloads/凡人修仙传.txt"; sourceTree = "<group>"; };
-		B403164429C6921E00E02FD0 /* 魔临.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "魔临.txt"; path = "../../../../Downloads/魔临.txt"; sourceTree = "<group>"; };
-		B403164529C6921E00E02FD0 /* 修真聊天群.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "修真聊天群.txt"; path = "../../../../Downloads/修真聊天群.txt"; sourceTree = "<group>"; };
-		B403164629C6921E00E02FD0 /* 我的治愈系游戏.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我的治愈系游戏.txt"; path = "../../../../Downloads/我的治愈系游戏.txt"; sourceTree = "<group>"; };
-		B403164729C6921E00E02FD0 /* 教主的退休日常.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "教主的退休日常.txt"; path = "../../../../Downloads/教主的退休日常.txt"; sourceTree = "<group>"; };
-		B403164829C6921E00E02FD0 /* 全职艺术家.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "全职艺术家.txt"; path = "../../../../Downloads/全职艺术家.txt"; sourceTree = "<group>"; };
-		B403164929C6921E00E02FD0 /* 大乘期才有逆袭系统.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "大乘期才有逆袭系统.txt"; path = "../../../../Downloads/大乘期才有逆袭系统.txt"; sourceTree = "<group>"; };
-		B403164A29C6921E00E02FD0 /* 遮天.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "遮天.txt"; path = "../../../../Downloads/遮天.txt"; sourceTree = "<group>"; };
-		B403164B29C6921E00E02FD0 /* 星门时光之主.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "星门时光之主.txt"; path = "../../../../Downloads/星门时光之主.txt"; sourceTree = "<group>"; };
-		B403164C29C6921E00E02FD0 /* 武侠开局奖励满级神功.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "武侠开局奖励满级神功.txt"; path = "../../../../Downloads/武侠开局奖励满级神功.txt"; sourceTree = "<group>"; };
-		B403164D29C6921E00E02FD0 /* 这个剑修有点稳.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "这个剑修有点稳.txt"; path = "../../../../Downloads/这个剑修有点稳.txt"; sourceTree = "<group>"; };
+		A52BCCB32BD2A43E00FD4853 /* 精灵掌门人.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "精灵掌门人.txt"; path = "../../../novels/精灵掌门人.txt"; sourceTree = "<group>"; };
+		A52BCCB42BD2A43E00FD4853 /* 牧神记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "牧神记.txt"; path = "../../../novels/牧神记.txt"; sourceTree = "<group>"; };
+		A52BCCB52BD2A43E00FD4853 /* 全职艺术家.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "全职艺术家.txt"; path = "../../../novels/全职艺术家.txt"; sourceTree = "<group>"; };
+		A52BCCB62BD2A43E00FD4853 /* 一世之尊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "一世之尊.txt"; path = "../../../novels/一世之尊.txt"; sourceTree = "<group>"; };
+		A52BCCB72BD2A43E00FD4853 /* 问道红尘.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "问道红尘.txt"; path = "../../../novels/问道红尘.txt"; sourceTree = "<group>"; };
+		A52BCCB82BD2A43E00FD4853 /* 长夜余火.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "长夜余火.txt"; path = "../../../novels/长夜余火.txt"; sourceTree = "<group>"; };
+		A52BCCB92BD2A43E00FD4853 /* 烂柯棋缘.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "烂柯棋缘.txt"; path = "../../../novels/烂柯棋缘.txt"; sourceTree = "<group>"; };
+		A52BCCBA2BD2A43E00FD4853 /* 吞噬星空.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "吞噬星空.txt"; path = "../../../novels/吞噬星空.txt"; sourceTree = "<group>"; };
+		A52BCCBB2BD2A43E00FD4853 /* 亲爱的该吃药了.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "亲爱的该吃药了.txt"; path = "../../../novels/亲爱的该吃药了.txt"; sourceTree = "<group>"; };
+		A52BCCBC2BD2A43E00FD4853 /* 遮天.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "遮天.txt"; path = "../../../novels/遮天.txt"; sourceTree = "<group>"; };
+		A52BCCBD2BD2A43E00FD4853 /* 不科学御兽.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "不科学御兽.txt"; path = "../../../novels/不科学御兽.txt"; sourceTree = "<group>"; };
+		A52BCCBE2BD2A43E00FD4853 /* 一念永恒.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "一念永恒.txt"; path = "../../../novels/一念永恒.txt"; sourceTree = "<group>"; };
+		A52BCCBF2BD2A43F00FD4853 /* 圣墟.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "圣墟.txt"; path = "../../../novels/圣墟.txt"; sourceTree = "<group>"; };
+		A52BCCC02BD2A43F00FD4853 /* 我有一座冒险屋.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我有一座冒险屋.txt"; path = "../../../novels/我有一座冒险屋.txt"; sourceTree = "<group>"; };
+		A52BCCC12BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "大乘期才有逆袭系统.txt"; path = "../../../novels/大乘期才有逆袭系统.txt"; sourceTree = "<group>"; };
+		A52BCCC22BD2A43F00FD4853 /* 惊悚乐园.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "惊悚乐园.txt"; path = "../../../novels/惊悚乐园.txt"; sourceTree = "<group>"; };
+		A52BCCC32BD2A43F00FD4853 /* 希灵帝国.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "希灵帝国.txt"; path = "../../../novels/希灵帝国.txt"; sourceTree = "<group>"; };
+		A52BCCC42BD2A43F00FD4853 /* 我师兄实在太稳健了.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我师兄实在太稳健了.txt"; path = "../../../novels/我师兄实在太稳健了.txt"; sourceTree = "<group>"; };
+		A52BCCC52BD2A43F00FD4853 /* 镇妖博物馆.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "镇妖博物馆.txt"; path = "../../../novels/镇妖博物馆.txt"; sourceTree = "<group>"; };
+		A52BCCC62BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我打造了旧日支配者神话.txt"; path = "../../../novels/我打造了旧日支配者神话.txt"; sourceTree = "<group>"; };
+		A52BCCC72BD2A43F00FD4853 /* 凡人修仙传.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "凡人修仙传.txt"; path = "../../../novels/凡人修仙传.txt"; sourceTree = "<group>"; };
+		A52BCCC82BD2A43F00FD4853 /* 修真聊天群.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "修真聊天群.txt"; path = "../../../novels/修真聊天群.txt"; sourceTree = "<group>"; };
+		A52BCCC92BD2A43F00FD4853 /* 全球高武.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "全球高武.txt"; path = "../../../novels/全球高武.txt"; sourceTree = "<group>"; };
+		A52BCCCA2BD2A43F00FD4853 /* 大奉打更人.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "大奉打更人.txt"; path = "../../../novels/大奉打更人.txt"; sourceTree = "<group>"; };
+		A52BCCCB2BD2A43F00FD4853 /* 异常生物见闻录.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "异常生物见闻录.txt"; path = "../../../novels/异常生物见闻录.txt"; sourceTree = "<group>"; };
+		A52BCCCC2BD2A43F00FD4853 /* 星门时光之主.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "星门时光之主.txt"; path = "../../../novels/星门时光之主.txt"; sourceTree = "<group>"; };
+		A52BCCCD2BD2A43F00FD4853 /* 夜的命名术.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "夜的命名术.txt"; path = "../../../novels/夜的命名术.txt"; sourceTree = "<group>"; };
+		A52BCCCE2BD2A43F00FD4853 /* 奥术神座.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "奥术神座.txt"; path = "../../../novels/奥术神座.txt"; sourceTree = "<group>"; };
+		A52BCCCF2BD2A43F00FD4853 /* 我真没想重生啊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我真没想重生啊.txt"; path = "../../../novels/我真没想重生啊.txt"; sourceTree = "<group>"; };
+		A52BCCD02BD2A43F00FD4853 /* 魔临.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "魔临.txt"; path = "../../../novels/魔临.txt"; sourceTree = "<group>"; };
+		A52BCCD12BD2A43F00FD4853 /* 我的属性修行人生.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我的属性修行人生.txt"; path = "../../../novels/我的属性修行人生.txt"; sourceTree = "<group>"; };
 		B403166829C699AC00E02FD0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		B4437AD82AA629BC00A7808C /* 才不是魔女.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "才不是魔女.txt"; path = "../../../../Downloads/才不是魔女.txt"; sourceTree = "<group>"; };
-		B4437ADA2AA62C4D00A7808C /* 天启预报.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "天启预报.txt"; path = "../../../../Downloads/天启预报.txt"; sourceTree = "<group>"; };
-		B483E8C52AC65400005F0993 /* 深空彼岸.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "深空彼岸.txt"; path = "../../../../Downloads/深空彼岸.txt"; sourceTree = "<group>"; };
 		B48910FD2AB31EE10074343E /* ice reader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ice reader.entitlements"; sourceTree = "<group>"; };
 		B48910FE2AB31F7C0074343E /* ice-reader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ice-reader-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B48910FF2AB333730074343E /* ice reader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ice reader-Bridging-Header.h"; sourceTree = "<group>"; };
 		B48911032AB3398E0074343E /* CloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 		B48911052AB33F3B0074343E /* MKiCloudSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKiCloudSync.m; sourceTree = "<group>"; };
 		B48911072AB33F3C0074343E /* MKiCloudSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKiCloudSync.h; sourceTree = "<group>"; };
-		B4977D3A29C58AAB00E77370 /* 诡秘之主.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "诡秘之主.txt"; path = "../../../../Downloads/诡秘之主.txt"; sourceTree = "<group>"; };
-		B4977D4229C5B35700E77370 /* 我的属性修行人生.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我的属性修行人生.txt"; path = "../../../../Downloads/我的属性修行人生.txt"; sourceTree = "<group>"; };
-		B4977D4429C5B5C500E77370 /* 一世之尊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "一世之尊.txt"; path = "../../../../Downloads/一世之尊.txt"; sourceTree = "<group>"; };
-		B4977D4529C5B5C600E77370 /* 惊悚乐园.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "惊悚乐园.txt"; path = "../../../../Downloads/惊悚乐园.txt"; sourceTree = "<group>"; };
-		B4977D4629C5B5C600E77370 /* 我师兄实在是太稳健了.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我师兄实在是太稳健了.txt"; path = "../../../../Downloads/我师兄实在是太稳健了.txt"; sourceTree = "<group>"; };
-		B4977D4729C5B5C600E77370 /* 吞噬星空.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "吞噬星空.txt"; path = "../../../../Downloads/吞噬星空.txt"; sourceTree = "<group>"; };
-		B4977D4829C5B5C600E77370 /* 我有一座冒险屋.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我有一座冒险屋.txt"; path = "../../../../Downloads/我有一座冒险屋.txt"; sourceTree = "<group>"; };
-		B4977D4929C5B5C600E77370 /* 斗破苍穹.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "斗破苍穹.txt"; path = "../../../../Downloads/斗破苍穹.txt"; sourceTree = "<group>"; };
-		B4977D5029C5BB7F00E77370 /* 大王饶命.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "大王饶命.txt"; path = "../../../../Downloads/大王饶命.txt"; sourceTree = "<group>"; };
-		B4977D5229C5BD3000E77370 /* 超神机械师.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "超神机械师.html"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/超神机械师.html"; sourceTree = "<group>"; };
-		B4977D5429C5BDAA00E77370 /* 圣墟.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "圣墟.txt"; path = "../../../../Downloads/圣墟.txt"; sourceTree = "<group>"; };
-		B4977D5629C5BDF200E77370 /* 牧神记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "牧神记.txt"; path = "../../../../Downloads/牧神记.txt"; sourceTree = "<group>"; };
-		B4977D5829C5BE4500E77370 /* 轮回乐园.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "轮回乐园.txt"; path = "../../../../Downloads/轮回乐园.txt"; sourceTree = "<group>"; };
-		B4977D5A29C5BE7B00E77370 /* 完美世界.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "完美世界.txt"; path = "../../../../Downloads/完美世界.txt"; sourceTree = "<group>"; };
-		B4977D5E29C5C03300E77370 /* 全球高武.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "全球高武.txt"; sourceTree = "<group>"; };
-		B4977D6029C5C48E00E77370 /* 奥术神座.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "奥术神座.txt"; path = "../../../../Downloads/奥术神座.txt"; sourceTree = "<group>"; };
-		B4977D6129C5C48E00E77370 /* 第一序列.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "第一序列.txt"; path = "../../../../Downloads/第一序列.txt"; sourceTree = "<group>"; };
-		B4977D6229C5C48E00E77370 /* 深夜书屋.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "深夜书屋.txt"; path = "../../../../Downloads/深夜书屋.txt"; sourceTree = "<group>"; };
-		B4977D6329C5C48E00E77370 /* 一念永恒.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "一念永恒.txt"; path = "../../../../Downloads/一念永恒.txt"; sourceTree = "<group>"; };
-		B4977D6429C5C48E00E77370 /* 异常生物见闻录.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "异常生物见闻录.txt"; path = "../../../../Downloads/异常生物见闻录.txt"; sourceTree = "<group>"; };
-		B4977D6529C5C48E00E77370 /* 从红月开始.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "从红月开始.txt"; path = "../../../../Downloads/从红月开始.txt"; sourceTree = "<group>"; };
-		B4977D6629C5C48E00E77370 /* 亏成首富从游戏开始.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "亏成首富从游戏开始.txt"; path = "../../../../Downloads/亏成首富从游戏开始.txt"; sourceTree = "<group>"; };
-		B4977D6729C5C48E00E77370 /* 全职高手.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "全职高手.txt"; path = "../../../../Downloads/全职高手.txt"; sourceTree = "<group>"; };
-		B4977D6829C5C48E00E77370 /* 伏天氏.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "伏天氏.txt"; path = "../../../../Downloads/伏天氏.txt"; sourceTree = "<group>"; };
 		B4977D7329C5C7F200E77370 /* PercentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentBar.swift; sourceTree = "<group>"; };
 		B4A9F72F29C52F3900F267C6 /* ice reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ice reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A9F73229C52F3900F267C6 /* ice_readerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ice_readerApp.swift; sourceTree = "<group>"; };
@@ -150,20 +103,9 @@
 		B4A9F73929C52F3A00F267C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B4A9F73B29C52F3A00F267C6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B4A9F73E29C52F3A00F267C6 /* ice_reader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ice_reader.xcdatamodel; sourceTree = "<group>"; };
-		B4A9F74629C5313400F267C6 /* 黎明之剑.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "黎明之剑.html"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/黎明之剑.html"; sourceTree = "<group>"; };
 		B4E7089729C541FA00F70C14 /* BookMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMainView.swift; sourceTree = "<group>"; };
 		B4E7089929C5420B00F70C14 /* BookShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfView.swift; sourceTree = "<group>"; };
 		B4E7089B29C5422500F70C14 /* BookVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVM.swift; sourceTree = "<group>"; };
-		B4E7089F29C568FA00F70C14 /* 希灵帝国.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "希灵帝国.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/希灵帝国.txt"; sourceTree = "<group>"; };
-		B4E708A529C569B000F70C14 /* 重生之似水流年.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "重生之似水流年.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/重生之似水流年.txt"; sourceTree = "<group>"; };
-		B4E708AB29C56B2300F70C14 /* 我真没想重生啊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我真没想重生啊.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/我真没想重生啊.txt"; sourceTree = "<group>"; };
-		B4E708AD29C56B3E00F70C14 /* 夜的命名术.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "夜的命名术.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/夜的命名术.txt"; sourceTree = "<group>"; };
-		B4E708AF29C56B4500F70C14 /* 大奉打更人.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "大奉打更人.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/大奉打更人.txt"; sourceTree = "<group>"; };
-		B4E708B129C56B6000F70C14 /* 不科学御兽.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "不科学御兽.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/不科学御兽.txt"; sourceTree = "<group>"; };
-		B4E708B329C56B8700F70C14 /* 万道龙皇.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "万道龙皇.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/万道龙皇.txt"; sourceTree = "<group>"; };
-		B4E708B529C56B9D00F70C14 /* 万族之劫.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "万族之劫.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/万族之劫.txt"; sourceTree = "<group>"; };
-		B4E708B729C56BB800F70C14 /* 我打造了旧日支配者神话.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我打造了旧日支配者神话.txt"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/我打造了旧日支配者神话.txt"; sourceTree = "<group>"; };
-		B4E708B929C56BF600F70C14 /* 镇妖博物馆.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "镇妖博物馆.html"; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Downloads/镇妖博物馆.html"; sourceTree = "<group>"; };
 		C700C2815CEBA483424004B4 /* Pods-ice reader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice reader.release.xcconfig"; path = "Target Support Files/Pods-ice reader/Pods-ice reader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +128,44 @@
 				C700C2815CEBA483424004B4 /* Pods-ice reader.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A52BCCB22BD2A42A00FD4853 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A52BCCCE2BD2A43F00FD4853 /* 奥术神座.txt */,
+				A52BCCBD2BD2A43E00FD4853 /* 不科学御兽.txt */,
+				A52BCCC12BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt */,
+				A52BCCCA2BD2A43F00FD4853 /* 大奉打更人.txt */,
+				A52BCCC72BD2A43F00FD4853 /* 凡人修仙传.txt */,
+				A52BCCC22BD2A43F00FD4853 /* 惊悚乐园.txt */,
+				A52BCCB32BD2A43E00FD4853 /* 精灵掌门人.txt */,
+				A52BCCB92BD2A43E00FD4853 /* 烂柯棋缘.txt */,
+				A52BCCD02BD2A43F00FD4853 /* 魔临.txt */,
+				A52BCCB42BD2A43E00FD4853 /* 牧神记.txt */,
+				A52BCCBB2BD2A43E00FD4853 /* 亲爱的该吃药了.txt */,
+				A52BCCC92BD2A43F00FD4853 /* 全球高武.txt */,
+				A52BCCB52BD2A43E00FD4853 /* 全职艺术家.txt */,
+				A52BCCBF2BD2A43F00FD4853 /* 圣墟.txt */,
+				A52BCCBA2BD2A43E00FD4853 /* 吞噬星空.txt */,
+				A52BCCB72BD2A43E00FD4853 /* 问道红尘.txt */,
+				A52BCCC62BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt */,
+				A52BCCD12BD2A43F00FD4853 /* 我的属性修行人生.txt */,
+				A52BCCC42BD2A43F00FD4853 /* 我师兄实在太稳健了.txt */,
+				A52BCCC02BD2A43F00FD4853 /* 我有一座冒险屋.txt */,
+				A52BCCCF2BD2A43F00FD4853 /* 我真没想重生啊.txt */,
+				A52BCCC32BD2A43F00FD4853 /* 希灵帝国.txt */,
+				A52BCCCC2BD2A43F00FD4853 /* 星门时光之主.txt */,
+				A52BCCC82BD2A43F00FD4853 /* 修真聊天群.txt */,
+				A52BCCCD2BD2A43F00FD4853 /* 夜的命名术.txt */,
+				A52BCCBE2BD2A43E00FD4853 /* 一念永恒.txt */,
+				A52BCCB62BD2A43E00FD4853 /* 一世之尊.txt */,
+				A52BCCCB2BD2A43F00FD4853 /* 异常生物见闻录.txt */,
+				A52BCCB82BD2A43E00FD4853 /* 长夜余火.txt */,
+				A52BCCBC2BD2A43E00FD4853 /* 遮天.txt */,
+				A52BCCC52BD2A43F00FD4853 /* 镇妖博物馆.txt */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		B48911082AB33F830074343E /* OC */ = {
@@ -227,11 +207,11 @@
 		B4A9F73129C52F3900F267C6 /* ice reader */ = {
 			isa = PBXGroup;
 			children = (
+				A52BCCB22BD2A42A00FD4853 /* Resource */,
 				B48910FE2AB31F7C0074343E /* ice-reader-Info.plist */,
 				B48910FD2AB31EE10074343E /* ice reader.entitlements */,
 				B48910FF2AB333730074343E /* ice reader-Bridging-Header.h */,
 				B4E7089629C541E300F70C14 /* App */,
-				B4A9F74529C5306300F267C6 /* Resource */,
 				B4A9F73229C52F3900F267C6 /* ice_readerApp.swift */,
 				B4A9F73429C52F3900F267C6 /* ContentView.swift */,
 				B4A9F73629C52F3A00F267C6 /* Assets.xcassets */,
@@ -248,73 +228,6 @@
 				B4A9F73929C52F3A00F267C6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B4A9F74529C5306300F267C6 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				B483E8C52AC65400005F0993 /* 深空彼岸.txt */,
-				B4437ADA2AA62C4D00A7808C /* 天启预报.txt */,
-				B4437AD82AA629BC00A7808C /* 才不是魔女.txt */,
-				B4A9F74629C5313400F267C6 /* 黎明之剑.html */,
-				B4E708B929C56BF600F70C14 /* 镇妖博物馆.html */,
-				B4E708AD29C56B3E00F70C14 /* 夜的命名术.txt */,
-				B4E708B129C56B6000F70C14 /* 不科学御兽.txt */,
-				B4977D5E29C5C03300E77370 /* 全球高武.txt */,
-				B4E708AF29C56B4500F70C14 /* 大奉打更人.txt */,
-				B4977D4229C5B35700E77370 /* 我的属性修行人生.txt */,
-				B4E708AB29C56B2300F70C14 /* 我真没想重生啊.txt */,
-				B4977D6329C5C48E00E77370 /* 一念永恒.txt */,
-				B4977D6629C5C48E00E77370 /* 亏成首富从游戏开始.txt */,
-				B4977D6529C5C48E00E77370 /* 从红月开始.txt */,
-				B4977D6829C5C48E00E77370 /* 伏天氏.txt */,
-				B4977D6729C5C48E00E77370 /* 全职高手.txt */,
-				B4977D6029C5C48E00E77370 /* 奥术神座.txt */,
-				B4977D6429C5C48E00E77370 /* 异常生物见闻录.txt */,
-				B4977D6229C5C48E00E77370 /* 深夜书屋.txt */,
-				B4977D6129C5C48E00E77370 /* 第一序列.txt */,
-				B403163C29C6921D00E02FD0 /* 九鼎记.txt */,
-				B403163D29C6921D00E02FD0 /* 亲爱的该吃药了.txt */,
-				B403163829C6921D00E02FD0 /* 佣兵战争.txt */,
-				B403164529C6921E00E02FD0 /* 修真聊天群.txt */,
-				B403164829C6921E00E02FD0 /* 全职艺术家.txt */,
-				B403164329C6921E00E02FD0 /* 凡人修仙传.txt */,
-				B403164929C6921E00E02FD0 /* 大乘期才有逆袭系统.txt */,
-				B403164129C6921E00E02FD0 /* 我的徒弟都是大反派.txt */,
-				B403164629C6921E00E02FD0 /* 我的治愈系游戏.txt */,
-				B403164729C6921E00E02FD0 /* 教主的退休日常.txt */,
-				B403164B29C6921E00E02FD0 /* 星门时光之主.txt */,
-				B403163929C6921D00E02FD0 /* 末日从噩梦开始.txt */,
-				B403164C29C6921E00E02FD0 /* 武侠开局奖励满级神功.txt */,
-				B403163E29C6921E00E02FD0 /* 烂柯棋缘.txt */,
-				B403163F29C6921E00E02FD0 /* 精灵掌门人.txt */,
-				B403164029C6921E00E02FD0 /* 诸界末日在线.txt */,
-				B403164D29C6921E00E02FD0 /* 这个剑修有点稳.txt */,
-				B403164A29C6921E00E02FD0 /* 遮天.txt */,
-				B403164229C6921E00E02FD0 /* 重生后被倒追很正常吧.txt */,
-				B403163A29C6921D00E02FD0 /* 长夜余火.txt */,
-				B403163B29C6921D00E02FD0 /* 问道红尘.txt */,
-				B403164429C6921E00E02FD0 /* 魔临.txt */,
-				B4E7089F29C568FA00F70C14 /* 希灵帝国.txt */,
-				B4E708A529C569B000F70C14 /* 重生之似水流年.txt */,
-				B4977D5229C5BD3000E77370 /* 超神机械师.html */,
-				B4977D5429C5BDAA00E77370 /* 圣墟.txt */,
-				B4E708B529C56B9D00F70C14 /* 万族之劫.txt */,
-				B4977D5629C5BDF200E77370 /* 牧神记.txt */,
-				B4E708B329C56B8700F70C14 /* 万道龙皇.txt */,
-				B4977D3A29C58AAB00E77370 /* 诡秘之主.txt */,
-				B4E708B729C56BB800F70C14 /* 我打造了旧日支配者神话.txt */,
-				B4977D4429C5B5C500E77370 /* 一世之尊.txt */,
-				B4977D4729C5B5C600E77370 /* 吞噬星空.txt */,
-				B4977D5A29C5BE7B00E77370 /* 完美世界.txt */,
-				B4977D5029C5BB7F00E77370 /* 大王饶命.txt */,
-				B4977D4529C5B5C600E77370 /* 惊悚乐园.txt */,
-				B4977D5829C5BE4500E77370 /* 轮回乐园.txt */,
-				B4977D4629C5B5C600E77370 /* 我师兄实在是太稳健了.txt */,
-				B4977D4829C5B5C600E77370 /* 我有一座冒险屋.txt */,
-				B4977D4929C5B5C600E77370 /* 斗破苍穹.txt */,
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 		B4E7089629C541E300F70C14 /* App */ = {
@@ -399,68 +312,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A52BCCDF2BD2A43F00FD4853 /* 我有一座冒险屋.txt in Resources */,
 				B4A9F73A29C52F3A00F267C6 /* Preview Assets.xcassets in Resources */,
-				B4E708B429C56B8700F70C14 /* 万道龙皇.txt in Resources */,
-				B4977D5529C5BDAA00E77370 /* 圣墟.txt in Resources */,
-				B403165729C6921E00E02FD0 /* 我的徒弟都是大反派.txt in Resources */,
-				B403165829C6921E00E02FD0 /* 重生后被倒追很正常吧.txt in Resources */,
-				B403165A29C6921E00E02FD0 /* 魔临.txt in Resources */,
-				B4977D4C29C5B5C600E77370 /* 我师兄实在是太稳健了.txt in Resources */,
-				B4E708AC29C56B2300F70C14 /* 我真没想重生啊.txt in Resources */,
-				B403166129C6921E00E02FD0 /* 星门时光之主.txt in Resources */,
-				B4E708A629C569B000F70C14 /* 重生之似水流年.txt in Resources */,
-				B4977D4E29C5B5C600E77370 /* 我有一座冒险屋.txt in Resources */,
-				B4E708A029C568FA00F70C14 /* 希灵帝国.txt in Resources */,
-				B403166329C6921E00E02FD0 /* 这个剑修有点稳.txt in Resources */,
-				B4437AD92AA629BC00A7808C /* 才不是魔女.txt in Resources */,
-				B403165529C6921E00E02FD0 /* 精灵掌门人.txt in Resources */,
-				B4E708BA29C56BF600F70C14 /* 镇妖博物馆.html in Resources */,
-				B4977D3B29C58AAB00E77370 /* 诡秘之主.txt in Resources */,
-				B4977D6B29C5C48E00E77370 /* 深夜书屋.txt in Resources */,
-				B4977D4329C5B35700E77370 /* 我的属性修行人生.txt in Resources */,
-				B403166229C6921E00E02FD0 /* 武侠开局奖励满级神功.txt in Resources */,
-				B4977D6D29C5C48E00E77370 /* 异常生物见闻录.txt in Resources */,
-				B4977D4D29C5B5C600E77370 /* 吞噬星空.txt in Resources */,
-				B403165429C6921E00E02FD0 /* 烂柯棋缘.txt in Resources */,
-				B4977D6E29C5C48E00E77370 /* 从红月开始.txt in Resources */,
-				B403166029C6921E00E02FD0 /* 遮天.txt in Resources */,
-				B4A9F74729C5313400F267C6 /* 黎明之剑.html in Resources */,
-				B4977D5929C5BE4500E77370 /* 轮回乐园.txt in Resources */,
-				B4437ADB2AA62C4D00A7808C /* 天启预报.txt in Resources */,
-				B4E708B229C56B6000F70C14 /* 不科学御兽.txt in Resources */,
-				B4977D6929C5C48E00E77370 /* 奥术神座.txt in Resources */,
-				B403164E29C6921E00E02FD0 /* 佣兵战争.txt in Resources */,
-				B4977D5729C5BDF200E77370 /* 牧神记.txt in Resources */,
-				B403165029C6921E00E02FD0 /* 长夜余火.txt in Resources */,
-				B403165B29C6921E00E02FD0 /* 修真聊天群.txt in Resources */,
-				B4977D6A29C5C48E00E77370 /* 第一序列.txt in Resources */,
-				B4977D5129C5BB7F00E77370 /* 大王饶命.txt in Resources */,
-				B403165C29C6921E00E02FD0 /* 我的治愈系游戏.txt in Resources */,
-				B483E8C62AC65400005F0993 /* 深空彼岸.txt in Resources */,
-				B403165D29C6921E00E02FD0 /* 教主的退休日常.txt in Resources */,
-				B403165229C6921E00E02FD0 /* 九鼎记.txt in Resources */,
-				B4977D6F29C5C48E00E77370 /* 亏成首富从游戏开始.txt in Resources */,
-				B4977D7029C5C48E00E77370 /* 全职高手.txt in Resources */,
-				B403165E29C6921E00E02FD0 /* 全职艺术家.txt in Resources */,
-				B4977D6C29C5C48E00E77370 /* 一念永恒.txt in Resources */,
-				B403165629C6921E00E02FD0 /* 诸界末日在线.txt in Resources */,
-				B4977D4A29C5B5C600E77370 /* 一世之尊.txt in Resources */,
+				A52BCCDA2BD2A43F00FD4853 /* 亲爱的该吃药了.txt in Resources */,
+				A52BCCED2BD2A43F00FD4853 /* 奥术神座.txt in Resources */,
+				A52BCCE72BD2A43F00FD4853 /* 修真聊天群.txt in Resources */,
+				A52BCCDC2BD2A43F00FD4853 /* 不科学御兽.txt in Resources */,
 				B4A9F73729C52F3A00F267C6 /* Assets.xcassets in Resources */,
-				B4E708B629C56B9D00F70C14 /* 万族之劫.txt in Resources */,
-				B4977D7129C5C48E00E77370 /* 伏天氏.txt in Resources */,
-				B4977D5B29C5BE7B00E77370 /* 完美世界.txt in Resources */,
-				B403164F29C6921E00E02FD0 /* 末日从噩梦开始.txt in Resources */,
-				B403165F29C6921E00E02FD0 /* 大乘期才有逆袭系统.txt in Resources */,
-				B403165129C6921E00E02FD0 /* 问道红尘.txt in Resources */,
-				B4E708B029C56B4500F70C14 /* 大奉打更人.txt in Resources */,
-				B4E708B829C56BB800F70C14 /* 我打造了旧日支配者神话.txt in Resources */,
-				B403165329C6921E00E02FD0 /* 亲爱的该吃药了.txt in Resources */,
-				B4977D4B29C5B5C600E77370 /* 惊悚乐园.txt in Resources */,
-				B4977D5329C5BD3000E77370 /* 超神机械师.html in Resources */,
-				B4E708AE29C56B3E00F70C14 /* 夜的命名术.txt in Resources */,
-				B4977D5F29C5C03300E77370 /* 全球高武.txt in Resources */,
-				B403165929C6921E00E02FD0 /* 凡人修仙传.txt in Resources */,
-				B4977D4F29C5B5C600E77370 /* 斗破苍穹.txt in Resources */,
+				A52BCCEE2BD2A43F00FD4853 /* 我真没想重生啊.txt in Resources */,
+				A52BCCE12BD2A43F00FD4853 /* 惊悚乐园.txt in Resources */,
+				A52BCCDB2BD2A43F00FD4853 /* 遮天.txt in Resources */,
+				A52BCCE82BD2A43F00FD4853 /* 全球高武.txt in Resources */,
+				A52BCCDE2BD2A43F00FD4853 /* 圣墟.txt in Resources */,
+				A52BCCD32BD2A43F00FD4853 /* 牧神记.txt in Resources */,
+				A52BCCD42BD2A43F00FD4853 /* 全职艺术家.txt in Resources */,
+				A52BCCD22BD2A43F00FD4853 /* 精灵掌门人.txt in Resources */,
+				A52BCCE02BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt in Resources */,
+				A52BCCF02BD2A43F00FD4853 /* 我的属性修行人生.txt in Resources */,
+				A52BCCE22BD2A43F00FD4853 /* 希灵帝国.txt in Resources */,
+				A52BCCE52BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt in Resources */,
+				A52BCCEB2BD2A43F00FD4853 /* 星门时光之主.txt in Resources */,
+				A52BCCEC2BD2A43F00FD4853 /* 夜的命名术.txt in Resources */,
+				A52BCCE92BD2A43F00FD4853 /* 大奉打更人.txt in Resources */,
+				A52BCCD72BD2A43F00FD4853 /* 长夜余火.txt in Resources */,
+				A52BCCE42BD2A43F00FD4853 /* 镇妖博物馆.txt in Resources */,
+				A52BCCE32BD2A43F00FD4853 /* 我师兄实在太稳健了.txt in Resources */,
+				A52BCCD62BD2A43F00FD4853 /* 问道红尘.txt in Resources */,
+				A52BCCEA2BD2A43F00FD4853 /* 异常生物见闻录.txt in Resources */,
+				A52BCCD82BD2A43F00FD4853 /* 烂柯棋缘.txt in Resources */,
+				A52BCCD52BD2A43F00FD4853 /* 一世之尊.txt in Resources */,
+				A52BCCEF2BD2A43F00FD4853 /* 魔临.txt in Resources */,
+				A52BCCE62BD2A43F00FD4853 /* 凡人修仙传.txt in Resources */,
+				A52BCCD92BD2A43F00FD4853 /* 吞噬星空.txt in Resources */,
+				A52BCCDD2BD2A43F00FD4853 /* 一念永恒.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

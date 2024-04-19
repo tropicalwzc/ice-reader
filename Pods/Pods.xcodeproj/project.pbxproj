@@ -15,16 +15,9 @@
 /* Begin PBXContainerItemProxy section */
 		A2A7D34F9893BF76EF8A3B2EE436C4B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 66C00D48C4C3E0ED9C1A7AFF9EB4E2C8 /* CombineCocoa */;
+			containerPortal = 66C00D48C4C3E0ED9C1A7AFF9EB4E2C8 /* CombineCocoa.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9C3411F48E6D408543B5BF76C14CE5A6;
-			remoteInfo = CombineCocoa;
-		};
-		B403166629C6948E00E02FD0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66C00D48C4C3E0ED9C1A7AFF9EB4E2C8 /* CombineCocoa */;
-			proxyType = 2;
-			remoteGlobalIDString = D2E79561712E8B3FC6E918A434D58629;
 			remoteInfo = CombineCocoa;
 		};
 /* End PBXContainerItemProxy section */
@@ -38,7 +31,7 @@
 		6059F9255F05EE29A69ABD1C64FBEC5B /* Pods-ice reader-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ice reader-umbrella.h"; sourceTree = "<group>"; };
 		66C00D48C4C3E0ED9C1A7AFF9EB4E2C8 /* CombineCocoa */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CombineCocoa; path = CombineCocoa.xcodeproj; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A45FD3661444BEC462EFEDA18A437614 /* Pods-ice reader-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ice reader-Info.plist"; sourceTree = "<group>"; };
 		A641EA2BE7F336127FC02C8662F35566 /* Pods-ice reader-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ice reader-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CB8A2BE863157F8AEE4EA4BB7FE50327 /* Pods-ice reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ice reader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,14 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				1E33B7B5998AE0DCD97DD067AC242CA8 /* Pods-ice reader */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B403166429C6941800E02FD0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B403166729C6948E00E02FD0 /* CombineCocoa.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,8 +157,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1410;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -188,7 +173,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = B403166429C6941800E02FD0 /* Products */;
 					ProjectRef = 66C00D48C4C3E0ED9C1A7AFF9EB4E2C8 /* CombineCocoa */;
 				},
 			);
@@ -198,16 +182,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B403166729C6948E00E02FD0 /* CombineCocoa.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CombineCocoa.framework;
-			remoteRef = B403166629C6948E00E02FD0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E716248FAFB88535B4A0223E307F3FA4 /* Resources */ = {
@@ -274,7 +248,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -341,7 +314,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

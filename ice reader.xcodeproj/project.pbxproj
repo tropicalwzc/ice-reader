@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A36B087A3AE434BC3234B23C /* Pods_ice_reader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */; };
+		A52754882E965B70005B054A /* 凡人仙界篇.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52754862E965B70005B054A /* 凡人仙界篇.txt */; };
+		A52754892E965B70005B054A /* 凡人修仙篇.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52754872E965B70005B054A /* 凡人修仙篇.txt */; };
 		A52BCCD22BD2A43F00FD4853 /* 精灵掌门人.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB32BD2A43E00FD4853 /* 精灵掌门人.txt */; };
 		A52BCCD32BD2A43F00FD4853 /* 牧神记.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB42BD2A43E00FD4853 /* 牧神记.txt */; };
 		A52BCCD42BD2A43F00FD4853 /* 全职艺术家.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB52BD2A43E00FD4853 /* 全职艺术家.txt */; };
@@ -57,6 +59,8 @@
 /* Begin PBXFileReference section */
 		23C148EA6247D7EC1BA4A348 /* Pods-ice reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice reader.debug.xcconfig"; path = "Target Support Files/Pods-ice reader/Pods-ice reader.debug.xcconfig"; sourceTree = "<group>"; };
 		416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ice_reader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A52754862E965B70005B054A /* 凡人仙界篇.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "凡人仙界篇.txt"; path = "../novels/凡人仙界篇.txt"; sourceTree = SOURCE_ROOT; };
+		A52754872E965B70005B054A /* 凡人修仙篇.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "凡人修仙篇.txt"; path = "../novels/凡人修仙篇.txt"; sourceTree = SOURCE_ROOT; };
 		A52BCCB32BD2A43E00FD4853 /* 精灵掌门人.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "精灵掌门人.txt"; path = "../../../novels/精灵掌门人.txt"; sourceTree = "<group>"; };
 		A52BCCB42BD2A43E00FD4853 /* 牧神记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "牧神记.txt"; path = "../../../novels/牧神记.txt"; sourceTree = "<group>"; };
 		A52BCCB52BD2A43E00FD4853 /* 全职艺术家.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "全职艺术家.txt"; path = "../../../novels/全职艺术家.txt"; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		A52BCCB22BD2A42A00FD4853 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A52754862E965B70005B054A /* 凡人仙界篇.txt */,
+				A52754872E965B70005B054A /* 凡人修仙篇.txt */,
 				A52BCCCE2BD2A43F00FD4853 /* 奥术神座.txt */,
 				A52BCCBD2BD2A43E00FD4853 /* 不科学御兽.txt */,
 				A52BCCC12BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt */,
@@ -318,6 +324,8 @@
 				A52BCCED2BD2A43F00FD4853 /* 奥术神座.txt in Resources */,
 				A52BCCE72BD2A43F00FD4853 /* 修真聊天群.txt in Resources */,
 				A52BCCDC2BD2A43F00FD4853 /* 不科学御兽.txt in Resources */,
+				A52754882E965B70005B054A /* 凡人仙界篇.txt in Resources */,
+				A52754892E965B70005B054A /* 凡人修仙篇.txt in Resources */,
 				B4A9F73729C52F3A00F267C6 /* Assets.xcassets in Resources */,
 				A52BCCEE2BD2A43F00FD4853 /* 我真没想重生啊.txt in Resources */,
 				A52BCCE12BD2A43F00FD4853 /* 惊悚乐园.txt in Resources */,
@@ -381,9 +389,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ice reader/Pods-ice reader-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ice reader/Pods-ice reader-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -537,25 +549,24 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "ice reader/ice reader.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ice reader/Preview Content\"";
 				DEVELOPMENT_TEAM = 39R699SCD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ice-reader-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Tropical-fish.ice-reader";
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "Tropical-fish.Book-checker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ice reader/ice reader-Bridging-Header.h";
@@ -574,25 +585,24 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "ice reader/ice reader.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ice reader/Preview Content\"";
 				DEVELOPMENT_TEAM = 39R699SCD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ice-reader-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Tropical-fish.ice-reader";
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "Tropical-fish.Book-checker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ice reader/ice reader-Bridging-Header.h";

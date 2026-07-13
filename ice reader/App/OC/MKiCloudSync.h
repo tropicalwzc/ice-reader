@@ -42,4 +42,6 @@
 @interface MKiCloudSync : NSObject
 
 +(void) startWithPrefix:(NSString*) prefixToSync;
++(void) forceUpdateProgress:(long long)progress forKey:(NSString*)key;
++(long long) overrideRevisionForKey:(NSString*)key;
 @end

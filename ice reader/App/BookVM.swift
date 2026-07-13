@@ -111,7 +111,7 @@ class BookVM: ObservableObject {
         return "txt"
     }
     
-    func saveLastPage(name: String, page: Int) {
+    func saveLastPage(name: String, page: Int, forceCloudSync: Bool = false) {
         if blockSaveAction {
             //print("Catch background save action")
             return
@@ -122,7 +122,11 @@ class BookVM: ObservableObject {
             let progress = Double(page) / self.splitedContentsCount
             UserDefaults.standard.set(progress, forKey: self.getProgressKey(name: name))
             if let cloudKey = self.getCloudKey(name: name) {
-                UserDefaults.standard.set(String(page), forKey: cloudKey)
+                if forceCloudSync {
+                    MKiCloudSync.forceUpdateProgress(Int64(page), forKey: cloudKey)
+                } else {
+                    UserDefaults.standard.set(String(page), forKey: cloudKey)
+                }
             }
         }
         
@@ -146,6 +150,10 @@ class BookVM: ObservableObject {
         }
         return 0.0
     }
+
+    func getAppliedCloudOverrideKey(cloudKey: String) -> String {
+        return "AppliedCloudOverride_\(cloudKey)"
+    }
     
     func readLastPage(name: String) -> Int {
         
@@ -160,8 +168,19 @@ class BookVM: ObservableObject {
             }
         }
         
-        if let cloudStr = readCloudString(name: name) {
+        if let cloudKey = getCloudKey(name: name),
+           let cloudStr = readCloudString(name: name) {
             if let cloudVal = Int(cloudStr) {
+                let overrideRevision = MKiCloudSync.overrideRevision(forKey: cloudKey)
+                let appliedOverrideKey = getAppliedCloudOverrideKey(cloudKey: cloudKey)
+                let appliedRevision = Int64(UserDefaults.standard.integer(forKey: appliedOverrideKey))
+
+                if overrideRevision > appliedRevision {
+                    UserDefaults.standard.set(cloudStr, forKey: name)
+                    UserDefaults.standard.set(overrideRevision, forKey: appliedOverrideKey)
+                    return cloudVal
+                }
+
                 //                print("cloud \(name) is \(cloudVal)")
                 if cloudVal > localVal {
                     localVal = cloudVal

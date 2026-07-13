@@ -24,7 +24,7 @@ struct BookMainView: View {
     
     let pageSize : Int = UIDevice.current.userInterfaceIdiom == .pad ? 20 : 10
     
-    func submit() {
+    func submit(forceCloudSync: Bool) {
         print("total split count now is \(vm.splitedContents.count)")
         if let nextIndex = Int(index) {
             if nextIndex < vm.splitedContents.count  {
@@ -32,7 +32,7 @@ struct BookMainView: View {
                     page = nextIndex
                     self.stripSmallPage()
                     vm.jumpToIndexSig.send(params: nextIndex)
-                    self.vm.saveLastPage(name: bookName, page: page)
+                    self.vm.saveLastPage(name: bookName, page: page, forceCloudSync: forceCloudSync)
                 } else {
                     var small = nextIndex - pageSize
                     if small < 0 {
@@ -43,7 +43,7 @@ struct BookMainView: View {
                         page = nextIndex
                         self.stripSmallPage()
                         vm.jumpToIndexSig.send(params: nextIndex)
-                        self.vm.saveLastPage(name: bookName, page: page)
+                        self.vm.saveLastPage(name: bookName, page: page, forceCloudSync: forceCloudSync)
                     }
                 }
                 
@@ -172,7 +172,9 @@ struct BookMainView: View {
         .navigationTitle("\(pureBookName()) \(page)")
         .alert("跳转到哪一页?", isPresented: $showingAlert) {
             TextField("跳转到哪一页?", text: $index).keyboardType(UIKeyboardType.decimalPad)
-            Button("OK", action: submit)
+            Button("OK") {
+                submit(forceCloudSync: true)
+            }
         } message: {
             Text("(总共\(vm.splitedContents.count)页)")
         }
@@ -199,6 +201,9 @@ struct BookMainView: View {
                 recursiveCheck(remain: 10)
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("MKiCloudSyncDidUpdateToLatest"))) { _ in
+            _ = checkCloudUpdateIfNeed()
+        }
         
     }
     
@@ -215,17 +220,15 @@ struct BookMainView: View {
     }
     
     func checkCloudUpdateIfNeed() -> Bool {
-        let cloudPage = vm.readCloudPage(name: bookName)
-        print("cloud \(cloudPage) local \(page)")
-        if cloudPage > page {
+        let syncedPage = vm.readLastPage(name: bookName)
+        print("synced \(syncedPage) local \(page)")
+        if syncedPage != page {
             print("start cloud jump")
-            page = cloudPage
+            page = syncedPage
             index = "\(page)"
-            submit()
+            submit(forceCloudSync: false)
             return true
         }
         return false
     }
 }
-
-

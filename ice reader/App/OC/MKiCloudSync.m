@@ -41,53 +41,144 @@ static NSString *prefix;
   return 0;
 }
 
-+(void) updateToiCloud:(NSNotification*) notificationObject {
-
-  NSDictionary *dict = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-  NSUbiquitousKeyValueStore *iCloudStore = [NSUbiquitousKeyValueStore defaultStore];
-
-  [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-
-    if([key hasPrefix:prefix]) {
-      id cloudValue = [iCloudStore objectForKey:key];
-      if(cloudValue == nil || [self progressValue:obj] > [self progressValue:cloudValue]) {
-        [iCloudStore setObject:obj forKey:key];
-      }
-    }
-  }];
-
-  [iCloudStore synchronize];
++(NSString*) overrideKeyForProgressKey:(NSString*) key {
+  return [NSString stringWithFormat:@"%@Override_%@", prefix, key];
 }
 
-+(void) updateFromiCloud:(NSNotification*) notificationObject {
++(BOOL) isProgressKey:(NSString*) key {
+  NSString *overridePrefix = [NSString stringWithFormat:@"%@Override_", prefix];
+  return [key hasPrefix:prefix] && ![key hasPrefix:overridePrefix];
+}
 
-  NSUbiquitousKeyValueStore *iCloudStore = [NSUbiquitousKeyValueStore defaultStore];
-  NSDictionary *dict = [iCloudStore dictionaryRepresentation];
++(void) setObject:(id) value
+            forKey:(NSString*) key
+        ifDifferentInDefaults:(NSUserDefaults*) defaults {
+  if(value != nil && ![[defaults objectForKey:key] isEqual:value]) {
+    [defaults setObject:value forKey:key];
+  }
+}
 
-  // prevent NSUserDefaultsDidChangeNotification from being posted while we update from iCloud
++(void) setObject:(id) value
+            forKey:(NSString*) key
+        ifDifferentInCloud:(NSUbiquitousKeyValueStore*) cloudStore {
+  if(value != nil && ![[cloudStore objectForKey:key] isEqual:value]) {
+    [cloudStore setObject:value forKey:key];
+  }
+}
+
++(void) mergeLocalAndCloudProgress {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+  NSMutableSet<NSString*> *progressKeys = [NSMutableSet set];
+
+  for(NSString *key in [defaults dictionaryRepresentation]) {
+    if([self isProgressKey:key]) {
+      [progressKeys addObject:key];
+    }
+  }
+
+  for(NSString *key in [cloudStore dictionaryRepresentation]) {
+    if([self isProgressKey:key]) {
+      [progressKeys addObject:key];
+    }
+  }
 
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:NSUserDefaultsDidChangeNotification
                                                 object:nil];
 
-  [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+  for(NSString *key in progressKeys) {
+    id localValue = [defaults objectForKey:key];
+    id cloudValue = [cloudStore objectForKey:key];
+    NSString *overrideKey = [self overrideKeyForProgressKey:key];
+    id localOverride = [defaults objectForKey:overrideKey];
+    id cloudOverride = [cloudStore objectForKey:overrideKey];
+    long long localRevision = [self progressValue:localOverride];
+    long long cloudRevision = [self progressValue:cloudOverride];
+    id winningValue = nil;
 
-    if([key hasPrefix:prefix]) {
-      id localValue = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-      if(localValue == nil || [self progressValue:obj] > [self progressValue:localValue]) {
-        [[NSUserDefaults standardUserDefaults] setObject:obj forKey:key];
-      }
+    if(localRevision > cloudRevision) {
+      winningValue = localValue;
+    } else if(cloudRevision > localRevision) {
+      winningValue = cloudValue;
+    } else if(localValue == nil) {
+      winningValue = cloudValue;
+    } else if(cloudValue == nil ||
+              [self progressValue:localValue] >= [self progressValue:cloudValue]) {
+      winningValue = localValue;
+    } else {
+      winningValue = cloudValue;
     }
-  }];
 
-  [[NSUserDefaults standardUserDefaults] synchronize];
+    id winningRevision = localRevision >= cloudRevision ? localOverride : cloudOverride;
+    [self setObject:winningValue forKey:key ifDifferentInDefaults:defaults];
+    [self setObject:winningValue forKey:key ifDifferentInCloud:cloudStore];
+    [self setObject:winningRevision forKey:overrideKey ifDifferentInDefaults:defaults];
+    [self setObject:winningRevision forKey:overrideKey ifDifferentInCloud:cloudStore];
+  }
 
-  // enable NSUserDefaultsDidChangeNotification notifications again
+  [defaults synchronize];
+  [cloudStore synchronize];
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(updateToiCloud:)
                                                name:NSUserDefaultsDidChangeNotification
                                              object:nil];
+}
+
++(void) updateToiCloud:(NSNotification*) notificationObject {
+
+  @synchronized(self) {
+    [self mergeLocalAndCloudProgress];
+  }
+}
+
++(void) forceUpdateProgress:(long long)progress forKey:(NSString*)key {
+  if(![self isProgressKey:key]) {
+    return;
+  }
+
+  @synchronized(self) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    NSString *overrideKey = [self overrideKeyForProgressKey:key];
+    long long timestamp = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
+    long long latestRevision = MAX([self progressValue:[defaults objectForKey:overrideKey]],
+                                   [self progressValue:[cloudStore objectForKey:overrideKey]]);
+    long long revision = MAX(timestamp, latestRevision + 1);
+    NSString *progressValue = [NSString stringWithFormat:@"%lld", progress];
+    NSNumber *revisionValue = @(revision);
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSUserDefaultsDidChangeNotification
+                                                  object:nil];
+    [defaults setObject:progressValue forKey:key];
+    [defaults setObject:revisionValue forKey:overrideKey];
+    [cloudStore setObject:progressValue forKey:key];
+    [cloudStore setObject:revisionValue forKey:overrideKey];
+    [defaults synchronize];
+    [cloudStore synchronize];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateToiCloud:)
+                                                 name:NSUserDefaultsDidChangeNotification
+                                               object:nil];
+  }
+}
+
++(long long) overrideRevisionForKey:(NSString*)key {
+  if(![self isProgressKey:key]) {
+    return 0;
+  }
+
+  NSString *overrideKey = [self overrideKeyForProgressKey:key];
+  return [self progressValue:[[NSUserDefaults standardUserDefaults] objectForKey:overrideKey]];
+}
+
++(void) updateFromiCloud:(NSNotification*) notificationObject {
+
+  @synchronized(self) {
+    [self mergeLocalAndCloudProgress];
+  }
 
   [[NSNotificationCenter defaultCenter] postNotificationName:kMKiCloudSyncNotification object:nil];
 }
@@ -95,7 +186,8 @@ static NSString *prefix;
 +(void) startWithPrefix:(NSString*) prefixToSync {
 
   prefix = prefixToSync;
-  if([NSUbiquitousKeyValueStore defaultStore]) {  // is iCloud enabled
+  NSUbiquitousKeyValueStore *iCloudStore = [NSUbiquitousKeyValueStore defaultStore];
+  if(iCloudStore) {  // is iCloud enabled
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateFromiCloud:)
@@ -105,6 +197,11 @@ static NSString *prefix;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateToiCloud:)
                                                  name:NSUserDefaultsDidChangeNotification                                                    object:nil];
+
+    // Request the latest server values after observers are ready. The
+    // resulting external-change notification performs the max-value merge.
+    [iCloudStore synchronize];
+    [self updateToiCloud:nil];
   } else {
     DLog(@"iCloud not enabled");
   }

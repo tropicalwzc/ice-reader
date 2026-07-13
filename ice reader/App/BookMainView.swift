@@ -21,6 +21,8 @@ struct BookMainView: View {
     @State var hiddenNav : Bool = true
     @State var isFirstAppear = true
     @State var loadFinished = true
+    @State private var isUserScrolling = false
+    @State private var scrollInteractionID = UUID()
     
     let pageSize : Int = UIDevice.current.userInterfaceIdiom == .pad ? 20 : 10
     
@@ -71,6 +73,28 @@ struct BookMainView: View {
         let ff = suq.first ?? ""
         return String(ff)
     }
+
+    func userScrollChanged() {
+        isUserScrolling = true
+        scrollInteractionID = UUID()
+    }
+
+    func userScrollEnded() {
+        let interactionID = scrollInteractionID
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            if scrollInteractionID == interactionID {
+                isUserScrolling = false
+            }
+        }
+    }
+
+    func restorePageAfterRotation() {
+        isUserScrolling = false
+        scrollInteractionID = UUID()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            vm.quickJumpToIndexSig.send(params: page)
+        }
+    }
     
     var body: some View {
         VStack {
@@ -94,7 +118,7 @@ struct BookMainView: View {
                                             .padding(.trailing, 3)
                                             .padding(.top, 1)
                                     }.onAppear {
-                                        if index == page + pageSize - 1 {
+                                        if isUserScrolling && index == page + pageSize - 1 {
                                             //print("Scroll to tail , auto page")
                                             page = index
                                             vm.saveLastPage(name: bookName, page: page)
@@ -135,7 +159,7 @@ struct BookMainView: View {
                             proxy.scrollTo(nextIndex, anchor: .top)
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                            
+                            restorePageAfterRotation()
                         }
                     } else {
                         LoadingView()
@@ -144,6 +168,15 @@ struct BookMainView: View {
                     
                 }
                 .padding(.top, 0.5)
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 4)
+                        .onChanged { _ in
+                            userScrollChanged()
+                        }
+                        .onEnded { _ in
+                            userScrollEnded()
+                        }
+                )
             }
             
         }

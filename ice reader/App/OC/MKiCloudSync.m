@@ -33,18 +33,30 @@
 static NSString *prefix;
 @implementation MKiCloudSync
 
++(long long) progressValue:(id) value {
+  if([value respondsToSelector:@selector(longLongValue)]) {
+    return [value longLongValue];
+  }
+
+  return 0;
+}
+
 +(void) updateToiCloud:(NSNotification*) notificationObject {
 
   NSDictionary *dict = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+  NSUbiquitousKeyValueStore *iCloudStore = [NSUbiquitousKeyValueStore defaultStore];
 
   [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 
     if([key hasPrefix:prefix]) {
-      [[NSUbiquitousKeyValueStore defaultStore] setObject:obj forKey:key];
+      id cloudValue = [iCloudStore objectForKey:key];
+      if(cloudValue == nil || [self progressValue:obj] > [self progressValue:cloudValue]) {
+        [iCloudStore setObject:obj forKey:key];
+      }
     }
   }];
 
-  [[NSUbiquitousKeyValueStore defaultStore] synchronize];
+  [iCloudStore synchronize];
 }
 
 +(void) updateFromiCloud:(NSNotification*) notificationObject {
@@ -61,7 +73,10 @@ static NSString *prefix;
   [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 
     if([key hasPrefix:prefix]) {
-      [[NSUserDefaults standardUserDefaults] setObject:obj forKey:key];
+      id localValue = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+      if(localValue == nil || [self progressValue:obj] > [self progressValue:localValue]) {
+        [[NSUserDefaults standardUserDefaults] setObject:obj forKey:key];
+      }
     }
   }];
 

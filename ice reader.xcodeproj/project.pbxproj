@@ -8,39 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A36B087A3AE434BC3234B23C /* Pods_ice_reader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */; };
-		A52754882E965B70005B054A /* 凡人仙界篇.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52754862E965B70005B054A /* 凡人仙界篇.txt */; };
-		A52754892E965B70005B054A /* 凡人修仙篇.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52754872E965B70005B054A /* 凡人修仙篇.txt */; };
-		A52BCCD22BD2A43F00FD4853 /* 精灵掌门人.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB32BD2A43E00FD4853 /* 精灵掌门人.txt */; };
-		A52BCCD32BD2A43F00FD4853 /* 牧神记.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB42BD2A43E00FD4853 /* 牧神记.txt */; };
-		A52BCCD42BD2A43F00FD4853 /* 全职艺术家.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB52BD2A43E00FD4853 /* 全职艺术家.txt */; };
-		A52BCCD52BD2A43F00FD4853 /* 一世之尊.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB62BD2A43E00FD4853 /* 一世之尊.txt */; };
-		A52BCCD62BD2A43F00FD4853 /* 问道红尘.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB72BD2A43E00FD4853 /* 问道红尘.txt */; };
-		A52BCCD72BD2A43F00FD4853 /* 长夜余火.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB82BD2A43E00FD4853 /* 长夜余火.txt */; };
-		A52BCCD82BD2A43F00FD4853 /* 烂柯棋缘.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCB92BD2A43E00FD4853 /* 烂柯棋缘.txt */; };
-		A52BCCD92BD2A43F00FD4853 /* 吞噬星空.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBA2BD2A43E00FD4853 /* 吞噬星空.txt */; };
-		A52BCCDA2BD2A43F00FD4853 /* 亲爱的该吃药了.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBB2BD2A43E00FD4853 /* 亲爱的该吃药了.txt */; };
-		A52BCCDB2BD2A43F00FD4853 /* 遮天.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBC2BD2A43E00FD4853 /* 遮天.txt */; };
-		A52BCCDC2BD2A43F00FD4853 /* 不科学御兽.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBD2BD2A43E00FD4853 /* 不科学御兽.txt */; };
-		A52BCCDD2BD2A43F00FD4853 /* 一念永恒.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBE2BD2A43E00FD4853 /* 一念永恒.txt */; };
-		A52BCCDE2BD2A43F00FD4853 /* 圣墟.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCBF2BD2A43F00FD4853 /* 圣墟.txt */; };
-		A52BCCDF2BD2A43F00FD4853 /* 我有一座冒险屋.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC02BD2A43F00FD4853 /* 我有一座冒险屋.txt */; };
-		A52BCCE02BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC12BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt */; };
-		A52BCCE12BD2A43F00FD4853 /* 惊悚乐园.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC22BD2A43F00FD4853 /* 惊悚乐园.txt */; };
-		A52BCCE22BD2A43F00FD4853 /* 希灵帝国.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC32BD2A43F00FD4853 /* 希灵帝国.txt */; };
-		A52BCCE32BD2A43F00FD4853 /* 我师兄实在太稳健了.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC42BD2A43F00FD4853 /* 我师兄实在太稳健了.txt */; };
-		A52BCCE42BD2A43F00FD4853 /* 镇妖博物馆.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC52BD2A43F00FD4853 /* 镇妖博物馆.txt */; };
-		A52BCCE52BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC62BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt */; };
-		A52BCCE62BD2A43F00FD4853 /* 凡人修仙传.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC72BD2A43F00FD4853 /* 凡人修仙传.txt */; };
-		A52BCCE72BD2A43F00FD4853 /* 修真聊天群.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC82BD2A43F00FD4853 /* 修真聊天群.txt */; };
-		A52BCCE82BD2A43F00FD4853 /* 全球高武.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCC92BD2A43F00FD4853 /* 全球高武.txt */; };
-		A52BCCE92BD2A43F00FD4853 /* 大奉打更人.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCA2BD2A43F00FD4853 /* 大奉打更人.txt */; };
-		A52BCCEA2BD2A43F00FD4853 /* 异常生物见闻录.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCB2BD2A43F00FD4853 /* 异常生物见闻录.txt */; };
-		A52BCCEB2BD2A43F00FD4853 /* 星门时光之主.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCC2BD2A43F00FD4853 /* 星门时光之主.txt */; };
-		A52BCCEC2BD2A43F00FD4853 /* 夜的命名术.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCD2BD2A43F00FD4853 /* 夜的命名术.txt */; };
-		A52BCCED2BD2A43F00FD4853 /* 奥术神座.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCE2BD2A43F00FD4853 /* 奥术神座.txt */; };
-		A52BCCEE2BD2A43F00FD4853 /* 我真没想重生啊.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCCF2BD2A43F00FD4853 /* 我真没想重生啊.txt */; };
-		A52BCCEF2BD2A43F00FD4853 /* 魔临.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCD02BD2A43F00FD4853 /* 魔临.txt */; };
-		A52BCCF02BD2A43F00FD4853 /* 我的属性修行人生.txt in Resources */ = {isa = PBXBuildFile; fileRef = A52BCCD12BD2A43F00FD4853 /* 我的属性修行人生.txt */; };
+		C0D300012F00000300000001 /* 样例占位.txt in Resources */ = {isa = PBXBuildFile; fileRef = C0D300112F00000300000001 /* 样例占位.txt */; };
 		B403166929C699AC00E02FD0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B403166829C699AC00E02FD0 /* LoadingView.swift */; };
 		B48911042AB3398E0074343E /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48911032AB3398E0074343E /* CloudManager.swift */; };
 		B48911062AB33F3B0074343E /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B48911052AB33F3B0074343E /* MKiCloudSync.m */; };
@@ -54,44 +22,31 @@
 		B4E7089829C541FA00F70C14 /* BookMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089729C541FA00F70C14 /* BookMainView.swift */; };
 		B4E7089A29C5420B00F70C14 /* BookShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089929C5420B00F70C14 /* BookShelfView.swift */; };
 		B4E7089C29C5422500F70C14 /* BookVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E7089B29C5422500F70C14 /* BookVM.swift */; };
+		C0D100012F00000100000001 /* ImportedBookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D100112F00000100000001 /* ImportedBookStore.swift */; };
+		C0D200012F00000200000001 /* ImportedBookStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D200112F00000200000001 /* ImportedBookStoreTests.swift */; };
+		C0D500012F00000500000001 /* BrowserUploadServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D500112F00000500000001 /* BrowserUploadServer.swift */; };
+		C0D500022F00000500000001 /* BrowserUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D500122F00000500000001 /* BrowserUploadView.swift */; };
+		C0D500032F00000500000001 /* BrowserUploadWeb in Resources */ = {isa = PBXBuildFile; fileRef = C0D500132F00000500000001 /* BrowserUploadWeb */; };
+		C0D500042F00000500000001 /* BrowserUploadServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D500142F00000500000001 /* BrowserUploadServerTests.swift */; };
+		C0D600012F00000600000001 /* LocalBookManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D600112F00000600000001 /* LocalBookManagementView.swift */; };
+		C0D700012F00000700000001 /* FilesBookImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D700112F00000700000001 /* FilesBookImporter.swift */; };
+		C0D800012F00000800000001 /* FilesBookImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D800112F00000800000001 /* FilesBookImporterTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C0D200252F00000200000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4A9F72729C52F3900F267C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4A9F72E29C52F3900F267C6;
+			remoteInfo = "ice reader";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		C0D300112F00000300000001 /* 样例占位.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "样例占位.txt"; path = "../../../novels/样例占位.txt"; sourceTree = "<group>"; };
 		23C148EA6247D7EC1BA4A348 /* Pods-ice reader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice reader.debug.xcconfig"; path = "Target Support Files/Pods-ice reader/Pods-ice reader.debug.xcconfig"; sourceTree = "<group>"; };
 		416A47C19DC4CDF55A4F6510 /* Pods_ice_reader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ice_reader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A52754862E965B70005B054A /* 凡人仙界篇.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "凡人仙界篇.txt"; path = "../novels/凡人仙界篇.txt"; sourceTree = SOURCE_ROOT; };
-		A52754872E965B70005B054A /* 凡人修仙篇.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = "凡人修仙篇.txt"; path = "../novels/凡人修仙篇.txt"; sourceTree = SOURCE_ROOT; };
-		A52BCCB32BD2A43E00FD4853 /* 精灵掌门人.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "精灵掌门人.txt"; path = "../../../novels/精灵掌门人.txt"; sourceTree = "<group>"; };
-		A52BCCB42BD2A43E00FD4853 /* 牧神记.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "牧神记.txt"; path = "../../../novels/牧神记.txt"; sourceTree = "<group>"; };
-		A52BCCB52BD2A43E00FD4853 /* 全职艺术家.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "全职艺术家.txt"; path = "../../../novels/全职艺术家.txt"; sourceTree = "<group>"; };
-		A52BCCB62BD2A43E00FD4853 /* 一世之尊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "一世之尊.txt"; path = "../../../novels/一世之尊.txt"; sourceTree = "<group>"; };
-		A52BCCB72BD2A43E00FD4853 /* 问道红尘.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "问道红尘.txt"; path = "../../../novels/问道红尘.txt"; sourceTree = "<group>"; };
-		A52BCCB82BD2A43E00FD4853 /* 长夜余火.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "长夜余火.txt"; path = "../../../novels/长夜余火.txt"; sourceTree = "<group>"; };
-		A52BCCB92BD2A43E00FD4853 /* 烂柯棋缘.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "烂柯棋缘.txt"; path = "../../../novels/烂柯棋缘.txt"; sourceTree = "<group>"; };
-		A52BCCBA2BD2A43E00FD4853 /* 吞噬星空.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "吞噬星空.txt"; path = "../../../novels/吞噬星空.txt"; sourceTree = "<group>"; };
-		A52BCCBB2BD2A43E00FD4853 /* 亲爱的该吃药了.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "亲爱的该吃药了.txt"; path = "../../../novels/亲爱的该吃药了.txt"; sourceTree = "<group>"; };
-		A52BCCBC2BD2A43E00FD4853 /* 遮天.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "遮天.txt"; path = "../../../novels/遮天.txt"; sourceTree = "<group>"; };
-		A52BCCBD2BD2A43E00FD4853 /* 不科学御兽.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "不科学御兽.txt"; path = "../../../novels/不科学御兽.txt"; sourceTree = "<group>"; };
-		A52BCCBE2BD2A43E00FD4853 /* 一念永恒.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "一念永恒.txt"; path = "../../../novels/一念永恒.txt"; sourceTree = "<group>"; };
-		A52BCCBF2BD2A43F00FD4853 /* 圣墟.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "圣墟.txt"; path = "../../../novels/圣墟.txt"; sourceTree = "<group>"; };
-		A52BCCC02BD2A43F00FD4853 /* 我有一座冒险屋.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我有一座冒险屋.txt"; path = "../../../novels/我有一座冒险屋.txt"; sourceTree = "<group>"; };
-		A52BCCC12BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "大乘期才有逆袭系统.txt"; path = "../../../novels/大乘期才有逆袭系统.txt"; sourceTree = "<group>"; };
-		A52BCCC22BD2A43F00FD4853 /* 惊悚乐园.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "惊悚乐园.txt"; path = "../../../novels/惊悚乐园.txt"; sourceTree = "<group>"; };
-		A52BCCC32BD2A43F00FD4853 /* 希灵帝国.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "希灵帝国.txt"; path = "../../../novels/希灵帝国.txt"; sourceTree = "<group>"; };
-		A52BCCC42BD2A43F00FD4853 /* 我师兄实在太稳健了.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我师兄实在太稳健了.txt"; path = "../../../novels/我师兄实在太稳健了.txt"; sourceTree = "<group>"; };
-		A52BCCC52BD2A43F00FD4853 /* 镇妖博物馆.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "镇妖博物馆.txt"; path = "../../../novels/镇妖博物馆.txt"; sourceTree = "<group>"; };
-		A52BCCC62BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我打造了旧日支配者神话.txt"; path = "../../../novels/我打造了旧日支配者神话.txt"; sourceTree = "<group>"; };
-		A52BCCC72BD2A43F00FD4853 /* 凡人修仙传.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "凡人修仙传.txt"; path = "../../../novels/凡人修仙传.txt"; sourceTree = "<group>"; };
-		A52BCCC82BD2A43F00FD4853 /* 修真聊天群.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "修真聊天群.txt"; path = "../../../novels/修真聊天群.txt"; sourceTree = "<group>"; };
-		A52BCCC92BD2A43F00FD4853 /* 全球高武.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "全球高武.txt"; path = "../../../novels/全球高武.txt"; sourceTree = "<group>"; };
-		A52BCCCA2BD2A43F00FD4853 /* 大奉打更人.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "大奉打更人.txt"; path = "../../../novels/大奉打更人.txt"; sourceTree = "<group>"; };
-		A52BCCCB2BD2A43F00FD4853 /* 异常生物见闻录.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "异常生物见闻录.txt"; path = "../../../novels/异常生物见闻录.txt"; sourceTree = "<group>"; };
-		A52BCCCC2BD2A43F00FD4853 /* 星门时光之主.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "星门时光之主.txt"; path = "../../../novels/星门时光之主.txt"; sourceTree = "<group>"; };
-		A52BCCCD2BD2A43F00FD4853 /* 夜的命名术.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "夜的命名术.txt"; path = "../../../novels/夜的命名术.txt"; sourceTree = "<group>"; };
-		A52BCCCE2BD2A43F00FD4853 /* 奥术神座.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "奥术神座.txt"; path = "../../../novels/奥术神座.txt"; sourceTree = "<group>"; };
-		A52BCCCF2BD2A43F00FD4853 /* 我真没想重生啊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我真没想重生啊.txt"; path = "../../../novels/我真没想重生啊.txt"; sourceTree = "<group>"; };
-		A52BCCD02BD2A43F00FD4853 /* 魔临.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "魔临.txt"; path = "../../../novels/魔临.txt"; sourceTree = "<group>"; };
-		A52BCCD12BD2A43F00FD4853 /* 我的属性修行人生.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "我的属性修行人生.txt"; path = "../../../novels/我的属性修行人生.txt"; sourceTree = "<group>"; };
 		B403166829C699AC00E02FD0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		B48910FD2AB31EE10074343E /* ice reader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ice reader.entitlements"; sourceTree = "<group>"; };
 		B48910FE2AB31F7C0074343E /* ice-reader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ice-reader-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -110,6 +65,16 @@
 		B4E7089729C541FA00F70C14 /* BookMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMainView.swift; sourceTree = "<group>"; };
 		B4E7089929C5420B00F70C14 /* BookShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfView.swift; sourceTree = "<group>"; };
 		B4E7089B29C5422500F70C14 /* BookVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVM.swift; sourceTree = "<group>"; };
+		C0D100112F00000100000001 /* ImportedBookStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedBookStore.swift; sourceTree = "<group>"; };
+		C0D200112F00000200000001 /* ImportedBookStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedBookStoreTests.swift; sourceTree = "<group>"; };
+		C0D500112F00000500000001 /* BrowserUploadServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUploadServer.swift; sourceTree = "<group>"; };
+		C0D500122F00000500000001 /* BrowserUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUploadView.swift; sourceTree = "<group>"; };
+		C0D500132F00000500000001 /* BrowserUploadWeb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BrowserUploadWeb; sourceTree = "<group>"; };
+		C0D500142F00000500000001 /* BrowserUploadServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserUploadServerTests.swift; sourceTree = "<group>"; };
+		C0D600112F00000600000001 /* LocalBookManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBookManagementView.swift; sourceTree = "<group>"; };
+		C0D700112F00000700000001 /* FilesBookImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBookImporter.swift; sourceTree = "<group>"; };
+		C0D800112F00000800000001 /* FilesBookImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBookImporterTests.swift; sourceTree = "<group>"; };
+		C0D200132F00000200000001 /* ice readerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ice readerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C700C2815CEBA483424004B4 /* Pods-ice reader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice reader.release.xcconfig"; path = "Target Support Files/Pods-ice reader/Pods-ice reader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +84,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A36B087A3AE434BC3234B23C /* Pods_ice_reader.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0D200222F00000200000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,39 +109,7 @@
 		A52BCCB22BD2A42A00FD4853 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				A52754862E965B70005B054A /* 凡人仙界篇.txt */,
-				A52754872E965B70005B054A /* 凡人修仙篇.txt */,
-				A52BCCCE2BD2A43F00FD4853 /* 奥术神座.txt */,
-				A52BCCBD2BD2A43E00FD4853 /* 不科学御兽.txt */,
-				A52BCCC12BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt */,
-				A52BCCCA2BD2A43F00FD4853 /* 大奉打更人.txt */,
-				A52BCCC72BD2A43F00FD4853 /* 凡人修仙传.txt */,
-				A52BCCC22BD2A43F00FD4853 /* 惊悚乐园.txt */,
-				A52BCCB32BD2A43E00FD4853 /* 精灵掌门人.txt */,
-				A52BCCB92BD2A43E00FD4853 /* 烂柯棋缘.txt */,
-				A52BCCD02BD2A43F00FD4853 /* 魔临.txt */,
-				A52BCCB42BD2A43E00FD4853 /* 牧神记.txt */,
-				A52BCCBB2BD2A43E00FD4853 /* 亲爱的该吃药了.txt */,
-				A52BCCC92BD2A43F00FD4853 /* 全球高武.txt */,
-				A52BCCB52BD2A43E00FD4853 /* 全职艺术家.txt */,
-				A52BCCBF2BD2A43F00FD4853 /* 圣墟.txt */,
-				A52BCCBA2BD2A43E00FD4853 /* 吞噬星空.txt */,
-				A52BCCB72BD2A43E00FD4853 /* 问道红尘.txt */,
-				A52BCCC62BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt */,
-				A52BCCD12BD2A43F00FD4853 /* 我的属性修行人生.txt */,
-				A52BCCC42BD2A43F00FD4853 /* 我师兄实在太稳健了.txt */,
-				A52BCCC02BD2A43F00FD4853 /* 我有一座冒险屋.txt */,
-				A52BCCCF2BD2A43F00FD4853 /* 我真没想重生啊.txt */,
-				A52BCCC32BD2A43F00FD4853 /* 希灵帝国.txt */,
-				A52BCCCC2BD2A43F00FD4853 /* 星门时光之主.txt */,
-				A52BCCC82BD2A43F00FD4853 /* 修真聊天群.txt */,
-				A52BCCCD2BD2A43F00FD4853 /* 夜的命名术.txt */,
-				A52BCCBE2BD2A43E00FD4853 /* 一念永恒.txt */,
-				A52BCCB62BD2A43E00FD4853 /* 一世之尊.txt */,
-				A52BCCCB2BD2A43F00FD4853 /* 异常生物见闻录.txt */,
-				A52BCCB82BD2A43E00FD4853 /* 长夜余火.txt */,
-				A52BCCBC2BD2A43E00FD4853 /* 遮天.txt */,
-				A52BCCC52BD2A43F00FD4853 /* 镇妖博物馆.txt */,
+				C0D300112F00000300000001 /* 样例占位.txt */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -196,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A9F73129C52F3900F267C6 /* ice reader */,
+				C0D200202F00000200000001 /* ice readerTests */,
 				B4A9F73029C52F3900F267C6 /* Products */,
 				9860F8F0C77D2A0103CF4A0B /* Pods */,
 				F2FF818589554EA41A165BC5 /* Frameworks */,
@@ -206,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A9F72F29C52F3900F267C6 /* ice reader.app */,
+				C0D200132F00000200000001 /* ice readerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				A52BCCB22BD2A42A00FD4853 /* Resource */,
+				C0D500132F00000500000001 /* BrowserUploadWeb */,
 				B48910FE2AB31F7C0074343E /* ice-reader-Info.plist */,
 				B48910FD2AB31EE10074343E /* ice reader.entitlements */,
 				B48910FF2AB333730074343E /* ice reader-Bridging-Header.h */,
@@ -244,9 +187,24 @@
 				B4E7089729C541FA00F70C14 /* BookMainView.swift */,
 				B4E7089929C5420B00F70C14 /* BookShelfView.swift */,
 				B4E7089B29C5422500F70C14 /* BookVM.swift */,
+				C0D100112F00000100000001 /* ImportedBookStore.swift */,
+				C0D500112F00000500000001 /* BrowserUploadServer.swift */,
+				C0D500122F00000500000001 /* BrowserUploadView.swift */,
+				C0D600112F00000600000001 /* LocalBookManagementView.swift */,
+				C0D700112F00000700000001 /* FilesBookImporter.swift */,
 				B48911032AB3398E0074343E /* CloudManager.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		C0D200202F00000200000001 /* ice readerTests */ = {
+			isa = PBXGroup;
+			children = (
+				C0D200112F00000200000001 /* ImportedBookStoreTests.swift */,
+				C0D500142F00000500000001 /* BrowserUploadServerTests.swift */,
+				C0D800112F00000800000001 /* FilesBookImporterTests.swift */,
+			);
+			path = "ice readerTests";
 			sourceTree = "<group>";
 		};
 		F2FF818589554EA41A165BC5 /* Frameworks */ = {
@@ -279,6 +237,24 @@
 			productReference = B4A9F72F29C52F3900F267C6 /* ice reader.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C0D200242F00000200000001 /* ice readerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0D200292F00000200000001 /* Build configuration list for PBXNativeTarget "ice readerTests" */;
+			buildPhases = (
+				C0D200212F00000200000001 /* Sources */,
+				C0D200222F00000200000001 /* Frameworks */,
+				C0D200232F00000200000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C0D200262F00000200000001 /* PBXTargetDependency */,
+			);
+			name = "ice readerTests";
+			productName = "ice readerTests";
+			productReference = C0D200132F00000200000001 /* ice readerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -292,6 +268,10 @@
 					B4A9F72E29C52F3900F267C6 = {
 						CreatedOnToolsVersion = 14.1;
 						LastSwiftMigration = 1430;
+					};
+					C0D200242F00000200000001 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = B4A9F72E29C52F3900F267C6;
 					};
 				};
 			};
@@ -309,6 +289,7 @@
 			projectRoot = "";
 			targets = (
 				B4A9F72E29C52F3900F267C6 /* ice reader */,
+				C0D200242F00000200000001 /* ice readerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -318,41 +299,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A52BCCDF2BD2A43F00FD4853 /* 我有一座冒险屋.txt in Resources */,
+				C0D300012F00000300000001 /* 样例占位.txt in Resources */,
+				C0D500032F00000500000001 /* BrowserUploadWeb in Resources */,
 				B4A9F73A29C52F3A00F267C6 /* Preview Assets.xcassets in Resources */,
-				A52BCCDA2BD2A43F00FD4853 /* 亲爱的该吃药了.txt in Resources */,
-				A52BCCED2BD2A43F00FD4853 /* 奥术神座.txt in Resources */,
-				A52BCCE72BD2A43F00FD4853 /* 修真聊天群.txt in Resources */,
-				A52BCCDC2BD2A43F00FD4853 /* 不科学御兽.txt in Resources */,
-				A52754882E965B70005B054A /* 凡人仙界篇.txt in Resources */,
-				A52754892E965B70005B054A /* 凡人修仙篇.txt in Resources */,
 				B4A9F73729C52F3A00F267C6 /* Assets.xcassets in Resources */,
-				A52BCCEE2BD2A43F00FD4853 /* 我真没想重生啊.txt in Resources */,
-				A52BCCE12BD2A43F00FD4853 /* 惊悚乐园.txt in Resources */,
-				A52BCCDB2BD2A43F00FD4853 /* 遮天.txt in Resources */,
-				A52BCCE82BD2A43F00FD4853 /* 全球高武.txt in Resources */,
-				A52BCCDE2BD2A43F00FD4853 /* 圣墟.txt in Resources */,
-				A52BCCD32BD2A43F00FD4853 /* 牧神记.txt in Resources */,
-				A52BCCD42BD2A43F00FD4853 /* 全职艺术家.txt in Resources */,
-				A52BCCD22BD2A43F00FD4853 /* 精灵掌门人.txt in Resources */,
-				A52BCCE02BD2A43F00FD4853 /* 大乘期才有逆袭系统.txt in Resources */,
-				A52BCCF02BD2A43F00FD4853 /* 我的属性修行人生.txt in Resources */,
-				A52BCCE22BD2A43F00FD4853 /* 希灵帝国.txt in Resources */,
-				A52BCCE52BD2A43F00FD4853 /* 我打造了旧日支配者神话.txt in Resources */,
-				A52BCCEB2BD2A43F00FD4853 /* 星门时光之主.txt in Resources */,
-				A52BCCEC2BD2A43F00FD4853 /* 夜的命名术.txt in Resources */,
-				A52BCCE92BD2A43F00FD4853 /* 大奉打更人.txt in Resources */,
-				A52BCCD72BD2A43F00FD4853 /* 长夜余火.txt in Resources */,
-				A52BCCE42BD2A43F00FD4853 /* 镇妖博物馆.txt in Resources */,
-				A52BCCE32BD2A43F00FD4853 /* 我师兄实在太稳健了.txt in Resources */,
-				A52BCCD62BD2A43F00FD4853 /* 问道红尘.txt in Resources */,
-				A52BCCEA2BD2A43F00FD4853 /* 异常生物见闻录.txt in Resources */,
-				A52BCCD82BD2A43F00FD4853 /* 烂柯棋缘.txt in Resources */,
-				A52BCCD52BD2A43F00FD4853 /* 一世之尊.txt in Resources */,
-				A52BCCEF2BD2A43F00FD4853 /* 魔临.txt in Resources */,
-				A52BCCE62BD2A43F00FD4853 /* 凡人修仙传.txt in Resources */,
-				A52BCCD92BD2A43F00FD4853 /* 吞噬星空.txt in Resources */,
-				A52BCCDD2BD2A43F00FD4853 /* 一念永恒.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0D200232F00000200000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +370,11 @@
 				B4A9F73C29C52F3A00F267C6 /* Persistence.swift in Sources */,
 				B4977D7429C5C7F200E77370 /* PercentBar.swift in Sources */,
 				B4E7089C29C5422500F70C14 /* BookVM.swift in Sources */,
+				C0D100012F00000100000001 /* ImportedBookStore.swift in Sources */,
+				C0D500012F00000500000001 /* BrowserUploadServer.swift in Sources */,
+				C0D500022F00000500000001 /* BrowserUploadView.swift in Sources */,
+				C0D600012F00000600000001 /* LocalBookManagementView.swift in Sources */,
+				C0D700012F00000700000001 /* FilesBookImporter.swift in Sources */,
 				B4A9F73529C52F3900F267C6 /* ContentView.swift in Sources */,
 				B4E7089A29C5420B00F70C14 /* BookShelfView.swift in Sources */,
 				B4A9F73F29C52F3A00F267C6 /* ice_reader.xcdatamodeld in Sources */,
@@ -423,7 +385,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0D200212F00000200000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0D200012F00000200000001 /* ImportedBookStoreTests.swift in Sources */,
+				C0D500042F00000500000001 /* BrowserUploadServerTests.swift in Sources */,
+				C0D800012F00000800000001 /* FilesBookImporterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C0D200262F00000200000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4A9F72E29C52F3900F267C6 /* ice reader */;
+			targetProxy = C0D200252F00000200000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B4A9F74029C52F3A00F267C6 /* Debug */ = {
@@ -611,6 +591,49 @@
 			};
 			name = Release;
 		};
+		C0D200272F00000200000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Tropical-fish.Book-checkerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ice reader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ice reader";
+			};
+			name = Debug;
+		};
+		C0D200282F00000200000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Tropical-fish.Book-checkerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ice reader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ice reader";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -628,6 +651,15 @@
 			buildConfigurations = (
 				B4A9F74329C52F3A00F267C6 /* Debug */,
 				B4A9F74429C52F3A00F267C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0D200292F00000200000001 /* Build configuration list for PBXNativeTarget "ice readerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0D200272F00000200000001 /* Debug */,
+				C0D200282F00000200000001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

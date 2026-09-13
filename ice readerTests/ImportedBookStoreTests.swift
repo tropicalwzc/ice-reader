@@ -1,0 +1,91 @@
+import XCTest
+@testable import ice_reader
+
+final class ImportedBookStoreTests: XCTestCase {
+    func testLegacyCatalogDecodesWithoutChangingIdentity() throws {
+        let root = temporaryDirectory()
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        try Data("legacy".utf8).write(to: root.appendingPathComponent("stable.txt"))
+        let json = """
+        [{"id":"stable-id","title":"旧书","fileExtension":"txt","relativePath":"stable.txt","serverID":"old-server","serverBookID":"old-book","contentHash":"hash","size":6,"importedAt":"2024-01-01T00:00:00Z"}]
+        """
+        try Data(json.utf8).write(to: root.appendingPathComponent("catalog.json"))
+        let record = try XCTUnwrap(ImportedBookStore(baseDirectory: root).validRecords().first)
+        XCTAssertEqual(record.id, "stable-id")
+        XCTAssertEqual(record.source, .legacyLAN(serverID: "old-server", bookID: "old-book"))
+    }
+
+    func testBrowserUploadAndSameTitleReplacementPreserveIdentity() throws {
+        let store = ImportedBookStore(baseDirectory: temporaryDirectory())
+        let firstData = Data("第一版".utf8)
+        let first = try store.installBrowserUpload(stagedURL: temporaryFile(firstData), filename: "中文小说.txt", displayRelativePath: "书库/中文小说.txt", expectedSize: Int64(firstData.count))
+        let secondData = Data("第二版内容".utf8)
+        let second = try store.installBrowserUpload(stagedURL: temporaryFile(secondData), filename: " 中文小说.TXT ", displayRelativePath: nil, expectedSize: Int64(secondData.count))
+        XCTAssertEqual(first.id, second.id)
+        XCTAssertEqual(store.records().count, 1)
+        XCTAssertEqual(try Data(contentsOf: store.fileURL(for: second)), secondData)
+        XCTAssertEqual(second.source, .browserUpload(relativePath: nil))
+    }
+
+    func testStagingCleanupAndValidation() throws {
+        let store = ImportedBookStore(baseDirectory: temporaryDirectory())
+        let partial = try store.makeStagingURL()
+        try Data("partial".utf8).write(to: partial)
+        store.cleanupStaging()
+        XCTAssertFalse(FileManager.default.fileExists(atPath: partial.path))
+        XCTAssertNoThrow(try ImportedBookStore.validatedFilename("三体.markdown"))
+        XCTAssertThrowsError(try ImportedBookStore.validatedFilename("../secret.txt"))
+        XCTAssertThrowsError(try ImportedBookStore.validatedFilename("image.pdf"))
+        XCTAssertThrowsError(try ImportedBookStore.validatedDisplayPath("目录/../秘密.txt"))
+    }
+
+    func testUTF8AndGB18030BytesRemainReadable() throws {
+        XCTAssertEqual(try ImportedBookStore.decodeText(at: temporaryFile(Data("中文 UTF-8".utf8))), "中文 UTF-8")
+        XCTAssertEqual(try ImportedBookStore.decodeText(at: temporaryFile(Data([0xB2, 0xE2, 0xCA, 0xD4]))), "测试")
+    }
+
+    func testIncompleteUploadDoesNotReplaceExistingBook() throws {
+        let store = ImportedBookStore(baseDirectory: temporaryDirectory())
+        let originalData = Data("完整内容".utf8)
+        let original = try store.installBrowserUpload(stagedURL: temporaryFile(originalData), filename: "书.txt", displayRelativePath: nil, expectedSize: Int64(originalData.count))
+        XCTAssertThrowsError(try store.installBrowserUpload(stagedURL: temporaryFile(Data("短".utf8)), filename: "书.txt", displayRelativePath: nil, expectedSize: 100))
+        XCTAssertEqual(try Data(contentsOf: store.fileURL(for: original)), originalData)
+    }
+
+    func testBookViewModelDeletesImportedBookAndClearsLastReadState() throws {
+        let previousLastRead = UserDefaults.standard.object(forKey: "LastReadBookName")
+        defer {
+            if let previousLastRead {
+                UserDefaults.standard.set(previousLastRead, forKey: "LastReadBookName")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "LastReadBookName")
+            }
+        }
+        let store = ImportedBookStore(baseDirectory: temporaryDirectory())
+        let data = Data("待删除内容".utf8)
+        let record = try store.installBrowserUpload(
+            stagedURL: temporaryFile(data),
+            filename: "待删除小说.txt",
+            displayRelativePath: nil,
+            expectedSize: Int64(data.count)
+        )
+        let fileURL = store.fileURL(for: record)
+        let viewModel = BookVM(importedStore: store)
+        viewModel.LastReadBookName = record.id
+
+        try viewModel.deleteImportedBook(id: record.id)
+
+        XCTAssertTrue(store.records().isEmpty)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: fileURL.path))
+        XCTAssertFalse(viewModel.hasImportedBooks)
+        XCTAssertEqual(viewModel.bookNames.map(\.name), ["样例占位"])
+        XCTAssertEqual(viewModel.LastReadBookName, "")
+    }
+
+    private func temporaryDirectory() -> URL { FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true) }
+    private func temporaryFile(_ data: Data) throws -> URL {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".partial")
+        try data.write(to: url)
+        return url
+    }
+}

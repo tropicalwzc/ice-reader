@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ice Reader 浏览器上传</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main>
+        <h1>上传小说到 Ice Reader</h1>
+        <p class="hint">保持 iPhone 或 iPad 的“浏览器上传”页面亮屏并停留在前台。</p>
+        <section id="pair" class="card">
+            <label for="code">输入设备上显示的 6 位验证码</label>
+            <div class="row"><input id="code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"><button id="connect">连接</button></div>
+            <p id="pairStatus" role="status"></p>
+        </section>
+        <section id="upload" class="card hidden" aria-live="polite">
+            <div id="dropZone" tabindex="0">拖拽小说文件或文件夹到这里</div>
+            <div class="choices">
+                <label class="button">选择文件<input id="files" type="file" multiple accept=".txt,.text,.md,.markdown,.html,.htm"></label>
+                <label class="button">选择目录<input id="directory" type="file" multiple webkitdirectory directory></label>
+            </div>
+            <p id="summary">尚未选择文件</p>
+            <progress id="totalProgress" value="0" max="1"></progress>
+            <p id="current" role="status"></p>
+            <div class="row"><button id="start" disabled>开始上传</button><button id="cancel" class="secondary" disabled>取消</button><button id="retry" class="secondary hidden">重试失败项</button></div>
+            <ol id="results"></ol>
+        </section>
+        <p class="foot">文件会直接保存到当前设备；同名小说会覆盖内容并保留阅读进度。单个文件最大 200 MB。</p>
+    </main>
+    <script src="/app.js"></script>
+</body>
+</html>

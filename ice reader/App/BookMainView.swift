@@ -62,14 +62,18 @@ struct BookMainView: View {
     }
     
     func readLastPage() {
-        page = vm.readLastPage(name: bookName)
+        let savedPage = vm.readLastPage(name: bookName)
+        page = ImportedBookStore.clampedPage(savedPage, contentCount: vm.splitedContents.count)
+        if page != savedPage {
+            vm.saveLastPage(name: bookName, page: page)
+        }
         self.stripSmallPage()
         vm.jumpToIndexSig.send(params: page)
         vm.LastReadBookName = bookName
     }
     
     func pureBookName() -> String {
-        let suq = bookName.split(separator: ".")
+        let suq = vm.displayName(for: bookName).split(separator: ".")
         let ff = suq.first ?? ""
         return String(ff)
     }
@@ -184,6 +188,12 @@ struct BookMainView: View {
             self.loadFinished = false
             
             vm.fetchAllDatas(bookName: bookName, extention: bookExtention) { res in
+                guard res == "T" else {
+                    DispatchQueue.main.async {
+                        self.loadFinished = false
+                    }
+                    return
+                }
                 //print("reload all datas")
                 DispatchQueue.main.async {
                     self.loadFinished = true

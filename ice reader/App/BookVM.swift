@@ -10,57 +10,36 @@ import Combine
 import SwiftUI
 import RegexBuilder
 
-struct BookInfo {
-    internal init(name: String, extention: String, active: Bool = false) {
+enum BookLocation: Equatable {
+    case bundled
+    case imported(relativePath: String)
+}
+
+struct BookInfo: Identifiable {
+    internal init(id: String? = nil, name: String, extention: String, active: Bool = false, location: BookLocation = .bundled) {
+        self.id = id ?? "bundled:\(name)"
         self.name = name
         self.extention = extention
         self.active = active
+        self.location = location
         self.progress = 0.0
     }
-    
+
+    let id: String
     var name : String
     var extention: String
     var active : Bool
+    let location: BookLocation
     var progress : Double
 }
 
 class BookVM: ObservableObject {
+    private let importedStore: ImportedBookStore
+    private let bundledBookCount = 1
     @Published var datas : [String]?
-    // 新书必须在最后添加
-    // iCloud进度最多支持前1024本书
+    // 正式小说通过浏览器上传；App 只内置一个可读占位样例。
     @Published var bookNames:[BookInfo] = [
-        BookInfo(name:"希灵帝国", extention:"txt"),
-        BookInfo(name:"我真没想重生啊", extention:"txt"),
-        BookInfo(name:"夜的命名术", extention:"txt"),
-        BookInfo(name:"大奉打更人", extention:"txt"),
-        BookInfo(name:"不科学御兽", extention:"txt"),
-        BookInfo(name:"我打造了旧日支配者神话", extention:"txt"),
-        BookInfo(name:"镇妖博物馆", extention:"txt"),
-        BookInfo(name:"我的属性修行人生", extention:"txt"),
-        BookInfo(name:"一世之尊", extention:"txt"),
-        BookInfo(name:"吞噬星空", extention:"txt"),
-        BookInfo(name:"惊悚乐园", extention:"txt"),
-        BookInfo(name:"我师兄实在是太稳健了", extention:"txt"),
-        BookInfo(name:"我有一座冒险屋", extention:"txt"),
-        BookInfo(name:"圣墟", extention:"txt"),
-        BookInfo(name:"牧神记", extention:"txt"),
-        BookInfo(name:"全球高武", extention:"txt"),
-        BookInfo(name:"一念永恒", extention:"txt"),
-        BookInfo(name:"奥术神座", extention:"txt"),
-        BookInfo(name:"异常生物见闻录", extention:"txt"),
-        BookInfo(name:"问道红尘", extention:"txt"),
-        BookInfo(name:"精灵掌门人", extention:"txt"),
-        BookInfo(name:"星门时光之主", extention:"txt"),
-        BookInfo(name:"凡人修仙篇", extention:"txt"),
-        BookInfo(name:"凡人仙界篇", extention:"txt"),
-        BookInfo(name:"遮天", extention:"txt"),
-        BookInfo(name:"烂柯棋缘", extention:"txt"),
-        BookInfo(name:"魔临", extention:"txt"),
-        BookInfo(name:"修真聊天群", extention:"txt"),
-        BookInfo(name:"大乘期才有逆袭系统", extention:"txt"),
-        BookInfo(name:"亲爱的该吃药了", extention:"txt"),
-        BookInfo(name:"全职艺术家", extention:"txt"),
-        BookInfo(name:"长夜余火", extention:"txt"),
+        BookInfo(name:"样例占位", extention:"txt"),
     ]
     
     @Published var splitedContents: Array<Substring> = []
@@ -78,16 +57,123 @@ class BookVM: ObservableObject {
     var cloudBookDict: [String : String]? = nil
     
     let cloudManager = NSUbiquitousKeyValueStore.default
+
+    var hasImportedBooks: Bool {
+        bookNames.contains { book in
+            if case .imported = book.location {
+                return true
+            }
+            return false
+        }
+    }
+
+    var importedBookRecords: [ImportedBookRecord] {
+        importedStore.validRecords()
+    }
+
+    init(importedStore: ImportedBookStore = .shared) {
+        self.importedStore = importedStore
+        reloadImportedBooks()
+    }
+
+    func reloadImportedBooks() {
+        let bundled = Array(bookNames.prefix(bundledBookCount))
+        let imported = importedStore.validRecords().map {
+            BookInfo(
+                id: $0.id,
+                name: $0.title,
+                extention: $0.fileExtension,
+                location: .imported(relativePath: $0.relativePath)
+            )
+        }
+        if Thread.isMainThread {
+            applyBookList(bundled + imported)
+        } else {
+            DispatchQueue.main.async {
+                self.applyBookList(bundled + imported)
+            }
+        }
+    }
+
+    private func applyBookList(_ books: [BookInfo]) {
+        bookNames = books
+        if !LastReadBookName.isEmpty, book(for: LastReadBookName) == nil {
+            LastReadBookName = ""
+        }
+        updateProgresses()
+    }
+
+    func importedBookWasDeleted(_ record: ImportedBookRecord) {
+        invalidateContent(bookID: record.id)
+        if LastReadBookName == record.id {
+            LastReadBookName = ""
+            GlobalSignalEmitter.cleanLastReadBook.send(params: true)
+        }
+        reloadImportedBooks()
+    }
+
+    func importedRecord(id: String) -> ImportedBookRecord? {
+        importedStore.records().first { $0.id == id }
+    }
+
+    func deleteImportedBook(id: String) throws {
+        guard let record = importedRecord(id: id) else { return }
+        try importedStore.delete(id: id)
+        importedBookWasDeleted(record)
+    }
+
+    func importFiles(
+        at urls: [URL],
+        progress: @escaping (FilesBookImportProgress) -> Void
+    ) async -> FilesBookImportBatchResult {
+        let result = await FilesBookImportCoordinator(store: importedStore).importFiles(at: urls, progress: progress)
+        if result.successfulCount > 0 {
+            await MainActor.run {
+                completeBookName = ""
+                splitedContents = []
+                splitedContentsCount = 1
+                reloadImportedBooks()
+            }
+        }
+        return result
+    }
+
+    func invalidateContent(bookID: String) {
+        if completeBookName == bookID {
+            completeBookName = ""
+            splitedContents = []
+            splitedContentsCount = 1
+        }
+    }
+
+    func book(for identifier: String) -> BookInfo? {
+        bookNames.first { $0.id == identifier } ?? bookNames.first { $0.name == identifier }
+    }
+
+    func displayName(for identifier: String) -> String {
+        book(for: identifier)?.name ?? identifier
+    }
+
+    private func progressStorageKey(for identifier: String) -> String {
+        guard let book = book(for: identifier) else { return identifier }
+        switch book.location {
+        case .bundled:
+            return book.name
+        case .imported:
+            return "ImportedBook.\(book.id)"
+        }
+    }
     
     func isLastActive(name : String) -> Bool {
-        return LastReadBookName == name
+        guard let book = book(for: name) else { return LastReadBookName == name }
+        return LastReadBookName == book.id || LastReadBookName == book.name
     }
     
     func initCloudBookDict() {
         var resDict : [String : String] = [:]
-        let total = bookNames.count > 1023 ? 1023 : bookNames.count
+        let total = min(bundledBookCount, bookNames.count)
         for i in 0..<total {
-            resDict[bookNames[i].name] = "syncIRA"+String(i)
+            resDict[bookNames[i].id] = "syncIRA"+String(i)
         }
         cloudBookDict = resDict
     }
@@ -96,19 +182,14 @@ class BookVM: ObservableObject {
         if cloudBookDict == nil {
             initCloudBookDict()
         }
-        if let dict = cloudBookDict {
-            return dict[name]
+        if let dict = cloudBookDict, let book = book(for: name) {
+            return dict[book.id]
         }
         return nil
     }
     
     func getExtentionOfName(name : String) -> String {
-        for info in bookNames {
-            if info.name == name {
-                return info.extention
-            }
-        }
-        return "txt"
+        return book(for: name)?.extention ?? "txt"
     }
     
     func saveLastPage(name: String, page: Int, forceCloudSync: Bool = false) {
@@ -118,8 +199,9 @@ class BookVM: ObservableObject {
         }
         
         DispatchQueue.global(qos: .userInteractive).async {
-            UserDefaults.standard.set(String(page), forKey: name)
-            let progress = Double(page) / self.splitedContentsCount
+            let storageKey = self.readingStorageKey(for: name)
+            UserDefaults.standard.set(String(page), forKey: storageKey)
+            let progress = self.splitedContentsCount > 0 ? Double(page) / self.splitedContentsCount : 0
             UserDefaults.standard.set(progress, forKey: self.getProgressKey(name: name))
             if let cloudKey = self.getCloudKey(name: name) {
                 if forceCloudSync {
@@ -140,7 +222,11 @@ class BookVM: ObservableObject {
     }
     
     func getProgressKey(name : String) -> String {
-        return "\(name)ReadingProgress"
+        return "\(readingStorageKey(for: name))ReadingProgress"
+    }
+
+    func readingStorageKey(for name: String) -> String {
+        return progressStorageKey(for: name)
     }
     
     func readLastProgressOf(name: String) -> Double {
@@ -159,7 +245,8 @@ class BookVM: ObservableObject {
         
         //        print("ReadLast \(readCloudString(name: name))")
         
-        let res = UserDefaults.standard.value(forKey: name)
+        let storageKey = readingStorageKey(for: name)
+        let res = UserDefaults.standard.value(forKey: storageKey)
         var localVal: Int = 0
         if let val = res as? String {
             if let fin = Int(val) {
@@ -176,7 +263,7 @@ class BookVM: ObservableObject {
                 let appliedRevision = Int64(UserDefaults.standard.integer(forKey: appliedOverrideKey))
 
                 if overrideRevision > appliedRevision {
-                    UserDefaults.standard.set(cloudStr, forKey: name)
+                    UserDefaults.standard.set(cloudStr, forKey: storageKey)
                     UserDefaults.standard.set(overrideRevision, forKey: appliedOverrideKey)
                     return cloudVal
                 }
@@ -245,9 +332,19 @@ class BookVM: ObservableObject {
         }
     }
     
-    func loadRawContent(bookName: String, extention: String = "html") {
+    func loadRawContent(bookName: String, extention: String = "html") throws {
         let contentLoader = ContentLoader()
-        let rawContent = contentLoader.loadBundledContent(fromFileNamed: bookName, extention: extention)
+        guard let book = book(for: bookName) else { throw ContentLoader.Error.fileNotFound(name: bookName) }
+        let rawContent: String
+        switch book.location {
+        case .bundled:
+            rawContent = try contentLoader.loadBundledContent(fromFileNamed: book.name, extention: extention)
+        case .imported:
+            guard let record = importedStore.records().first(where: { $0.id == book.id }) else {
+                throw ContentLoader.Error.fileNotFound(name: book.name)
+            }
+            rawContent = try contentLoader.loadContent(at: importedStore.fileURL(for: record))
+        }
         self.sequence = String.SubSequence(stringLiteral: rawContent)
     }
     
@@ -258,21 +355,33 @@ class BookVM: ObservableObject {
                 print("already load \(bookName)")
                 completion("T")
             } else {
-                self.loadRawContent(bookName: bookName, extention: extention)
-                self.calSplit() { _ in
-                    self.completeBookName = bookName
-                    completion("T")
+                do {
+                    try self.loadRawContent(bookName: bookName, extention: extention)
+                    self.calSplit() { _ in
+                        self.completeBookName = bookName
+                        completion("T")
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self.completeBookName = ""
+                        self.splitedContents = []
+                        self.splitedContentsCount = 1
+                        GlobalSignalEmitter.cleanLastReadBook.send(params: true)
+                        completion("F")
+                    }
                 }
             }
         }
     }
     
     func updateProgresses() {
+        let books = bookNames
         DispatchQueue.global(qos: .default).async {
-            for i in 0 ..< self.bookNames.count {
-                let progress = self.readLastProgressOf(name: self.bookNames[i].name)
+            for book in books {
+                let progress = self.readLastProgressOf(name: book.id)
                 DispatchQueue.main.async {
-                    self.bookNames[i].progress = progress
+                    guard let index = self.bookNames.firstIndex(where: { $0.id == book.id }) else { return }
+                    self.bookNames[index].progress = progress
                 }
             }
         }
@@ -286,28 +395,27 @@ struct ContentLoader {
         case fileDecodingFailed(name: String, Swift.Error)
     }
     
-    func loadBundledContent(fromFileNamed name: String, extention : String) -> String {
+    func loadBundledContent(fromFileNamed name: String, extention : String) throws -> String {
         guard let url = Bundle.main.url(
             forResource: name,
             withExtension: extention
         ) else {
             //print("ERROR UnknownURL")
-            GlobalSignalEmitter.cleanLastReadBook.send(params: true)
-            return "UnknownURL"
+            throw Error.fileNotFound(name: name)
         }
         
         do {
-            var data = try? String(contentsOf: url, encoding: String.Encoding.utf8)
-            if data == nil {
-                let encode = CFStringConvertEncodingToNSStringEncoding(UInt32(CFStringEncodings.GB_18030_2000.rawValue))
-                let encoding = String.Encoding.init(rawValue: encode)
-                data = try String(contentsOf: url, encoding: encoding)
-            }
-            return data ?? ""
+            return try loadContent(at: url)
         } catch {
-            GlobalSignalEmitter.cleanLastReadBook.send(params: true)
-            //print("ERROR ReadFailed")
-            return ""
+            throw Error.fileDecodingFailed(name: name, error)
+        }
+    }
+
+    func loadContent(at url: URL) throws -> String {
+        do {
+            return try ImportedBookStore.decodeText(at: url)
+        } catch {
+            throw Error.fileDecodingFailed(name: url.lastPathComponent, error)
         }
     }
     

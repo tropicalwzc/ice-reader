@@ -11,7 +11,5 @@
 	<array>
 		<string>_icereader-upload._tcp</string>
 	</array>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>用于在本机临时开启小说接收服务，让同一局域网中的电脑通过浏览器上传您选择的小说。</string>
 </dict>
 </plist>

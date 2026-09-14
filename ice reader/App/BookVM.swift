@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import CryptoKit
 import SwiftUI
 import RegexBuilder
 
@@ -182,10 +183,31 @@ class BookVM: ObservableObject {
         if cloudBookDict == nil {
             initCloudBookDict()
         }
-        if let dict = cloudBookDict, let book = book(for: name) {
-            return dict[book.id]
+        guard let book = book(for: name) else { return nil }
+        switch book.location {
+        case .bundled:
+            return cloudBookDict?[book.id]
+        case .imported:
+            return Self.importedCloudKey(for: book.name)
         }
-        return nil
+    }
+
+    static func importedCloudKey(for title: String) -> String {
+        let normalizedTitle = normalizedCloudTitle(title)
+        let digest = SHA256.hash(data: Data(normalizedTitle.utf8))
+        let shortenedDigest = digest.prefix(16).map { String(format: "%02x", $0) }.joined()
+        return "syncImported.\(shortenedDigest)"
+    }
+
+    private static func normalizedCloudTitle(_ title: String) -> String {
+        title
+            .precomposedStringWithCanonicalMapping
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .folding(
+                options: [.caseInsensitive, .diacriticInsensitive, .widthInsensitive],
+                locale: Locale(identifier: "en_US_POSIX")
+            )
+            .precomposedStringWithCanonicalMapping
     }
     
     func getExtentionOfName(name : String) -> String {
@@ -200,9 +222,7 @@ class BookVM: ObservableObject {
         
         DispatchQueue.global(qos: .userInteractive).async {
             let storageKey = self.readingStorageKey(for: name)
-            UserDefaults.standard.set(String(page), forKey: storageKey)
-            let progress = self.splitedContentsCount > 0 ? Double(page) / self.splitedContentsCount : 0
-            UserDefaults.standard.set(progress, forKey: self.getProgressKey(name: name))
+            self.persistLocalReadingState(name: name, page: page, storageKey: storageKey)
             if let cloudKey = self.getCloudKey(name: name) {
                 if forceCloudSync {
                     MKiCloudSync.forceUpdateProgress(Int64(page), forKey: cloudKey)
@@ -212,6 +232,12 @@ class BookVM: ObservableObject {
             }
         }
         
+    }
+
+    private func persistLocalReadingState(name: String, page: Int, storageKey: String) {
+        UserDefaults.standard.set(String(page), forKey: storageKey)
+        let progress = splitedContentsCount > 0 ? Double(page) / splitedContentsCount : 0
+        UserDefaults.standard.set(progress, forKey: getProgressKey(name: name))
     }
     
     func readCloudString(name: String) -> String? {
@@ -263,14 +289,15 @@ class BookVM: ObservableObject {
                 let appliedRevision = Int64(UserDefaults.standard.integer(forKey: appliedOverrideKey))
 
                 if overrideRevision > appliedRevision {
-                    UserDefaults.standard.set(cloudStr, forKey: storageKey)
+                    persistLocalReadingState(name: name, page: cloudVal, storageKey: storageKey)
                     UserDefaults.standard.set(overrideRevision, forKey: appliedOverrideKey)
                     return cloudVal
                 }
 
                 //                print("cloud \(name) is \(cloudVal)")
-                if cloudVal > localVal {
+                if cloudVal >= localVal {
                     localVal = cloudVal
+                    persistLocalReadingState(name: name, page: cloudVal, storageKey: storageKey)
                 }
             }
         }

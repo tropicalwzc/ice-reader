@@ -82,6 +82,69 @@ final class ImportedBookStoreTests: XCTestCase {
         XCTAssertEqual(viewModel.LastReadBookName, "")
     }
 
+    func testImportedBooksWithSameNormalizedTitleUseSameCloudKeyAcrossStores() throws {
+        let firstStore = ImportedBookStore(baseDirectory: temporaryDirectory())
+        let secondStore = ImportedBookStore(baseDirectory: temporaryDirectory())
+        let firstData = Data("设备一".utf8)
+        let secondData = Data("设备二".utf8)
+        let first = try firstStore.installBrowserUpload(
+            stagedURL: temporaryFile(firstData),
+            filename: "Ｃａｆé.txt",
+            displayRelativePath: nil,
+            expectedSize: Int64(firstData.count)
+        )
+        let second = try secondStore.installBrowserUpload(
+            stagedURL: temporaryFile(secondData),
+            filename: "cafe.md",
+            displayRelativePath: nil,
+            expectedSize: Int64(secondData.count)
+        )
+        let firstViewModel = BookVM(importedStore: firstStore)
+        let secondViewModel = BookVM(importedStore: secondStore)
+
+        let firstKey = try XCTUnwrap(firstViewModel.getCloudKey(name: first.id))
+        let secondKey = try XCTUnwrap(secondViewModel.getCloudKey(name: second.id))
+
+        XCTAssertNotEqual(first.id, second.id)
+        XCTAssertEqual(firstKey, secondKey)
+        XCTAssertTrue(firstKey.hasPrefix("syncImported."))
+        XCTAssertLessThanOrEqual("syncOverride_\(firstKey)".utf8.count, 64)
+    }
+
+    func testDifferentImportedTitlesUseDifferentCloudKeys() {
+        XCTAssertNotEqual(
+            BookVM.importedCloudKey(for: "第一本书"),
+            BookVM.importedCloudKey(for: "第二本书")
+        )
+    }
+
+    func testCloudRestoredPagePersistsLocalPageAndProgress() throws {
+        let store = ImportedBookStore(baseDirectory: temporaryDirectory())
+        let data = Data("云端阅读进度".utf8)
+        let record = try store.installBrowserUpload(
+            stagedURL: temporaryFile(data),
+            filename: "云端恢复-\(UUID().uuidString).txt",
+            displayRelativePath: nil,
+            expectedSize: Int64(data.count)
+        )
+        let viewModel = BookVM(importedStore: store)
+        CloudManager.shared.initCloudListener()
+        viewModel.splitedContentsCount = 200
+        let cloudKey = try XCTUnwrap(viewModel.getCloudKey(name: record.id))
+        let storageKey = viewModel.readingStorageKey(for: record.id)
+        let progressKey = viewModel.getProgressKey(name: record.id)
+        let appliedOverrideKey = viewModel.getAppliedCloudOverrideKey(cloudKey: cloudKey)
+        let cloudOverrideKey = "syncOverride_\(cloudKey)"
+        let keys = [cloudKey, storageKey, progressKey, appliedOverrideKey, cloudOverrideKey]
+        defer { keys.forEach(UserDefaults.standard.removeObject(forKey:)) }
+        keys.forEach(UserDefaults.standard.removeObject(forKey:))
+        UserDefaults.standard.set("50", forKey: cloudKey)
+
+        XCTAssertEqual(viewModel.readLastPage(name: record.id), 50)
+        XCTAssertEqual(UserDefaults.standard.string(forKey: storageKey), "50")
+        XCTAssertEqual(UserDefaults.standard.double(forKey: progressKey), 0.25, accuracy: 0.001)
+    }
+
     private func temporaryDirectory() -> URL { FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true) }
     private func temporaryFile(_ data: Data) throws -> URL {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".partial")

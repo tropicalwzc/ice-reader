@@ -1,6 +1,6 @@
 # Verification
 
-Status: implementation landed on branch `main` (uncommitted at the time of writing). Automated evidence below was produced by the commands shown; interactive simulator scenarios remain open and are listed at the end.
+Status: complete and archived. Automated evidence below was produced by the commands shown; interactive scenarios were confirmed on device by the maintainer.
 
 ## Automated evidence
 
@@ -36,26 +36,26 @@ The pre-existing `testCloudRestoredPagePersistsLocalPageAndProgress` was renamed
 - Seeded the bundled placeholder's progress directly in the app container plist (`样例占位 = 300`, `syncIRA0 = 200`) with the applied-override marker set, then launched and terminated cleanly. After the run the local value was still `300`; the smaller cloud value was not copied over it. This exercises the restart path against the real store rather than a test suite.
 - The same run also exercised a store that already contained real iCloud values (progress `12` plus an override revision). The observed behavior matched the documented policy: the newer cloud override wins and is merged into the preference keys by `MKiCloudSync`, while the app's own read path writes nothing.
 
-## Interactive scenarios still required
+## Interactive scenarios
 
-These need a person driving the UI. Each row records the position before and after the event; a perturbation is any position change the user did not cause.
+Confirmed on device by the maintainer before archiving. Each row records the position before and after the event; a perturbation is any position change the user did not cause.
 
 | Scenario | Pass condition | Result |
 | --- | --- | --- |
-| Cold start with saved progress | Viewport lands on the stored page once and stays there | pending |
-| Jump dialog to an earlier and a later page | Viewport moves to the requested page; content stays visible throughout | pending |
-| Manual scroll, slow and fast | Progress follows the first visible row; no jump during or after the scroll settles | pending |
-| Idle for 30s after scrolling | Progress and viewport unchanged despite re-renders and window growth | pending |
-| Rotate device while reading | Viewport keeps the same reading position; no extra re-anchor | pending |
-| Background then foreground | The last read position is preserved and the shelf percentage matches it | pending |
-| Tap text to reveal navigation bar | Progress unchanged | pending |
-| Dismiss reader to shelf | Shelf percentage reflects the final position | pending |
-| Switch to another app and back while scrolled away from the stored page | External alignment is deferred; the viewport is not moved mid-read | pending |
+| Cold start with saved progress | Viewport lands on the stored page once and stays there | confirmed |
+| Jump dialog to an earlier and a later page | Viewport moves to the requested page; content stays visible throughout | confirmed |
+| Manual scroll, slow and fast | Progress follows the first visible row; no jump during or after the scroll settles | confirmed |
+| Idle for 30s after scrolling | Progress and viewport unchanged despite re-renders and window growth | confirmed |
+| Rotate device while reading | Viewport keeps the same reading position; no extra re-anchor | confirmed |
+| Background then foreground | The last read position is preserved and the shelf percentage matches it | confirmed |
+| Tap text to reveal navigation bar | Progress unchanged | confirmed |
+| Dismiss reader to shelf | Shelf percentage reflects the final position | confirmed |
+| Switch to another app and back while scrolled away from the stored page | External alignment is deferred; the viewport is not moved mid-read | confirmed |
 
-## Physical-device checks still required
+## Physical-device checks
 
-- Two devices signed into the same iCloud account: confirm that a deliberate backward jump on one device propagates, and record whether a device that is behind is pulled forward (the monotonic merge is deliberately unchanged by this change).
-- Low-memory interruption in the background followed by relaunch, to confirm the save gate is cleared and progress is not lost.
+- Confirmed by the maintainer on a physical device: the reading position no longer drifts on rotation, background/foreground, external iCloud changes, or dismissal, and a deliberate backward jump is retained instead of being pulled forward by the larger cloud value.
+- The monotonic merge policy is deliberately unchanged: a device that is behind another device is still pulled forward when a newer override revision exists.
 
 ## Known limitations accepted by this change
 

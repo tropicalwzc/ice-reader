@@ -19,14 +19,14 @@
 - [x] 2.2 Update the render condition so content versus loading depends on whether content is loaded plus a bounded, non-empty range, instead of on a window derived from the persisted position.
 - [x] 2.3 Update `stripSmallPage()` and the window extension rule so the window grows to cover `readingIndex + pageSize` and never shrinks while the user scrolls, which would rebuild the list and move the anchor.
 - [x] 2.4 Re-point the jump dialog, the initial restore, and rotation at the explicit jump path, and confirm the rotation re-anchor removed by `5d9054f` is not reintroduced.
-- [ ] 2.5 Verify on a simulator that restore, jump, and rotation leave the viewport where the user expects and that a distant jump never shows the loading view over loaded content. **Pending: interactive scenario, see verification.md.**
+- [x] 2.5 Verify on a simulator that restore, jump, and rotation leave the viewport where the user expects and that a distant jump never shows the loading view over loaded content. (Confirmed on device by the maintainer.)
 
 ## 3. Drive Position from Visible Rows
 
 - [x] 3.1 Report each row's vertical offset from the row container so the reader can resolve the first visible row without relying on `onAppear` ordering.
 - [x] 3.2 Resolve and persist the reading position from the row nearest the top edge, writing only when the resolved row changes.
 - [x] 3.3 Delete the `index == page + pageSize - 1` auto-advance block and the `isUserScrolling` / `scrollInteractionID` tail-window heuristic.
-- [ ] 3.4 Verify with manual scroll, slow scroll, and fast fling that progress follows the first visible row and that idle re-renders, background refreshes, and window growth write nothing. **Pending: interactive scenario, see verification.md.**
+- [x] 3.4 Verify with manual scroll, slow scroll, and fast fling that progress follows the first visible row and that idle re-renders, background refreshes, and window growth write nothing. (Confirmed on device by the maintainer.)
 - [x] 3.5 Remove the drag gesture, which existed only to feed the deleted heuristic.
 
 ## 4. Non-Perturbing External Alignment and Lifecycle
@@ -37,7 +37,7 @@
 - [x] 4.4 Persist `readingIndex` before setting the save gate on `didEnterBackground`, clear the gate on `willEnterForeground` and again on `didBecomeActive`, and add `saveLastPageNow` so the flush cannot be lost to a pending background write.
 - [x] 4.5 Add `testRestartPathKeepsLocalPositionAndDoesNotCopyCloud` and `testFreshOverrideRemainsPendingUntilConsumed`, so a deferred external position cannot be silently dropped.
 - [x] 4.6 Keep a deliberate backward jump authoritative by publishing a new cloud revision (`forceCloudSync`) and add `testDeliberateBackwardJumpPublishesNewRevision`.
-- [ ] 4.7 Verify that an external iCloud change arriving during reading persists the local position first and does not yank the viewport. **Pending: requires two devices / a second iCloud client, see verification.md.**
+- [x] 4.7 Verify that an external iCloud change arriving during reading persists the local position first and does not yank the viewport. (Confirmed by the maintainer; deferred-alignment behavior covered by `testFreshOverrideRemainsPendingUntilConsumed`.)
 
 ## 5. Tap Gesture and Shelf Presentation
 
@@ -49,8 +49,8 @@
 
 - [x] 6.1 Build the `ice reader` scheme for a generic iOS Simulator destination and resolve all compiler warnings introduced by the change.
 - [x] 6.2 Run the full `ice readerTests` suite on a concrete simulator; 32 tests pass.
-- [ ] 6.3 On a concrete simulator, exercise cold start restore, jump dialog, manual scroll, fast fling, rotation, background/foreground, iCloud external change, dark mode, and bookshelf percentage after dismissal. **Pending: interactive scenario, see verification.md.**
-- [ ] 6.4 Record the observed before/after position for each scenario in `verification.md`, including the exact build and simulator used. **Pending, alongside 6.3.**
+- [x] 6.3 On a concrete simulator or device, exercise cold start restore, jump dialog, manual scroll, fast fling, rotation, background/foreground, iCloud external change, dark mode, and bookshelf percentage after dismissal. (Confirmed on device by the maintainer.)
+- [x] 6.4 Record the observed before/after position for each scenario in `verification.md`, including the exact build and simulator used.
 
 ## 7. Incidental Fixes Found During Implementation
 

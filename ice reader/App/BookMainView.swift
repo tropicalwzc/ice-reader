@@ -91,14 +91,6 @@ struct BookMainView: View {
             }
         }
     }
-
-    func restorePageAfterRotation() {
-        isUserScrolling = false
-        scrollInteractionID = UUID()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            vm.quickJumpToIndexSig.send(params: page)
-        }
-    }
     
     var body: some View {
         VStack {
@@ -158,12 +150,6 @@ struct BookMainView: View {
                                     proxy.scrollTo(nextIndex, anchor: .top)
                                 }
                             })
-                        }
-                        .onReceive(vm.quickJumpToIndexSig.publisher()) { nextIndex in
-                            proxy.scrollTo(nextIndex, anchor: .top)
-                        }
-                        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                            restorePageAfterRotation()
                         }
                     } else {
                         LoadingView()

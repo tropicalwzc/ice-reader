@@ -42,10 +42,23 @@ static NSString *prefix;
 }
 
 +(NSString*) overrideKeyForProgressKey:(NSString*) key {
+  // `prefix` is only assigned by startWithPrefix:. Forming the override key
+  // with a nil prefix raises an NSInvalidArgumentException, so callers must be
+  // able to ask safely before the sync listener has started.
+  if(prefix.length == 0 || key == nil) {
+    return nil;
+  }
+
   return [NSString stringWithFormat:@"%@Override_%@", prefix, key];
 }
 
 +(BOOL) isProgressKey:(NSString*) key {
+  // A nil or empty prefix means the listener has not started yet. Report "not a
+  // progress key" so merging is a no-op instead of raising.
+  if(prefix.length == 0 || key == nil) {
+    return NO;
+  }
+
   NSString *overridePrefix = [NSString stringWithFormat:@"%@Override_", prefix];
   return [key hasPrefix:prefix] && ![key hasPrefix:overridePrefix];
 }
@@ -171,6 +184,10 @@ static NSString *prefix;
   }
 
   NSString *overrideKey = [self overrideKeyForProgressKey:key];
+  if(overrideKey == nil) {
+    return 0;
+  }
+
   return [self progressValue:[[NSUserDefaults standardUserDefaults] objectForKey:overrideKey]];
 }
 

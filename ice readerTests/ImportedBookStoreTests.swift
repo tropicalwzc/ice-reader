@@ -118,7 +118,7 @@ final class ImportedBookStoreTests: XCTestCase {
         )
     }
 
-    func testCloudRestoredPagePersistsLocalPageAndProgress() throws {
+    func testCloudRestoredPageIsResolvedWithoutWritingLocalStorage() throws {
         let store = ImportedBookStore(baseDirectory: temporaryDirectory())
         let data = Data("云端阅读进度".utf8)
         let record = try store.installBrowserUpload(
@@ -140,7 +140,18 @@ final class ImportedBookStoreTests: XCTestCase {
         keys.forEach(UserDefaults.standard.removeObject(forKey:))
         UserDefaults.standard.set("50", forKey: cloudKey)
 
+        // Resolving the stored page is read-only: it must report the cloud value
+        // without copying it into local storage or rewriting the percentage.
         XCTAssertEqual(viewModel.readLastPage(name: record.id), 50)
+        XCTAssertNil(UserDefaults.standard.string(forKey: storageKey))
+        XCTAssertEqual(UserDefaults.standard.double(forKey: progressKey), 0.0, accuracy: 0.001)
+
+        // The explicit persistence path still records both the page and the
+        // clamped percentage.
+        viewModel.saveLastPage(name: record.id, page: 50)
+        let persisted = expectation(description: "local progress persisted")
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.3) { persisted.fulfill() }
+        wait(for: [persisted], timeout: 2)
         XCTAssertEqual(UserDefaults.standard.string(forKey: storageKey), "50")
         XCTAssertEqual(UserDefaults.standard.double(forKey: progressKey), 0.25, accuracy: 0.001)
     }

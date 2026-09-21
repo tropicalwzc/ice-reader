@@ -31,6 +31,7 @@
 		C0D600012F00000600000001 /* LocalBookManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D600112F00000600000001 /* LocalBookManagementView.swift */; };
 		C0D700012F00000700000001 /* FilesBookImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D700112F00000700000001 /* FilesBookImporter.swift */; };
 		C0D800012F00000800000001 /* FilesBookImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D800112F00000800000001 /* FilesBookImporterTests.swift */; };
+		C0D900012F00000900000001 /* BookVMProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D900112F00000900000001 /* BookVMProgressTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		C0D600112F00000600000001 /* LocalBookManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalBookManagementView.swift; sourceTree = "<group>"; };
 		C0D700112F00000700000001 /* FilesBookImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBookImporter.swift; sourceTree = "<group>"; };
 		C0D800112F00000800000001 /* FilesBookImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBookImporterTests.swift; sourceTree = "<group>"; };
+		C0D900112F00000900000001 /* BookVMProgressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVMProgressTests.swift; sourceTree = "<group>"; };
 		C700C2815CEBA483424004B4 /* Pods-ice reader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice reader.release.xcconfig"; path = "Target Support Files/Pods-ice reader/Pods-ice reader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +205,7 @@
 				C0D200112F00000200000001 /* ImportedBookStoreTests.swift */,
 				C0D500142F00000500000001 /* BrowserUploadServerTests.swift */,
 				C0D800112F00000800000001 /* FilesBookImporterTests.swift */,
+				C0D900112F00000900000001 /* BookVMProgressTests.swift */,
 			);
 			path = "ice readerTests";
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				C0D200012F00000200000001 /* ImportedBookStoreTests.swift in Sources */,
 				C0D500042F00000500000001 /* BrowserUploadServerTests.swift in Sources */,
 				C0D800012F00000800000001 /* FilesBookImporterTests.swift in Sources */,
+				C0D900012F00000900000001 /* BookVMProgressTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

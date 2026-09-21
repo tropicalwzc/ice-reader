@@ -34,9 +34,51 @@ struct BookInfo: Identifiable {
     var progress : Double
 }
 
+/// iCloud progress plumbing used by `BookVM`.
+///
+/// The protocol exists so reading-progress behavior can be exercised in tests
+/// without touching the real ubiquitous key-value store.
+protocol ProgressCloudSync {
+    /// Revision of the newest deliberate override written by any device, or 0.
+    func overrideRevision(forKey key: String) -> Int64
+    /// Publishes a deliberate progress value that must win the next merge.
+    func forceUpdateProgress(_ progress: Int64, forKey key: String)
+}
+
+/// Production conformance backed by `MKiCloudSync`, whose API is class-level.
+struct LiveProgressCloudSync: ProgressCloudSync {
+    func overrideRevision(forKey key: String) -> Int64 {
+        MKiCloudSync.overrideRevision(forKey: key)
+    }
+
+    func forceUpdateProgress(_ progress: Int64, forKey key: String) {
+        MKiCloudSync.forceUpdateProgress(progress, forKey: key)
+    }
+}
+
+/// Pure progress arithmetic shared by the reader and its tests.
+enum ReadingProgress {
+    /// Clamps a stored page into the valid range of the current content.
+    static func clamp(page: Int, contentCount: Int) -> Int {
+        guard contentCount > 0 else { return 0 }
+        return min(max(page, 0), contentCount - 1)
+    }
+
+    /// Fraction of the book that has been read, always within `0...1`.
+    static func fraction(page: Int, contentCount: Int) -> Double {
+        guard contentCount > 0 else { return 0 }
+        let clamped = clamp(page: page, contentCount: contentCount)
+        return min(max(Double(clamped) / Double(contentCount), 0), 1)
+    }
+}
+
 class BookVM: ObservableObject {
+    /// Serialises position persistence so rapid updates cannot land out of order.
+    private static let progressWriteQueue = DispatchQueue(label: "ice.reader.progress.write", qos: .userInteractive)
     private let importedStore: ImportedBookStore
     private let bundledBookCount = 1
+    private let defaults: UserDefaults
+    private let cloud: ProgressCloudSync
     @Published var datas : [String]?
     // 正式小说通过浏览器上传；App 只内置一个可读占位样例。
     @Published var bookNames:[BookInfo] = [
@@ -47,15 +89,11 @@ class BookVM: ObservableObject {
     @Published var splitedContentsCount: Double = 1.0
     private var sequence: String.SubSequence = String.SubSequence(stringLiteral: "")
     
-    let jumpToIndexSig = PassthroughSignalEmitter<Int>()
-    let quickJumpToIndexSig = PassthroughSignalEmitter<Int>()
-    let cleanLastReadBook = PassthroughSignalEmitter<Bool>()
     @AppStorage("LastReadBookName")
     var LastReadBookName = ""
     var blockSaveAction = false
     
     var completeBookName = ""
-    var cloudBookDict: [String : String]? = nil
     
     let cloudManager = NSUbiquitousKeyValueStore.default
 
@@ -72,8 +110,17 @@ class BookVM: ObservableObject {
         importedStore.validRecords()
     }
 
-    init(importedStore: ImportedBookStore = .shared) {
+    init(
+        importedStore: ImportedBookStore = .shared,
+        defaults: UserDefaults = .standard,
+        cloud: ProgressCloudSync = LiveProgressCloudSync()
+    ) {
         self.importedStore = importedStore
+        self.defaults = defaults
+        self.cloud = cloud
+        // Progress reads consult the override revision, which needs the sync
+        // prefix to be configured before the first read.
+        CloudManager.shared.initCloudListener()
         reloadImportedBooks()
     }
 
@@ -100,6 +147,14 @@ class BookVM: ObservableObject {
         bookNames = books
         if !LastReadBookName.isEmpty, book(for: LastReadBookName) == nil {
             LastReadBookName = ""
+        }
+        // Replacing a book's bytes changes its split count, so the cached
+        // content must not be reused. Otherwise the reader would clamp and
+        // persist a position against the previous split count.
+        if !completeBookName.isEmpty, book(for: completeBookName) == nil {
+            completeBookName = ""
+            splitedContents = []
+            splitedContentsCount = 1
         }
         updateProgresses()
     }
@@ -170,23 +225,25 @@ class BookVM: ObservableObject {
         return LastReadBookName == book.id || LastReadBookName == book.name
     }
     
-    func initCloudBookDict() {
-        var resDict : [String : String] = [:]
+    /// Cloud key for the bundled placeholder list.
+    ///
+    /// Computed rather than cached: progress reads and writes happen on a
+    /// background queue, and a lazily cached dictionary would be mutated from
+    /// several threads at once.
+    private var bundledCloudKeys: [String: String] {
+        var resDict: [String: String] = [:]
         let total = min(bundledBookCount, bookNames.count)
         for i in 0..<total {
-            resDict[bookNames[i].id] = "syncIRA"+String(i)
+            resDict[bookNames[i].id] = "syncIRA" + String(i)
         }
-        cloudBookDict = resDict
+        return resDict
     }
-    
+
     func getCloudKey(name: String) -> String? {
-        if cloudBookDict == nil {
-            initCloudBookDict()
-        }
         guard let book = book(for: name) else { return nil }
         switch book.location {
         case .bundled:
-            return cloudBookDict?[book.id]
+            return bundledCloudKeys[book.id]
         case .imported:
             return Self.importedCloudKey(for: book.name)
         }
@@ -214,35 +271,65 @@ class BookVM: ObservableObject {
         return book(for: name)?.extention ?? "txt"
     }
     
+    /// Persists a reading position.
+    ///
+    /// `forceCloudSync` publishes the value as a deliberate revision so it wins
+    /// the next merge on every device. A deliberate backward jump (re-reading an
+    /// earlier page) must set it, otherwise the still-larger cloud value would
+    /// pull the reader forward again.
     func saveLastPage(name: String, page: Int, forceCloudSync: Bool = false) {
         if blockSaveAction {
             //print("Catch background save action")
             return
         }
-        
-        DispatchQueue.global(qos: .userInteractive).async {
+
+        // A dedicated serial queue keeps position writes in order. On the global
+        // concurrent queue two rapid scroll updates could land out of order and
+        // leave an older page stored as the newest progress.
+        Self.progressWriteQueue.async {
             let storageKey = self.readingStorageKey(for: name)
-            self.persistLocalReadingState(name: name, page: page, storageKey: storageKey)
+            self.persistLocalReadingState(name: name, page: page, storageKey: storageKey, storage: self.defaults)
             if let cloudKey = self.getCloudKey(name: name) {
                 if forceCloudSync {
-                    MKiCloudSync.forceUpdateProgress(Int64(page), forKey: cloudKey)
+                    self.cloud.forceUpdateProgress(Int64(page), forKey: cloudKey)
                 } else {
-                    UserDefaults.standard.set(String(page), forKey: cloudKey)
+                    self.defaults.set(String(page), forKey: cloudKey)
                 }
             }
         }
-        
+
     }
 
-    private func persistLocalReadingState(name: String, page: Int, storageKey: String) {
-        UserDefaults.standard.set(String(page), forKey: storageKey)
-        let progress = splitedContentsCount > 0 ? Double(page) / splitedContentsCount : 0
-        UserDefaults.standard.set(progress, forKey: getProgressKey(name: name))
+    /// Persists a reading position on the calling thread.
+    ///
+    /// Used by lifecycle paths that must not lose the position to a pending
+    /// background queue, such as entering the background or dismissing the reader.
+    func saveLastPageNow(name: String, page: Int, forceCloudSync: Bool = false) {
+        let storageKey = readingStorageKey(for: name)
+        persistLocalReadingState(name: name, page: page, storageKey: storageKey, storage: defaults)
+        if let cloudKey = getCloudKey(name: name) {
+            if forceCloudSync {
+                cloud.forceUpdateProgress(Int64(page), forKey: cloudKey)
+            } else {
+                defaults.set(String(page), forKey: cloudKey)
+            }
+        }
     }
-    
+
+    private func persistLocalReadingState(name: String, page: Int, storageKey: String, storage: UserDefaults) {
+        storage.set(String(page), forKey: storageKey)
+        let progress = readingFraction(page: page)
+        storage.set(progress, forKey: getProgressKey(name: name))
+    }
+
+    /// Fraction of the loaded book represented by `page`, clamped to `0...1`.
+    func readingFraction(page: Int) -> Double {
+        ReadingProgress.fraction(page: page, contentCount: Int(splitedContentsCount))
+    }
+
     func readCloudString(name: String) -> String? {
         if let cloudKey = self.getCloudKey(name: name) {
-            return UserDefaults.standard.string(forKey: cloudKey)
+            return defaults.string(forKey: cloudKey)
         }
         return nil
     }
@@ -256,7 +343,7 @@ class BookVM: ObservableObject {
     }
     
     func readLastProgressOf(name: String) -> Double {
-        let res = UserDefaults.standard.value(forKey: getProgressKey(name: name))
+        let res = defaults.value(forKey: getProgressKey(name: name))
         if let val = res as? Double {
             return val
         }
@@ -266,43 +353,68 @@ class BookVM: ObservableObject {
     func getAppliedCloudOverrideKey(cloudKey: String) -> String {
         return "AppliedCloudOverride_\(cloudKey)"
     }
-    
-    func readLastPage(name: String) -> Int {
-        
-        //        print("ReadLast \(readCloudString(name: name))")
-        
+
+    /// Locally stored page, ignoring any cloud value. No side effects.
+    func storedLocalPage(name: String) -> Int {
         let storageKey = readingStorageKey(for: name)
-        let res = UserDefaults.standard.value(forKey: storageKey)
-        var localVal: Int = 0
-        if let val = res as? String {
-            if let fin = Int(val) {
-                //                print("local \(name) is \(fin)")
-                localVal = fin
-            }
-        }
-        
-        if let cloudKey = getCloudKey(name: name),
-           let cloudStr = readCloudString(name: name) {
-            if let cloudVal = Int(cloudStr) {
-                let overrideRevision = MKiCloudSync.overrideRevision(forKey: cloudKey)
-                let appliedOverrideKey = getAppliedCloudOverrideKey(cloudKey: cloudKey)
-                let appliedRevision = Int64(UserDefaults.standard.integer(forKey: appliedOverrideKey))
+        guard let raw = defaults.value(forKey: storageKey) as? String,
+              let value = Int(raw) else { return 0 }
+        return value
+    }
 
-                if overrideRevision > appliedRevision {
-                    persistLocalReadingState(name: name, page: cloudVal, storageKey: storageKey)
-                    UserDefaults.standard.set(overrideRevision, forKey: appliedOverrideKey)
-                    return cloudVal
-                }
+    /// Page published from the cloud, ignoring any local value. No side effects.
+    func storedCloudPage(name: String) -> Int? {
+        guard let cloudStr = readCloudString(name: name), let value = Int(cloudStr) else { return nil }
+        return value
+    }
 
-                //                print("cloud \(name) is \(cloudVal)")
-                if cloudVal >= localVal {
-                    localVal = cloudVal
-                    persistLocalReadingState(name: name, page: cloudVal, storageKey: storageKey)
-                }
-            }
+    /// Resolves the restored reading position without writing to local or cloud
+    /// storage.
+    ///
+    /// This is deliberately read-only. Historically this method also wrote the
+    /// larger of the local and cloud values back into local storage, which is how
+    /// a deliberate backward jump on one device was silently reverted by the
+    /// larger progress coming from iCloud. Callers that want to move the viewport
+    /// must go through `consumeExternalProgressOverride(name:)` and the reader's
+    /// explicit alignment path instead.
+    func readLastPage(name: String) -> Int {
+        let localVal = storedLocalPage(name: name)
+        guard let cloudVal = storedCloudPage(name: name) else { return localVal }
+        guard let cloudKey = getCloudKey(name: name) else { return max(localVal, cloudVal) }
+
+        let overrideRevision = cloud.overrideRevision(forKey: cloudKey)
+        let appliedRevision = appliedOverrideRevision(cloudKey: cloudKey)
+        if overrideRevision > appliedRevision {
+            // Another device deliberately published a newer position. It wins
+            // even when it is smaller, because it is the user's explicit choice.
+            return cloudVal
         }
-        
-        return localVal
+
+        return max(localVal, cloudVal)
+    }
+
+    func appliedOverrideRevision(cloudKey: String) -> Int64 {
+        Int64(defaults.integer(forKey: getAppliedCloudOverrideKey(cloudKey: cloudKey)))
+    }
+
+    /// Whether another device published a revision this app has not applied yet.
+    /// Read-only, so a caller can decide whether to move the viewport before
+    /// marking the revision as applied.
+    func hasFreshExternalProgressOverride(name: String) -> Bool {
+        guard let cloudKey = getCloudKey(name: name) else { return false }
+        return cloud.overrideRevision(forKey: cloudKey) > appliedOverrideRevision(cloudKey: cloudKey)
+    }
+
+    /// Returns a genuinely newer position published by another device, or `nil`
+    /// when there is nothing new to apply. Records that the revision was applied
+    /// so the same override is not replayed on every poll.
+    func consumeExternalProgressOverride(name: String) -> Int? {
+        guard let cloudKey = getCloudKey(name: name),
+              let cloudVal = storedCloudPage(name: name) else { return nil }
+        let overrideRevision = cloud.overrideRevision(forKey: cloudKey)
+        guard overrideRevision > appliedOverrideRevision(cloudKey: cloudKey) else { return nil }
+        defaults.set(overrideRevision, forKey: getAppliedCloudOverrideKey(cloudKey: cloudKey))
+        return cloudVal
     }
     
     func readCloudPage(name : String) -> Int {
